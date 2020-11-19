@@ -59,4 +59,9 @@ public class MenuModel {
         this.lvl = lvl;
     }
 
+    @Override
+    public String toString() {
+        return this.nme + "\n";
+    }
+
 }

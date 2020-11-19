@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3/nov/2020, 0:33:53
+    Author     : marco
+*/
+body{
+    margin: 0px
+}
+.menu-content{
+    background-color: #2c3e50;
+    border: 1px solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: fit-content;
+    position: absolute;
+    height: 242px;
+    margin: 0;
+    width: 112px;
+    top: 50px;
+    color:white;
+
+}
+.lvl-0:hover .main-nme{
+    color: #86d4f9;
+}
+.lvl-1:hover{
+    background-color: #333a42  !important;
+}
+[class*=lvl]{
+    cursor: pointer;
+    padding-top: 5px;
+}
+.lvl-0{
+    padding-right: 20px;
+    font-size: 20px;
+}
+.lvl-0:before{
+    content: ' \02C7';
+    position: absolute;
+    right: 5px;
+    padding-top: 5px;
+
+}
+.lvl-0:first-child{
+    border-top-right-radius: 10px;
+}
+.main-nme{
+    padding-left: 10px; 
+}
+.lvl-0:nth-of-type(2n){
+    /* background-color: #e4e4e4;*/
+}
+.lvl-1:before{
+    content: ' \02C3';
+    position: absolute;
+    right: 5px;
+    padding-top: 1px;
+}
+.lvl-1{
+    font-size: 16px;
+    background-color: #52606f;
+    width: 120%;
+    text-align: left;
+    text-indent: 10px
+}
+.not-visible{
+    display: none;
+
+}
+.opened{
+    /*text-decoration: underline;*/
+    text-decoration-color: blue;
+    text-align: center;
+
+}

@@ -6,6 +6,7 @@
 package menu.controller;
 
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,14 +31,19 @@ public class MenuController extends HttpServlet {
         processRequest(req, resp);
     }
 
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) {
+    public void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pwhat = req.getParameter("pwhat");
         MenuServices services = new MenuServices();
+        RequestDispatcher requestDispatcher = null;
+
         switch (pwhat) {
             case "get":
-                services.createMenuStructure();
+                req.setAttribute("structure", services.createMenuStructure());
+                requestDispatcher = req.getRequestDispatcher("/menu/menu.jsp");
+                requestDispatcher.forward(req, resp);
                 break;
         }
     }
+
 
 }
