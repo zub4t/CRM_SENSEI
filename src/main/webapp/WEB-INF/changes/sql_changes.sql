@@ -16,3 +16,8 @@ create  table main_menu(id int not null auto_increment, nme varchar(255) not nul
 INSERT INTO `crm`.`main_menu` (`nme`, `lvl`) VALUES ('Gestão', '0');
 INSERT INTO `crm`.`main_menu` (`nme`, `lvl`, `parent_id`) VALUES ('funcionários ', '1', '1');
 INSERT INTO `crm`.`main_menu` (`nme`, `lvl`, `parent_id`) VALUES ('projetos', '1', '1');
+
+create  table employee(id int not null auto_increment, nme varchar(255) not null, tel int, email varchar(150) , primary key(id) );
+create  table usr(id int not null auto_increment, usrnme varchar(255) not null, pass varchar(150) , foreign key(id) references employee(id));
+insert into employee (nme,tel,email) values("marco","913648628","marcoaraujo96@gmail.com");
+insert into usr(id,usrnme,pass) values(1,"sushll","admin");

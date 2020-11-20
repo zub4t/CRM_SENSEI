@@ -3,7 +3,7 @@
     Created on : 2/nov/2020, 0:18:28
     Author     : marco
 --%>
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="menu.services.MenuServices"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,26 +22,26 @@
     %>
     <body>
         <%@include file="../menu/menu.jsp" %>
+
+        <div class="watermark"></div>
+        <div id="project-selector">
+            <div class="select">
+                <select name="prjct-selected" id="slct">
+                    <option>Projeto 1 </option>
+                    <option>Projeto 2 </option>
+                    <option>Projeto 3 </option>
+                    <option>Projeto 4 </option>
+                    <option>Projeto 5 </option>
+                    <option>Projeto 6 </option>
+
+                </select>
+            </div>
+        </div>
+        <div class="main-content">
+            <div id="canvans-content">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+
+        </div>
     </body>
-    <div class="watermark"></div>
-    <div id="project-selector">
-        <div class="select">
-            <select name="prjct-selected" id="slct">
-                <option>Projeto 1 </option>
-                <option>Projeto 2 </option>
-                <option>Projeto 3 </option>
-                <option>Projeto 4 </option>
-                <option>Projeto 5 </option>
-                <option>Projeto 6 </option>
-
-            </select>
-        </div>
-    </div>
-    <div class="main-content">
-        <div id="canvans-content">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-
-    </div>
-
 </html>
