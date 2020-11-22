@@ -22,7 +22,7 @@ public class DBManager {
 
     public static PreparedStatement getPreparedStatement(int con, String sql_cod) {
         try {
-            PreparedStatement pstmt = connection_list.get(con).prepareStatement(sql_cod);
+            PreparedStatement pstmt = connection_list.get(con).prepareStatement(sql_cod, Statement.RETURN_GENERATED_KEYS);
             return pstmt;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -34,7 +34,7 @@ public class DBManager {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String BD_URL = "jdbc:mysql://localhost:3306/crm?useTimezone=true&serverTimezone=UTC&user=root&password=root";
+            String BD_URL = "jdbc:mysql://localhost:3307/crm?useTimezone=true&serverTimezone=UTC&user=root&password=root";
             Connection con = DriverManager.getConnection(BD_URL);
             connection_list.add(con);
             return connection_list.size() - 1;

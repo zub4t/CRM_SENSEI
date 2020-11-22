@@ -34,10 +34,23 @@ public class EmployeeController extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         String pwhat = req.getParameter("pwhat");
         EmployeeServices services = new EmployeeServices();
+        RequestDispatcher dis = null;
         switch (pwhat) {
             case "insert":
                 services.insert(req);
-                RequestDispatcher dis = req.getRequestDispatcher("/management/employee/employee_res.jsp");
+                dis = req.getRequestDispatcher("/management/employee/employee_res.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "login":
+                if(services.login(req)){
+                    dis = req.getRequestDispatcher("/main/main.jsp");
+                } else {
+                    dis = req.getRequestDispatcher("/login/login.jsp");
+                }
                 try {
                     dis.forward(req, resp);
                 } catch (Exception e) {

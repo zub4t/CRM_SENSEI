@@ -10,29 +10,35 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="/CRM_SENSEI/login/login.css">
     </head>
     <body>
+        <form class="form" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=login">
+            <div class="login container">
+                <div class="login logo"><img src="/CRM_SENSEI/resources/shistudio-logo-160x90.png"></div>
 
-        <div class="login container">
-            <div class="login logo"><img src="../resources/shistudio-logo-160x90.png"></div>
+                <div id="input-group">
+                    <div class="group">      
+                        <input type="text" name="nickname" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Username</label>
+                    </div>
 
-            <div id="input-group">
-                <div class="group">      
-                    <input type="text" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Username</label>
+                    <div class="group">      
+                        <input type="password" name="pass" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Password</label>
+                    </div>
+
+                    <div class="group">
+                        <input style="cursor:pointer" type="submit" value="Login">
+                    </div>
+
+
                 </div>
-
-                <div class="group">      
-                    <input type="password" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Password</label>
-                </div>
-
-
             </div>
+        </form>
     </body>
 </html>

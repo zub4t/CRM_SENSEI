@@ -41,8 +41,30 @@ public class EmployeeRepository {
         }
         return list;
     }
+    
+    public boolean checkEmployeeAccount(String nickname, String pass){
+        boolean exists = false;
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "SELECT COUNT(*) FROM usr WHERE usrnme = ? AND pass = MD5(?);");
+            pstmt.setString(1, nickname);
+            pstmt.setString(2, pass);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next())
+            {
+                exists = rs.getInt(1) == 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+            return exists;
+        }
+    }
 
-    public void insertEmployee(String nme, String tel, String email) {
+    public void insertEmployee(String nme, String tel, String email, String nickname, String pass) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
@@ -51,6 +73,17 @@ public class EmployeeRepository {
             pstmt.setString(1, nme);
             pstmt.setString(2, tel);
             pstmt.setString(3, email);
+            pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            int last_inserted_id = 0;
+            if(rs.next())
+            {
+                    last_inserted_id = rs.getInt(1);
+            }
+            pstmt = DBManager.getPreparedStatement(con, "INSERT INTO usr (id,usrnme, pass) VALUES (?,?, MD5(?));");
+            pstmt.setInt(1, last_inserted_id);
+            pstmt.setString(2, nickname);
+            pstmt.setString(3, pass);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
