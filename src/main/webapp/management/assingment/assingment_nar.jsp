@@ -29,23 +29,11 @@
                 <h1 class="user__title">registro de funcionarios</h1>
             </header>
 
-            <form class="form" method="POST" action="/CRM_SENSEI/ProjectController?pwhat=insert">
+            <form class="form" method="POST" action="/CRM_SENSEI/AssingmentController?pwhat=insert">
                 <div class="form__group">
-                    <input  type="text" name="n_process" placeholder="Numero do processo" class="form__input  item" />
-                </div>
-                <div class="form__group">
-                    <input  type="text" name="nme" placeholder="Nome do Cliente" class="form__input  item" />
+                    <input  type="text" name="dsc" placeholder="Descrição da Tarefa" class="form__input  item" />
                 </div>
 
-                <div class="form__group">
-                    <input  type="number" step="0.01" name="expected_sale" placeholder="Venda Prevista" class="form__input item"  />
-                </div>
-                <div class="form__group">
-                    <input  type="number" step="0.01" name="effective_sale" placeholder="Venda Efetiva" class="form__input item"  />
-                </div>
-                <div class="form__group">
-                    <input  type="number" step="0.01" name="effective_purchase" placeholder="Compra Efetiva" class="form__input item"  />
-                </div>
                 <button class="btn" type="button">Register</button>
             </form>
         </div>        

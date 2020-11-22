@@ -26,7 +26,7 @@ window.addEventListener("load", function (event) {
                 if (document.querySelector("[name=email]").value.indexOf("@") == -1) {
                     valid = false;
                 }
-                if (document.querySelectorAll("[name=pass]")[0].value == document.querySelectorAll("[name=pass]")[1].value) {
+                if (document.querySelectorAll("[name=pass]")[0].value != document.querySelectorAll("[name=pass]")[1].value) {
                     valid = false;
                 }
             }
@@ -38,6 +38,10 @@ window.addEventListener("load", function (event) {
                     document.querySelector(".btn").style.backgroundColor = "var(--color-primary"
                     form.classList.remove('form--no');
                 }, 500);
+            } else {
+                document.querySelector(".form").submit();
+
+
             }
         });
 });

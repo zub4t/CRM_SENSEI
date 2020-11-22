@@ -19,4 +19,14 @@ public class EmployeeServices {
         req.setAttribute("list", new EmployeeRepository().getAll());
     }
 
+    public void insert(HttpServletRequest req) {
+        EmployeeRepository repository = new EmployeeRepository();
+        String nme = req.getParameter("nme");
+        String tel = req.getParameter("tel");
+        String email = req.getParameter("email");
+        String nickname = req.getParameter("nickname");
+        String[] pass = req.getParameterValues("pass");
+        repository.insertEmployee(nme, tel, email);
+    }
+
 }

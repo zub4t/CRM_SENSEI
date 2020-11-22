@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package management.employee.controller;
+package management.assingment.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -12,14 +12,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import management.assingment.services.AssingmentServices;
 import management.employee.services.EmployeeServices;
 
 /**
  *
  * @author marco
  */
-@WebServlet(value = "/EmployeeController")
-public class EmployeeController extends HttpServlet {
+@WebServlet(value = "/AssingmentController")
+public class AssingmentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,11 +34,11 @@ public class EmployeeController extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         String pwhat = req.getParameter("pwhat");
-        EmployeeServices services = new EmployeeServices();
+        AssingmentServices services = new AssingmentServices();
         switch (pwhat) {
             case "insert":
                 services.insert(req);
-                RequestDispatcher dis = req.getRequestDispatcher("/management/employee/employee_res.jsp");
+                RequestDispatcher dis = req.getRequestDispatcher("/management/assingment/assingment_res.jsp");
                 try {
                     dis.forward(req, resp);
                 } catch (Exception e) {

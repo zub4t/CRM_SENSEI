@@ -29,7 +29,7 @@
                 <h1 class="user__title">registro de funcionarios</h1>
             </header>
 
-            <form class="form">
+            <form class="form" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=insert">
                 <div class="form__group">
                     <input  type="text" name="nme" placeholder="nome" class="form__input  item" />
                 </div>

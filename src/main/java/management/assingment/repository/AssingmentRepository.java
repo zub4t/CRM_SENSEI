@@ -1,36 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package management.employee.repository;
+package management.assingment.repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import management.assingment.model.AssingmentModel;
 import management.employee.model.EmployeeModel;
 import util.DBManager;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 /**
  *
  * @author marco
  */
-public class EmployeeRepository {
+public class AssingmentRepository {
 
-    public List<EmployeeModel> getAll() {
-        List<EmployeeModel> list = new ArrayList<>();
+    public List<AssingmentModel> getAll() {
+        List<AssingmentModel> list = new ArrayList<>();
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from employee;");
+            pstmt = DBManager.getPreparedStatement(con, "select * from assingment;");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                EmployeeModel model = new EmployeeModel();
+                AssingmentModel model = new AssingmentModel();
                 model.setId(rs.getInt("id"));
-                model.setNme(rs.getString("nme"));
-                model.setTel(rs.getString("tel"));
-                model.setEmail(rs.getString("email"));
+                model.setDsc(rs.getString("dsc"));
                 list.add(model);
             }
         } catch (Exception e) {
@@ -42,15 +41,13 @@ public class EmployeeRepository {
         return list;
     }
 
-    public void insertEmployee(String nme, String tel, String email) {
+    public void insertAssingment(String dsc) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "insert into employee (nme,tel,email) values(?,?,?)");
-            pstmt.setString(1, nme);
-            pstmt.setString(2, tel);
-            pstmt.setString(3, email);
+            pstmt = DBManager.getPreparedStatement(con, "insert into assingment (dsc) values(?)");
+            pstmt.setString(1, dsc);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
