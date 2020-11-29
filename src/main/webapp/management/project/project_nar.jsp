@@ -46,6 +46,9 @@
                 <div class="form__group">
                     <input  type="number" step="0.01" name="effective_purchase" placeholder="Compra Efetiva" class="form__input item"  />
                 </div>
+                 <div class="form__group">
+                    <input  type="number" step="0.01" name="honorary" placeholder="honorário" class="form__input item"  />
+                </div>
                 <button class="btn" type="button">Register</button>
             </form>
         </div>        

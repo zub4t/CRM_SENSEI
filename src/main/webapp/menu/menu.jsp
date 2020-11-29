@@ -12,7 +12,7 @@
         <div class="lvl-0">
             <div class="main-nme closed" onclick="openMenuTab(this)" id="${s.parent.getId()}">${s.parent.getNme()}</div>
             <c:forEach items="${s.getChildren()}" var="child">
-                <div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >${child.getNme()}</div>
+                <a href="http://localhost:8084/CRM_SENSEI${child.getUrl()}"><div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >${child.getNme()}</div></a>
             </c:forEach>
         </div>
     </c:forEach>

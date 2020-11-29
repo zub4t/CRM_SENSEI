@@ -15,14 +15,17 @@ public class MenuModel {
     private String nme;
     private int lvl;
     private int parent_id;
+    private String url;
 
-    public MenuModel(int id, String nme, int lvl, int parent_id) {
+    public MenuModel(int id, String nme, int lvl, int parent_id, String url) {
         this.id = id;
         this.nme = nme;
         this.lvl = lvl;
         this.parent_id = parent_id;
+        this.url = url;
     }
 
+    
     public MenuModel() {
 
     }
@@ -62,6 +65,14 @@ public class MenuModel {
     @Override
     public String toString() {
         return this.nme + "\n";
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

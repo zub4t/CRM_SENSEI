@@ -17,14 +17,25 @@ public class ProjectModel {
     private float effective_sale;
     private float effective_purchase;
     private String n_process;
+    private float honorary;
 
-    public ProjectModel(int id, String customer_nme, float expected_sale, float effective_sale, float effective_purchase, String n_process) {
+    public float getHonorary() {
+        return honorary;
+    }
+
+    public void setHonorary(float honorary) {
+        this.honorary = honorary;
+    }
+    
+
+    public ProjectModel(int id, String customer_nme, float expected_sale, float effective_sale, float effective_purchase, String n_process, float honorary) {
         this.id = id;
         this.customer_nme = customer_nme;
         this.expected_sale = expected_sale;
         this.effective_sale = effective_sale;
         this.effective_purchase = effective_purchase;
         this.n_process = n_process;
+        this.honorary = honorary;
     }
 
     public String getN_process() {

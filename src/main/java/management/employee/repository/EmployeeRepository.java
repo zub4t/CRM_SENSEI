@@ -41,8 +41,32 @@ public class EmployeeRepository {
         }
         return list;
     }
-    
-    public boolean checkEmployeeAccount(String nickname, String pass){
+
+    public EmployeeModel getById(int id) {
+        EmployeeModel model = new EmployeeModel();
+
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee where id=?;");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                model.setId(rs.getInt("id"));
+                model.setNme(rs.getString("nme"));
+                model.setTel(rs.getString("tel"));
+                model.setEmail(rs.getString("email"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return model;
+    }
+
+    public boolean checkEmployeeAccount(String nickname, String pass) {
         boolean exists = false;
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
@@ -51,8 +75,7 @@ public class EmployeeRepository {
             pstmt.setString(1, nickname);
             pstmt.setString(2, pass);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 exists = rs.getInt(1) == 1;
             }
         } catch (Exception e) {
@@ -76,9 +99,8 @@ public class EmployeeRepository {
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
             int last_inserted_id = 0;
-            if(rs.next())
-            {
-                    last_inserted_id = rs.getInt(1);
+            if (rs.next()) {
+                last_inserted_id = rs.getInt(1);
             }
             pstmt = DBManager.getPreparedStatement(con, "INSERT INTO usr (id,usrnme, pass) VALUES (?,?, MD5(?));");
             pstmt.setInt(1, last_inserted_id);

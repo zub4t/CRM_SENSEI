@@ -18,7 +18,7 @@ and open the template in the editor.
 
 }
 .table_header::after{
-    content: "Tarefas";
+    content: "Intervenções";
     font-size: 30px;
     color: white;
     padding: 22.5vw;
@@ -34,9 +34,17 @@ and open the template in the editor.
     color: white;
 }
 #table_assingment tr:nth-child(1) td{
-    width: 33%;
+    width: 20%;
 }
 #table_assingment tr:nth-child(1) td:nth-child(2) {
+    border-left: 1px solid white;
+    border-right:  1px solid white;
+}
+#table_assingment tr:nth-child(1) td:nth-child(3) {
+    border-left: 1px solid white;
+    border-right:  1px solid white;
+}
+#table_assingment tr:nth-child(1) td:nth-child(4) {
     border-left: 1px solid white;
     border-right:  1px solid white;
 }

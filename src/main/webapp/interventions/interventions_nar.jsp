@@ -22,8 +22,8 @@
             ProjectServices project = new ProjectServices();
             project.setListOfAllPrj(request, response);
         %>
-        <script src="/CRM_SENSEI/management/project/project.js"></script>
-        <link href="/CRM_SENSEI/management/project/project.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/interventions/interventions.js"></script>
+        <link href="/CRM_SENSEI/interventions/interventions.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -35,9 +35,9 @@
                 <h1 class="user__title">registro de funcionarios</h1>
             </header>
 
-            <form class="form" method="POST" action="/CRM_SENSEI/AssingmentController?pwhat=insert">
+            <form class="form" method="POST" action="/CRM_SENSEI/InterventionsController?pwhat=insert">
                 <div class="form__group">
-                    <select name="cars" id="project"  class="form__input  item">
+                    <select name="project_id"   class="form__input  item">
                         <c:forEach items="${list_prj}" var="item">
                             <option value="${item.getId()}">${item.getN_process()}</option>
                         </c:forEach>
@@ -45,7 +45,7 @@
                     </select>
                 </div>
                 <div class="form__group">
-                    <select name="cars" id="project"  class="form__input  item">
+                    <select name="assingment_id"  class="form__input  item">
                         <c:forEach items="${list_assng}" var="item">
                             <option value="${item.getId()}">${item.getDsc()}</option>
                         </c:forEach>
@@ -53,8 +53,10 @@
                     </select>
                 </div>
 
+
+
                 <div class="form__group">
-                    <input type="time"  class="form__input  item" placeholder="Tempo dedicado">
+                    <input name="spend_time" type="time"  class="form__input  item" placeholder="Tempo dedicado">
                 </div>  
                 <div class="form__group">
                     <textarea name="dsc" rows="4" cols="50" class="form__input  item" placeholder="Descrição detalhada">Descrição detalhada sobre oque fez no projeto.

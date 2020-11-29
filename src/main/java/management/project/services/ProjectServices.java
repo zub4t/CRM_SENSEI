@@ -26,6 +26,8 @@ public class ProjectServices {
         float expected_sale = Float.parseFloat(req.getParameter("expected_sale"));
         float effective_sale = Float.parseFloat(req.getParameter("effective_sale"));
         float effective_purchase = Float.parseFloat(req.getParameter("effective_purchase"));
-        repository.insertProject(n_process, nme, expected_sale, effective_sale, effective_purchase);
+        float honorary = Float.parseFloat(req.getParameter("honorary"));
+
+        repository.insertProject(n_process, nme, expected_sale, effective_sale, effective_purchase,honorary);
     }
 }

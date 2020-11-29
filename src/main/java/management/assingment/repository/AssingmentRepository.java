@@ -41,6 +41,28 @@ public class AssingmentRepository {
         return list;
     }
 
+    public AssingmentModel getById(int id) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        AssingmentModel model = new AssingmentModel();
+
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from assingment where id=?");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                model.setId(rs.getInt("id"));
+                model.setDsc(rs.getString("dsc"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return model;
+    }
+
     public void insertAssingment(String dsc) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;

@@ -31,6 +31,7 @@ public class MenuRepository {
                 model.setId(rs.getInt("id"));
                 model.setLvl(lvl);
                 model.setNme(rs.getString("nme"));
+                model.setUrl(rs.getString("url"));
                 model.setParent_id(rs.getString("parent_id") == null ? 0 : rs.getInt("parent_id"));
                 list.add(model);
             }
@@ -56,6 +57,7 @@ public class MenuRepository {
                 model.setId(rs.getInt("id"));
                 model.setLvl(rs.getInt("parent_id"));
                 model.setNme(rs.getString("nme"));
+                model.setUrl(rs.getString("url"));
                 model.setParent_id(rs.getString("parent_id") == null ? 0 : rs.getInt("parent_id"));
                 list.add(model);
             }
