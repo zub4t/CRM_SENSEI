@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import management.employee.model.EmployeeModel;
+import management.project.model.ProjectEmployeeTime;
 import management.project.model.ProjectModel;
 import util.DBManager;
 
@@ -91,5 +92,29 @@ public class ProjectRepository {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
         }
+    }
+    
+    public List<ProjectEmployeeTime> getAllProjectEmployeeTime(String id){
+        List<ProjectEmployeeTime> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "SELECT  n_process, sum(TIME_TO_SEC(spend_time)) AS time_spent,( select nme from employee where id= employee_id) as performer from project_employee inner join project on project_employee.project_id = project.id WHERE project.id = ? GROUP BY project.id;");
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProjectEmployeeTime model = new ProjectEmployeeTime();
+                model.setN_process(rs.getString("n_process"));
+                model.setTime_spent(rs.getLong("time_spent"));
+                model.setEmployee(rs.getString("performer"));
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
     }
 }

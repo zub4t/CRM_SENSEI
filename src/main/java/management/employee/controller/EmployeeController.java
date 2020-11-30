@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import management.employee.services.EmployeeServices;
 
 /**
@@ -46,8 +47,11 @@ public class EmployeeController extends HttpServlet {
                 }
                 break;
             case "login":
-                if(services.login(req)){
+                int id = 0;
+                if((id = services.login(req)) != 0){
                     dis = req.getRequestDispatcher("/main/main.jsp");
+                    HttpSession session = req.getSession();
+                    session.setAttribute("userId", id);
                 } else {
                     dis = req.getRequestDispatcher("/login/login.jsp");
                 }

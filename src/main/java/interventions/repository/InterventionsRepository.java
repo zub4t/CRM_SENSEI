@@ -62,7 +62,7 @@ public class InterventionsRepository {
         PreparedStatement pstmt = null;
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "insert into project_employee (project_id,employee_id,assingment_id,spend_time,dsc,dte) values(?,?,?,?,?,NOW()");
+            pstmt = DBManager.getPreparedStatement(con, "insert into project_employee (project_id,employee_id,assingment_id,spend_time,dsc,dte) values(?,?,?,?,?,NOW())");
             pstmt.setInt(1, project_id);
             pstmt.setInt(2, employee_id);
             pstmt.setInt(3, assingment_id);

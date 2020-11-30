@@ -24,16 +24,22 @@ public class EmployeeServices {
         String nme = req.getParameter("nme");
         String tel = req.getParameter("tel");
         String email = req.getParameter("email");
+        String salary = req.getParameter("salary");
         String nickname = req.getParameter("nickname");
         String pass = req.getParameterValues("pass")[0];
-        repository.insertEmployee(nme, tel, email, nickname, pass);
+        repository.insertEmployee(nme, tel, email,salary, nickname, pass);
     }
     
-    public boolean login(HttpServletRequest req){
+    public int login(HttpServletRequest req){
         EmployeeRepository repository = new EmployeeRepository();
         String nickname = req.getParameter("nickname");
         String pass = req.getParameter("pass");
         return repository.checkEmployeeAccount(nickname, pass);
+    }
+    
+    public void setProjects(HttpServletRequest req, HttpServletResponse resp) {
+        EmployeeRepository repository = new EmployeeRepository();
+        req.setAttribute("employeeList", repository.getAll());
     }
 
 }

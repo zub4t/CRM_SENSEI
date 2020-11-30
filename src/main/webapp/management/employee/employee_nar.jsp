@@ -42,6 +42,9 @@
                     <input   type="email" name="email" placeholder="seuemail@gmail.com" class="form__input item item" />
                 </div>
                 <div class="form__group">
+                    <input    type="number" name="salary" placeholder="salary" class="form__input item" />
+                </div>
+                <div class="form__group">
                     <input    type="text" name="nickname" placeholder="nickname" class="form__input item" />
                 </div>
                 <div class="form__group">

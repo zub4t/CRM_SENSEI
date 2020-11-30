@@ -66,36 +66,37 @@ public class EmployeeRepository {
         return model;
     }
 
-    public boolean checkEmployeeAccount(String nickname, String pass) {
-        boolean exists = false;
+    public int checkEmployeeAccount(String nickname, String pass) {
+        int id = 0;
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "SELECT COUNT(*) FROM usr WHERE usrnme = ? AND pass = MD5(?);");
+            pstmt = DBManager.getPreparedStatement(con, "SELECT id FROM usr WHERE usrnme = ? AND pass = MD5(?);");
             pstmt.setString(1, nickname);
             pstmt.setString(2, pass);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                exists = rs.getInt(1) == 1;
+                id = rs.getInt(1);
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
-            return exists;
+            return id;
         }
     }
 
-    public void insertEmployee(String nme, String tel, String email, String nickname, String pass) {
+    public void insertEmployee(String nme, String tel, String email, String salary, String nickname, String pass) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "insert into employee (nme,tel,email) values(?,?,?)");
+            pstmt = DBManager.getPreparedStatement(con, "insert into employee (nme,tel,email,salary) values(?,?,?,?)");
             pstmt.setString(1, nme);
             pstmt.setString(2, tel);
             pstmt.setString(3, email);
+            pstmt.setString(4, salary);
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
             int last_inserted_id = 0;

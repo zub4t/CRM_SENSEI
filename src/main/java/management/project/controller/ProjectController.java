@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import management.employee.services.EmployeeServices;
 import management.project.services.ProjectServices;
 
@@ -33,12 +34,23 @@ public class ProjectController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        RequestDispatcher dis = null;
         String pwhat = req.getParameter("pwhat");
         ProjectServices services = new ProjectServices();
         switch (pwhat) {
             case "insert":
                 services.insert(req);
-                RequestDispatcher dis = req.getRequestDispatcher("/management/project/project_res.jsp");
+                dis = req.getRequestDispatcher("/management/project/project_res.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "setCurNProcess":
+                session.setAttribute("curProjectId", req.getAttribute("curProjectId"));
+                dis = req.getRequestDispatcher("/main/main.jsp");
                 try {
                     dis.forward(req, resp);
                 } catch (Exception e) {

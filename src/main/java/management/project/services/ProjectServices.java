@@ -5,8 +5,11 @@
  */
 package management.project.services;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import management.project.model.ProjectEmployeeTime;
+import management.project.model.ProjectModel;
 import management.project.repository.ProjectRepository;
 
 /**
@@ -29,5 +32,15 @@ public class ProjectServices {
         float honorary = Float.parseFloat(req.getParameter("honorary"));
 
         repository.insertProject(n_process, nme, expected_sale, effective_sale, effective_purchase,honorary);
+    }
+
+    public void setProjects(HttpServletRequest req, HttpServletResponse resp) {
+        ProjectRepository repository = new ProjectRepository();
+        req.setAttribute("projectList", repository.getAll());
+    }
+    
+    public List<ProjectEmployeeTime> getProjectEmployees(String id) {
+        ProjectRepository repository = new ProjectRepository();
+        return repository.getAllProjectEmployeeTime(id);
     }
 }

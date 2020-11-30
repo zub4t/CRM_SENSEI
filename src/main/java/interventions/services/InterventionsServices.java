@@ -8,6 +8,7 @@ package interventions.services;
 import interventions.repository.InterventionsRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import management.employee.repository.EmployeeRepository;
 import management.project.repository.ProjectRepository;
 
@@ -24,8 +25,8 @@ public class InterventionsServices {
     public void insert(HttpServletRequest req) {
         InterventionsRepository repository = new InterventionsRepository();
         int project_id = Integer.parseInt(req.getParameter("project_id"));
-        //   int employee_id = Integer.parseInt(req.getParameter("employee_id"));
-        int employee_id = 2;
+        HttpSession session = req.getSession();
+        int employee_id = Integer.parseInt(session.getAttribute("userId").toString());
         int assingment_id = Integer.parseInt(req.getParameter("assingment_id"));
         String spend_time = req.getParameter("spend_time");
         String dsc = req.getParameter("dsc");
