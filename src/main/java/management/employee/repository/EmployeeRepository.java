@@ -56,6 +56,7 @@ public class EmployeeRepository {
                 model.setNme(rs.getString("nme"));
                 model.setTel(rs.getString("tel"));
                 model.setEmail(rs.getString("email"));
+                model.setSalary(rs.getFloat("salary"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,6 +115,51 @@ public class EmployeeRepository {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
         }
-
+    }
+    
+    public EmployeeModel updateEmployee(int id, String nme, String tel, String email, String salary) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        EmployeeModel employeeModel = getById(id);
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "UPDATE employee SET nme = ? , tel = ?, email = ?, salary = ? where id = ?");
+            pstmt.setString(1, nme);
+            pstmt.setString(2, tel);
+            pstmt.setString(3, email);
+            pstmt.setString(4, salary);
+            pstmt.setInt(5, id);
+            pstmt.executeUpdate();
+            employeeModel.setNme(nme);
+            employeeModel.setEmail(email);
+            employeeModel.setTel(tel);
+            employeeModel.setSalary(Float.parseFloat(salary));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+            return employeeModel;
+        }
+    }
+    
+    public void removeEmployee(int id) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "DELETE FROM usr WHERE id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            pstmt = DBManager.getPreparedStatement(con, "DELETE FROM project_employee WHERE employee_id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            pstmt = DBManager.getPreparedStatement(con, "DELETE FROM employee WHERE id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
     }
 }

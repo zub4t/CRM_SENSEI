@@ -33,3 +33,19 @@ window.addEventListener("load", function (event) {
             }
         });
 });
+
+function goToProjectId(projectId){
+    var form = document.getElementById("goToProject");
+    document.querySelector("[name=projectId]").value = projectId;
+    form.action = "/CRM_SENSEI/ProjectController";
+    form.submit();
+}
+
+
+function removeProject(projectId){
+    var form = document.getElementById("goToProject");
+    document.querySelector("[name=projectId]").value = projectId;
+    document.querySelector("[name=pwhat]").value = "delete";
+    form.action = "/CRM_SENSEI/ProjectController";
+    form.submit();
+}

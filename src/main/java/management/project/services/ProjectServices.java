@@ -33,6 +33,17 @@ public class ProjectServices {
 
         repository.insertProject(n_process, nme, expected_sale, effective_sale, effective_purchase,honorary);
     }
+    
+    public ProjectModel update(HttpServletRequest req) {
+        ProjectRepository repository = new ProjectRepository();
+        int id = Integer.parseInt(req.getParameter("projectId"));
+        String n_process = req.getParameter("n_process");
+        String nme = req.getParameter("nme");
+        float expected_sale = Float.parseFloat(req.getParameter("expected_sale"));
+        float effective_sale = Float.parseFloat(req.getParameter("effective_sale"));
+        float effective_purchase = Float.parseFloat(req.getParameter("effective_purchase"));
+        return repository.updateProject(id, n_process, nme, expected_sale,effective_sale, effective_purchase);
+    }
 
     public void setProjects(HttpServletRequest req, HttpServletResponse resp) {
         ProjectRepository repository = new ProjectRepository();
@@ -42,5 +53,16 @@ public class ProjectServices {
     public List<ProjectEmployeeTime> getProjectEmployees(String id) {
         ProjectRepository repository = new ProjectRepository();
         return repository.getAllProjectEmployeeTime(id);
+    }
+    
+    public ProjectModel getById(int id) {
+        ProjectRepository repository = new ProjectRepository();
+        return repository.getById(id);
+    }
+
+    public void remove(HttpServletRequest req) {
+        ProjectRepository repository = new ProjectRepository();
+        int id = Integer.parseInt(req.getParameter("projectId"));
+        repository.remove(id);
     }
 }

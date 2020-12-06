@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : marco
 */
 
+.plusButton{
+    position: relative;
+    right: 10px;
+}
 
 .table_header{
     height: 40px;
@@ -34,9 +38,17 @@ and open the template in the editor.
     color: white;
 }
 #table_employee tr:nth-child(1) td{
-    width: 33%;
+    width: 16%;
 }
 #table_employee tr:nth-child(1) td:nth-child(2) {
+    border-left: 1px solid white;
+    border-right:  1px solid white;
+}
+#table_employee tr:nth-child(1) td:nth-child(3) {
+    border-left: 1px solid white;
+    border-right:  1px solid white;
+}
+#table_employee tr:nth-child(1) td:nth-child(4) {
     border-left: 1px solid white;
     border-right:  1px solid white;
 }

@@ -26,9 +26,12 @@ window.addEventListener("load", function (event) {
                 if (document.querySelector("[name=email]").value.indexOf("@") == -1) {
                     valid = false;
                 }
-                if (document.querySelectorAll("[name=pass]")[0].value != document.querySelectorAll("[name=pass]")[1].value) {
-                    valid = false;
+                if(document.querySelectorAll("[name=pass]").length > 0){
+                    if (document.querySelectorAll("[name=pass]")[0].value != document.querySelectorAll("[name=pass]")[1].value) {
+                        valid = false;
+                    }
                 }
+                
             }
             if (!valid) {
 
@@ -45,3 +48,18 @@ window.addEventListener("load", function (event) {
             }
         });
 });
+
+function goToEmployeeId(employeeId){
+    var form = document.getElementById("goToEmployee");
+    document.querySelector("[name=empId]").value = employeeId;
+    form.action = "/CRM_SENSEI/EmployeeController";
+    form.submit();
+}
+
+function removeEmployee(employeeId){
+    var form = document.getElementById("goToEmployee");
+    document.querySelector("[name=empId]").value = employeeId;
+    document.querySelector("[name=pwhat]").value = "delete";
+    form.action = "/CRM_SENSEI/EmployeeController";
+    form.submit();
+}

@@ -7,10 +7,13 @@
     String employees = "[";
     String data = "[";
     String backgroundColor = "[";
+    int max = 255;
+    int min = 0;
     for(ProjectEmployeeTime projectEmployeeTime : projectEmployeeTimeList){
+        
         employees += "'" + projectEmployeeTime.getEmployee() + "'" + ",";
         data += + projectEmployeeTime.getTime_spent()+ ",";
-        backgroundColor +=  "'rgba(255, 99, 132, 0.8)',";
+        backgroundColor +=  "'rgba(" + (int)(Math.random() * (max - min + 1) + min) +","+ (int)(Math.random() * (max - min + 1) + min)+","+ (int)(Math.random() * (max - min + 1) + min)+",0.8)',";
     }
     employees = employees.substring(0, employees.length() - 1);
     data = data.substring(0, data.length() - 1);
@@ -21,6 +24,11 @@
 %>
 
 <script>
+    window.addEventListener("load", function(event) {
+        var idSelected = "<%=id%>";
+        document.getElementById("projeto_" + idSelected).setAttribute("selected","");
+    });
+
     var employees = <%=employees%>;
     window.addEventListener("load", function (event) {
     const ctx = document.getElementById('myChart').getContext('2d');

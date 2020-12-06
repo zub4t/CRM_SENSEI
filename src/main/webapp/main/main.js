@@ -1,3 +1,6 @@
 function setCurrentProjectId(select){
-    fetch("/CRM_SENSEI/ProjectController?pwhat=setCurProjectId&curProjectId=" + select.value);
+    var form = document.getElementById("changeChart");
+    document.querySelector("[name=curProjectId]").value = select.value;
+    form.action = "/CRM_SENSEI/ProjectController";
+    form.submit();
 }

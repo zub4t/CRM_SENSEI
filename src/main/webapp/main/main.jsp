@@ -28,12 +28,16 @@
     <body>
          <%@include file="../main/chart.jsp" %>
         <%@include file="../menu/menu.jsp" %>
+        <form id="changeChart" method="GET" action="">
+            <input type="hidden" name="pwhat" value="setCurProjectId">
+            <input type="hidden" name="curProjectId" value="">
+        </form>
         <div class="watermark"></div>
         <div id="project-selector">
             <div class="select">
                 <select onchange="setCurrentProjectId(this)" name="prjct-selected" id="slct">
                     <c:forEach items="${projectList}" var="item"   varStatus="loop">
-                        <option value="${item.id}">${item.n_process} </option>
+                        <option id="projeto_${item.id}" value="${item.id}">${item.n_process} </option>
                     </c:forEach>
                 </select>
             </div>

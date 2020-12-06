@@ -97,11 +97,11 @@ public class ProjectRepository {
     public List<ProjectEmployeeTime> getAllProjectEmployeeTime(String id){
         List<ProjectEmployeeTime> list = new ArrayList<>();
         int con = DBManager.getConnetion();
-        PreparedStatement pstmt = null;
+        PreparedStatement pstmtt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "SELECT  n_process, sum(TIME_TO_SEC(spend_time)) AS time_spent,( select nme from employee where id= employee_id) as performer from project_employee inner join project on project_employee.project_id = project.id WHERE project.id = ? GROUP BY project.id;");
-            pstmt.setString(1, id);
-            ResultSet rs = pstmt.executeQuery();
+            pstmtt = DBManager.getPreparedStatement(con, "SELECT n_process, HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC(spend_time)))) AS time_spent, nme as performer from project_employee inner join project on project_employee.project_id = project.id INNER JOIN employee ON project_employee.employee_id = employee.id WHERE project.id = ? GROUP BY project.id,employee.id;");
+            pstmtt.setString(1, id);
+            ResultSet rs = pstmtt.executeQuery();
             while (rs.next()) {
                 ProjectEmployeeTime model = new ProjectEmployeeTime();
                 model.setN_process(rs.getString("n_process"));
@@ -112,9 +112,54 @@ public class ProjectRepository {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.closePstmt(pstmt);
+            DBManager.closePstmt(pstmtt);
             DBManager.closeConnection(con);
         }
         return list;
+    }
+
+    public ProjectModel updateProject(int id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        ProjectModel projectModel = getById(id);
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "update project SET n_process = ?, customer_nme = ?, expected_sale = ?, effective_sale = ?, effective_purchase = ? where id = ?");
+            pstmt.setString(1, n_process);
+            pstmt.setString(2, nme);
+            pstmt.setFloat(3, expected_sale);
+            pstmt.setFloat(4, effective_sale);
+            pstmt.setFloat(5, effective_purchase);
+            pstmt.setInt(6, id);
+            pstmt.executeUpdate();
+            projectModel.setCustomer_nme(nme);
+            projectModel.setN_process(n_process);
+            projectModel.setExpected_sale(expected_sale);
+            projectModel.setEffective_sale(effective_sale);
+            projectModel.setEffective_purchase(effective_purchase);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+            return projectModel;
+        }
+    }
+
+    public void remove(int id) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "delete from project_employee where project_id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            pstmt = DBManager.getPreparedStatement(con, "delete from project where id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
     }
 }

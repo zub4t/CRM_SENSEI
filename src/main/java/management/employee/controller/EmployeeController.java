@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import management.employee.model.EmployeeModel;
 import management.employee.services.EmployeeServices;
 
 /**
@@ -36,6 +37,7 @@ public class EmployeeController extends HttpServlet {
         String pwhat = req.getParameter("pwhat");
         EmployeeServices services = new EmployeeServices();
         RequestDispatcher dis = null;
+        EmployeeModel employee = null;
         switch (pwhat) {
             case "insert":
                 services.insert(req);
@@ -54,7 +56,37 @@ public class EmployeeController extends HttpServlet {
                     session.setAttribute("userId", id);
                 } else {
                     dis = req.getRequestDispatcher("/login/login.jsp");
+                    
                 }
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "edit":
+                employee = services.getById(Integer.parseInt(req.getParameter("empId")));
+                req.setAttribute("model", employee);
+                dis = req.getRequestDispatcher("/management/employee/employee_edit.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "update":
+                employee = services.update(req);
+                req.setAttribute("model", employee);
+                dis = req.getRequestDispatcher("/management/employee/employee_psq.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "delete":
+                services.remove(req);
+                dis = req.getRequestDispatcher("/management/employee/employee_psq.jsp");
                 try {
                     dis.forward(req, resp);
                 } catch (Exception e) {
