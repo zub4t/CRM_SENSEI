@@ -9,8 +9,11 @@ and open the template in the editor.
 */
 
 .plusButton{
-    position: relative;
-    right: 10px;
+    position: absolute;
+    right: 11px;
+    top: 11px;
+    cursor: pointer;
+
 }
 
 .table_header{

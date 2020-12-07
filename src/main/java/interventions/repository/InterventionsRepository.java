@@ -13,6 +13,7 @@ import java.util.List;
 import management.assingment.repository.AssingmentRepository;
 import management.employee.model.EmployeeModel;
 import management.employee.repository.EmployeeRepository;
+import management.project.model.ProjectModel;
 import management.project.repository.ProjectRepository;
 import util.DBManager;
 
@@ -36,6 +37,7 @@ public class InterventionsRepository {
                 model.setAssingment_id(rs.getInt("assingment_id"));
                 model.setSpeend_time(rs.getString("spend_time"));
                 model.setDsc(rs.getString("dsc"));
+                model.setId(rs.getInt("id"));
 
                 ProjectRepository prjR = new ProjectRepository();
                 model.setPrj_nme((prjR.getById(model.getProject_id())).getN_process());
@@ -76,5 +78,70 @@ public class InterventionsRepository {
             DBManager.closeConnection(con);
         }
 
+    }
+
+    public void remove(int id) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "delete from project_employee where id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+    }
+
+    public InterventionsModel getById(int id) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        InterventionsModel model = new InterventionsModel();
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from project_employee where id=?");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                model.setId(rs.getInt("id"));
+                model.setProject_id(rs.getInt("project_id"));
+                model.setEmployee_id(rs.getInt("employee_id"));
+                model.setAssingment_id(rs.getInt("assingment_id"));
+                model.setSpeend_time(rs.getString("spend_time"));
+                model.setDsc(rs.getString("dsc"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return model;
+    }
+
+    public void updateInterventions(int id, int project_id, int employee_id, int assingment_id, String spend_time, String dsc) {
+
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "update  project_employee set project_id = ? ,employee_id=?,assingment_id=?,spend_time=?,dsc=?,dte=NOW() where id=?");
+            pstmt.setInt(1, project_id);
+            pstmt.setInt(2, employee_id);
+            pstmt.setInt(3, assingment_id);
+            pstmt.setString(4, spend_time);
+            pstmt.setString(5, dsc);
+            pstmt.setInt(6, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
     }
 }

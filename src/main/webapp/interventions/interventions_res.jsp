@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gestão Funcionarios </title>
+        <title>Intervenções Resposta</title>
         <%
             MenuServices menu = new MenuServices();
             menu.setMenu(request, response);

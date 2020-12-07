@@ -79,4 +79,22 @@ public class AssingmentRepository {
         }
 
     }
+
+    public void remove(int id) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "delete from project_employee where assingment_id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            pstmt = DBManager.getPreparedStatement(con, "delete from assingment where id = ?");
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+    }
 }

@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gestão Funcionarios </title>
+        <title>Intervenções Criar</title>
         <%
             MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
@@ -24,7 +24,17 @@
         %>
         <script src="/CRM_SENSEI/interventions/interventions.js"></script>
         <link href="/CRM_SENSEI/interventions/interventions.css" rel="stylesheet"/>
+        <script>
+            window.addEventListener("load", function (event) {
+                document.querySelector("[name=project_id]").value = ${model.project_id};
+                document.querySelector("[name=assingment_id]").value = ${model.assingment_id};
+            <%if(request.getAttribute("edit") != null){%>
+                document.querySelector("[name=pwhat]").value = "update";
 
+            <%}%>
+
+            });
+        </script>
     </head>
     <body>
         <%@include file="../../menu/menu.jsp" %>
@@ -35,7 +45,13 @@
                 <h1 class="user__title">registro de funcionarios</h1>
             </header>
 
-            <form class="form" method="POST" action="/CRM_SENSEI/InterventionsController?pwhat=insert">
+            <form class="form" method="POST" action="/CRM_SENSEI/InterventionsController">
+
+                <%if(request.getAttribute("edit") != null){%>
+                <input type="hidden" name="id" value="${model.id}">
+
+                <%}%>
+                <input type="hidden" name="pwhat" value="insert">
                 <div class="form__group">
                     <select name="project_id"   class="form__input  item">
                         <c:forEach items="${list_prj}" var="item">
@@ -59,8 +75,7 @@
                     <input name="spend_time" type="time"  class="form__input  item" placeholder="Tempo dedicado">
                 </div>  
                 <div class="form__group">
-                    <textarea name="dsc" rows="4" cols="50" class="form__input  item" placeholder="Descrição detalhada">Descrição detalhada sobre oque fez no projeto.
-                    </textarea>
+                    <textarea name="dsc" rows="4" cols="50" class="form__input  item" placeholder="Descrição detalhada">${model.dsc}</textarea>
                 </div>
                 <button class="btn" type="button">Register</button>
             </form>

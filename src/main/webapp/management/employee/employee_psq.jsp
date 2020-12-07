@@ -31,7 +31,7 @@
         </form>
         <%@include file="../../menu/menu.jsp" %>
         <div id="table_container">
-            <span><img class="plusIcon" src="https://www.pinclipart.com/picdir/middle/185-1852252_plus-icon-free-png-and-svg-download-iphone.png" width="20px"/></span>
+            <span class="plusButton" onclick="window.location.href='/CRM_SENSEI/management/employee/employee_nar.jsp'"><img  src="https://cdn3.iconfinder.com/data/icons/ui-thick-outline-1-of-5/100/ui_01_of_9-02-512.png" width="20px"/></span>
             <div class="table_header"></div>
             <table id="table_employee" cellspacing="0">
                 <tr>

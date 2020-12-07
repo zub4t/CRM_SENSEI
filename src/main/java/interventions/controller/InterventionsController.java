@@ -5,6 +5,7 @@
  */
 package interventions.controller;
 
+import interventions.model.InterventionsModel;
 import interventions.services.InterventionsServices;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +21,9 @@ import management.assingment.services.AssingmentServices;
  * @author marco
  */
 @WebServlet(value = "/InterventionsController")
-public class InterventionsController extends HttpServlet{
-     @Override
+public class InterventionsController extends HttpServlet {
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
@@ -38,6 +40,38 @@ public class InterventionsController extends HttpServlet{
             case "insert":
                 services.insert(req);
                 RequestDispatcher dis = req.getRequestDispatcher("/interventions/interventions_res.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case "edit":
+                InterventionsModel model = services.getById(Integer.parseInt(req.getParameter("id")));
+                req.setAttribute("model", model);
+                req.setAttribute("edit", "true");
+                dis = req.getRequestDispatcher("/interventions/interventions_nar.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "delete":
+
+                services.remove(Integer.parseInt(req.getParameter("id")));
+                dis = req.getRequestDispatcher("/interventions/interventions_psq.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case "update":
+                services.update(req);
+                dis = req.getRequestDispatcher("/interventions/interventions_psq.jsp");
                 try {
                     dis.forward(req, resp);
                 } catch (Exception e) {

@@ -5,11 +5,13 @@
  */
 package interventions.services;
 
+import interventions.model.InterventionsModel;
 import interventions.repository.InterventionsRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import management.employee.repository.EmployeeRepository;
+import management.project.model.ProjectModel;
 import management.project.repository.ProjectRepository;
 
 /**
@@ -31,5 +33,29 @@ public class InterventionsServices {
         String spend_time = req.getParameter("spend_time");
         String dsc = req.getParameter("dsc");
         repository.insertInterventions(project_id, employee_id, assingment_id, spend_time, dsc);
+    }
+
+    public InterventionsModel getById(int id) {
+        InterventionsRepository repository = new InterventionsRepository();
+        return repository.getById(id);
+    }
+
+    public void remove(int id) {
+        InterventionsRepository repository = new InterventionsRepository();
+
+        repository.remove(id);
+    }
+
+    public void update(HttpServletRequest req) {
+        InterventionsRepository repository = new InterventionsRepository();
+        int id = Integer.parseInt(req.getParameter("id"));
+        int project_id = Integer.parseInt(req.getParameter("project_id"));
+        HttpSession session = req.getSession();
+        int employee_id = Integer.parseInt(session.getAttribute("userId").toString());
+        int assingment_id = Integer.parseInt(req.getParameter("assingment_id"));
+        String spend_time = req.getParameter("spend_time");
+        String dsc = req.getParameter("dsc");
+        repository.updateInterventions(id,project_id, employee_id, assingment_id, spend_time, dsc);
+
     }
 }

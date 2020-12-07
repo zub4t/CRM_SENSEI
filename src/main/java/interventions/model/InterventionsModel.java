@@ -10,7 +10,7 @@ package interventions.model;
  * @author marco
  */
 public class InterventionsModel {
-
+    private int id;
     private int project_id;
     private int employee_id;
     private int assingment_id;
@@ -29,6 +29,10 @@ public class InterventionsModel {
     }
 
     public InterventionsModel() {
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getProject_id() {
@@ -93,6 +97,10 @@ public class InterventionsModel {
 
     public void setAssingment_nme(String assingment_nme) {
         this.assingment_nme = assingment_nme;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

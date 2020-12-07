@@ -8,7 +8,13 @@ and open the template in the editor.
     Author     : marco
 */
 
+.plusButton{
+    position: absolute;
+    right: 11px;
+    top: 11px;
+    cursor: pointer;
 
+}
 .table_header{
     height: 40px;
     width: 100%;
@@ -34,7 +40,7 @@ and open the template in the editor.
     color: white;
 }
 #table_assingment tr:nth-child(1) td{
-    width: 20%;
+    width: 14%;
 }
 #table_assingment tr:nth-child(1) td:nth-child(2) {
     border-left: 1px solid white;
@@ -45,6 +51,14 @@ and open the template in the editor.
     border-right:  1px solid white;
 }
 #table_assingment tr:nth-child(1) td:nth-child(4) {
+    border-left: 1px solid white;
+    border-right:  1px solid white;
+}
+#table_assingment tr:nth-child(1) td:nth-child(5) {
+    border-left: 1px solid white;
+    border-right:  1px solid white;
+}
+#table_assingment tr:nth-child(1) td:nth-child(6) {
     border-left: 1px solid white;
     border-right:  1px solid white;
 }

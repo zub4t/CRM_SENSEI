@@ -33,3 +33,10 @@ window.addEventListener("load", function (event) {
             }
         });
 });
+function removeAssingment(id){
+    var form = document.getElementById("formId");
+    document.querySelector("[name=id]").value = id;
+    document.querySelector("[name=pwhat]").value = "delete";
+    form.action = "/CRM_SENSEI/AssingmentController";
+    form.submit();
+}

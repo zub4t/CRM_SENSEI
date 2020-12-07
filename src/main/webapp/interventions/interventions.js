@@ -33,3 +33,18 @@ window.addEventListener("load", function (event) {
             }
         });
 });
+function goToInterventionId(id){
+    var form = document.getElementById("formId");
+    document.querySelector("[name=id]").value = id;
+    form.action = "/CRM_SENSEI/InterventionsController";
+    form.submit();
+}
+
+
+function removeIntervention(id){
+    var form = document.getElementById("formId");
+    document.querySelector("[name=id]").value = id;
+    document.querySelector("[name=pwhat]").value = "delete";
+    form.action = "/CRM_SENSEI/InterventionsController";
+    form.submit();
+}

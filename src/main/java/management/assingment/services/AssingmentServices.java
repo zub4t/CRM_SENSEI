@@ -25,4 +25,11 @@ public class AssingmentServices {
 
         repository.insertAssingment(dsc);
     }
+
+    public void remove(HttpServletRequest req) {
+
+        AssingmentRepository repository = new AssingmentRepository();
+        int id = Integer.parseInt(req.getParameter("id"));
+        repository.remove(id);
+    }
 }

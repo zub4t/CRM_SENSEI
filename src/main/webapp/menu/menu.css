@@ -19,7 +19,7 @@ body{
     position: absolute;
     height: 242px;
     margin: 0;
-    width: 112px;
+    width: 150px;
     top: 50px;
     color:white;
 
@@ -63,9 +63,11 @@ body{
 .lvl-1{
     font-size: 16px;
     background-color: #52606f;
-    width: 120%;
+    width: 100%;
     text-align: left;
-    text-indent: 10px
+    text-indent: 10px;
+    color: white;
+    text-decoration: none;
 }
 .not-visible{
     display: none;
@@ -76,4 +78,10 @@ body{
     text-decoration-color: blue;
     text-align: center;
 
+}
+.icon-home{
+    position: absolute;
+    left: 33%;
+    bottom: 0;
+    cursor: pointer;
 }

@@ -45,6 +45,15 @@ public class AssingmentController extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "delete":
+                services.remove(req);
+                dis = req.getRequestDispatcher("/management/assingment/assingment_psq.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
 
