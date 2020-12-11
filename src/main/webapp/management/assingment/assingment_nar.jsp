@@ -34,7 +34,7 @@
                     <input  type="text" name="dsc" placeholder="Descrição da Tarefa" class="form__input  item" />
                 </div>
 
-                <button class="btn" type="button">Register</button>
+                <button class="btn-1" type="button">Register</button>
             </form>
         </div>        
     </body>

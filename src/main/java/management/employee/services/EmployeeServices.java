@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import management.employee.model.EmployeeModel;
 import management.employee.repository.EmployeeRepository;
+import management.project.repository.ProjectRepository;
+import util.PaginationModel;
 
 /**
  *
@@ -20,6 +22,16 @@ public class EmployeeServices {
         req.setAttribute("list", new EmployeeRepository().getAll());
     }
 
+    public void setEmployee(HttpServletRequest req, HttpServletResponse resp, int n) {
+        EmployeeRepository repository = new EmployeeRepository();
+        PaginationModel pagination = new PaginationModel();
+        pagination.setPage(n);
+        req.setAttribute("pagination", pagination);
+        pagination.setUrl("/CRM_SENSEI/EmployeeController?pwhat=pagination");
+
+        req.setAttribute("employeeList", repository.getN(n));
+    }
+
     public void insert(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();
         String nme = req.getParameter("nme");
@@ -28,9 +40,9 @@ public class EmployeeServices {
         String salary = req.getParameter("salary");
         String nickname = req.getParameter("nickname");
         String pass = req.getParameterValues("pass")[0];
-        repository.insertEmployee(nme, tel, email,salary, nickname, pass);
+        repository.insertEmployee(nme, tel, email, salary, nickname, pass);
     }
-    
+
     public EmployeeModel update(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();
         int id = Integer.parseInt(req.getParameter("empId"));
@@ -38,16 +50,16 @@ public class EmployeeServices {
         String tel = req.getParameter("tel");
         String email = req.getParameter("email");
         String salary = req.getParameter("salary");
-        return repository.updateEmployee(id, nme, tel, email,salary);
+        return repository.updateEmployee(id, nme, tel, email, salary);
     }
-    
-    public int login(HttpServletRequest req){
+
+    public int login(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();
         String nickname = req.getParameter("nickname");
         String pass = req.getParameter("pass");
         return repository.checkEmployeeAccount(nickname, pass);
     }
-    
+
     public void setProjects(HttpServletRequest req, HttpServletResponse resp) {
         EmployeeRepository repository = new EmployeeRepository();
         req.setAttribute("employeeList", repository.getAll());
@@ -57,8 +69,8 @@ public class EmployeeServices {
         EmployeeRepository repository = new EmployeeRepository();
         return repository.getById(id);
     }
-    
-    public void remove(HttpServletRequest req){
+
+    public void remove(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();
         repository.removeEmployee(Integer.parseInt(req.getParameter("empId")));
     }

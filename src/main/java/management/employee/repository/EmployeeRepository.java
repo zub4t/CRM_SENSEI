@@ -116,7 +116,7 @@ public class EmployeeRepository {
             DBManager.closeConnection(con);
         }
     }
-    
+
     public EmployeeModel updateEmployee(int id, String nme, String tel, String email, String salary) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
@@ -141,7 +141,7 @@ public class EmployeeRepository {
             return employeeModel;
         }
     }
-    
+
     public void removeEmployee(int id) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
@@ -161,5 +161,29 @@ public class EmployeeRepository {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
         }
+    }
+
+    public List<EmployeeModel> getN(int n) {
+        List<EmployeeModel> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee  limit " + (n * 20) + " , 20");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                EmployeeModel model = new EmployeeModel();
+                model.setId(rs.getInt("id"));
+                model.setNme(rs.getString("nme"));
+                model.setTel(rs.getString("tel"));
+                model.setEmail(rs.getString("email"));
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
     }
 }

@@ -63,6 +63,10 @@ and open the template in the editor.
     background-color: #f5f5f5;
 
 }
+#table_employee tr:last-child{
+    background-color: white;
+
+}
 .table_footer{
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -172,7 +176,7 @@ body {
     }
 }
 
-.btn {
+.btn-1 {
     display: block;
     width: 100%;
     padding: 20px;
@@ -186,7 +190,7 @@ body {
 
 
 }
-.btn:hover{
+.btn-1:hover{
     background-color: #2da246;
 }
 
@@ -250,12 +254,12 @@ body {
 
 
 
-.btn-three {
+.btn-1-three {
     color: #FFF;
     transition: all 0.5s;
     position: relative;
 }
-.btn-three::before {
+.btn-1-three::before {
     content: '';
     position: absolute;
     top: 0;
@@ -266,11 +270,11 @@ body {
     background-color: rgba(255,255,255,0.1);
     transition: all 0.3s;
 }
-.btn-three:hover::before {
+.btn-1-three:hover::before {
     opacity: 0 ;
     transform: scale(0.5,0.5);
 }
-.btn-three::after {
+.btn-1-three::after {
     content: '';
     position: absolute;
     top: 0;
@@ -283,7 +287,7 @@ body {
     border: 1px solid rgba(255,255,255,0.5);
     transform: scale(1.2,1.2);
 }
-.btn-three:hover::after {
+.btn-1-three:hover::after {
     opacity: 1;
     transform: scale(1,1);
 }

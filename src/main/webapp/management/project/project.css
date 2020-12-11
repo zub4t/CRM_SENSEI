@@ -71,6 +71,10 @@ and open the template in the editor.
     background-color: #f5f5f5;
 
 }
+#table_project tr:last-child{
+    background-color: white;
+
+}
 .table_footer{
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -180,7 +184,7 @@ body {
     }
 }
 
-.btn {
+.btn-1 {
     display: block;
     width: 100%;
     padding: 20px;
@@ -194,7 +198,7 @@ body {
 
 
 }
-.btn:hover{
+.btn-1:hover{
     background-color: #2da246;
 }
 

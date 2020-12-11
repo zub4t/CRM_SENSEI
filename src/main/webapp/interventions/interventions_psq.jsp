@@ -33,51 +33,12 @@
             <input type="hidden" name="id" value="">
         </form>
         <div id="table_container">
-                        <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/interventions/interventions_nar.jsp'"><img  src="https://cdn3.iconfinder.com/data/icons/ui-thick-outline-1-of-5/100/ui_01_of_9-02-512.png" width="20px"/></span>
+            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/interventions/interventions_nar.jsp'"><img  src="https://cdn3.iconfinder.com/data/icons/ui-thick-outline-1-of-5/100/ui_01_of_9-02-512.png" width="20px"/></span>
 
             <div class="table_header"></div>
-            <table id="table_assingment" cellspacing="0">
-                <tr>
-                    <td>Projeto</td>
-                    <td>Funcionario</td>
-                    <td>Tarefa</td>
-                    <td>Tempo Gasto</td>
-                    <td>Descrição</td>
-                    <td>Editar</td>
-                    <td>Remover</td>
-
-                </tr>
-                <c:forEach items="${list_interventions}" var="item"   varStatus="loop">
-                    <tr>
-                        <td>
-                            ${item.prj_nme}
-                        </td>
-
-                        <td>
-                            ${item.employee_nme}
-                        </td>  
-
-                        <td>
-                            ${item.assingment_nme}
-                        </td> 
-
-                        <td>
-                            ${item.getSpeend_time()}
-                        </td>
-
-                        <td>
-                            ${item.getDsc()}
-                        </td>      
-                        <td onclick="goToInterventionId(${item.id})">
-                            <img style="cursor:pointer" src="https://img1.gratispng.com/20180920/eqx/kisspng-computer-icons-editing-portable-network-graphics-i-edit-profile-svg-png-icon-free-download-194863-5ba3457963b929.9651381015374268094085.jpg" width="20px"/>
-                        </td>
-                        <td onclick="removeIntervention(${item.id})">
-                            <img style="cursor:pointer" src="https://cdn4.iconfinder.com/data/icons/interface-2/100/14-512.png" width="35px"/>
-                        </td>
-                    </tr>
-                </c:forEach>
-
-            </table>
+            <div id="table">
+                <%@include file="interventions_table.jsp" %>
+            </div>
             <div class="table_footer"></div>
 
         </div>

@@ -47,7 +47,7 @@
                 <div class="form__group">
                     <input  type="number" step="0.01" value="${model.effective_purchase}" name="effective_purchase" placeholder="Compra Efetiva" class="form__input item"  />
                 </div>
-                <button class="btn" type="button">Edit</button>
+                <button class="btn-1" type="button">Edit</button>
             </form>
         </div>        
     </body>

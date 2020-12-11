@@ -50,13 +50,13 @@ public class EmployeeController extends HttpServlet {
                 break;
             case "login":
                 int id = 0;
-                if((id = services.login(req)) != 0){
+                if ((id = services.login(req)) != 0) {
                     dis = req.getRequestDispatcher("/main/main.jsp");
                     HttpSession session = req.getSession();
                     session.setAttribute("userId", id);
                 } else {
                     dis = req.getRequestDispatcher("/login/login.jsp");
-                    
+
                 }
                 try {
                     dis.forward(req, resp);
@@ -92,6 +92,21 @@ public class EmployeeController extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+
+            case "pagination":
+                int n = 0;
+                if (req.getParameter("page") != null) {
+                    n = Integer.parseInt(req.getParameter("page"));
+                }
+                req.setAttribute("ppage", (n));
+                dis = req.getRequestDispatcher("/management/employee/employee_table.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 break;
         }
     }

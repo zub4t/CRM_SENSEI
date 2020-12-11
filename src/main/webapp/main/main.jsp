@@ -23,7 +23,7 @@
         MenuServices menu = new MenuServices();
         menu.setMenu(request, response);
         ProjectServices projectServices = new ProjectServices();
-        projectServices.setProjects(request, response);
+        projectServices.setListOfAllPrj(request, response);
     %>
     <body>
          <%@include file="../main/chart.jsp" %>

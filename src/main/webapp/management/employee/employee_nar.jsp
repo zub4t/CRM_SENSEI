@@ -53,7 +53,7 @@
                 <div class="form__group">
                     <input    type="password" name="pass" placeholder="confirmar senha" class="form__input item" />
                 </div>
-                <button class="btn" type="button">Register</button>
+                <button class="btn-1" type="button">Register</button>
             </form>
         </div>        
     </body>

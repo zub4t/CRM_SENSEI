@@ -93,8 +93,8 @@ public class ProjectRepository {
             DBManager.closeConnection(con);
         }
     }
-    
-    public List<ProjectEmployeeTime> getAllProjectEmployeeTime(String id){
+
+    public List<ProjectEmployeeTime> getAllProjectEmployeeTime(String id) {
         List<ProjectEmployeeTime> list = new ArrayList<>();
         int con = DBManager.getConnetion();
         PreparedStatement pstmtt = null;
@@ -161,5 +161,31 @@ public class ProjectRepository {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
         }
+    }
+
+    public List<ProjectModel> getN(int n) {
+        List<ProjectModel> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from project limit " + (n * 20) + " , 20");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProjectModel model = new ProjectModel();
+                model.setId(rs.getInt("id"));
+                model.setCustomer_nme(rs.getString("customer_nme"));
+                model.setN_process(rs.getString("n_process"));
+                model.setExpected_sale(rs.getFloat("expected_sale"));
+                model.setEffective_sale(rs.getFloat("effective_sale"));
+                model.setEffective_purchase(rs.getFloat("effective_purchase"));
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
     }
 }

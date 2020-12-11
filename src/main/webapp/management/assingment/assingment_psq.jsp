@@ -16,8 +16,7 @@
         <%
             MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
-            AssingmentServices assingment = new AssingmentServices();
-            assingment.setListOfAllAssingment(request, response);
+
         %>
         <script src="/CRM_SENSEI/management/assingment/assingment.js"></script>
         <link href="/CRM_SENSEI/management/assingment/assingment.css" rel="stylesheet"/>
@@ -33,23 +32,9 @@
             <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/management/assingment/assingment_nar.jsp'"><img  src="https://cdn3.iconfinder.com/data/icons/ui-thick-outline-1-of-5/100/ui_01_of_9-02-512.png" width="20px"/></span>
 
             <div class="table_header"></div>
-            <table id="table_assingment" cellspacing="0">
-                <tr>
-                    <td>Descrição Do Tarefa</td>
-                    <td>Remover</td>
-                </tr>
-                <c:forEach items="${list_assng}" var="item"   varStatus="loop">
-                    <tr>
-                        <td>
-                            ${item.getDsc()}
-                        </td>
-                        <td onclick="removeAssingment(${item.id})">
-                            <img style="cursor:pointer" src="https://cdn4.iconfinder.com/data/icons/interface-2/100/14-512.png" width="35px"/>
-                        </td>
-                    </tr>
-                </c:forEach>
-
-            </table>
+            <div id="table">
+                <%@include file="assingment_table.jsp" %>
+            </div>
             <div class="table_footer"></div>
 
         </div>

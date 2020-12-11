@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import management.employee.services.EmployeeServices;
 import management.project.model.ProjectModel;
 import management.project.services.ProjectServices;
+import util.PaginationModel;
 
 /**
  *
@@ -87,6 +88,21 @@ public class ProjectController extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+
+            case "pagination":
+                int n = 0;
+                if (req.getParameter("page") != null) {
+                    n = Integer.parseInt(req.getParameter("page"));
+                }
+                req.setAttribute("ppage", (n));
+                dis = req.getRequestDispatcher("/management/project/project_table.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 break;
         }
     }

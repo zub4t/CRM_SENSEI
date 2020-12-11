@@ -78,6 +78,21 @@ public class InterventionsController extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+
+            case "pagination":
+                int n = 0;
+                if (req.getParameter("page") != null) {
+                    n = Integer.parseInt(req.getParameter("page"));
+                }
+                req.setAttribute("ppage", (n));
+                dis = req.getRequestDispatcher("/interventions/interventions_table.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                break;
         }
     }
 }

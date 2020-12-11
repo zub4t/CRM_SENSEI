@@ -144,4 +144,41 @@ public class InterventionsRepository {
             DBManager.closeConnection(con);
         }
     }
+
+    public List<InterventionsModel> getN(int n) {
+        List<InterventionsModel> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from project_employee  limit " + (n * 20) + " , 20");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                InterventionsModel model = new InterventionsModel();
+                model.setProject_id(rs.getInt("project_id"));
+                model.setEmployee_id(rs.getInt("employee_id"));
+                model.setAssingment_id(rs.getInt("assingment_id"));
+                model.setSpeend_time(rs.getString("spend_time"));
+                model.setDsc(rs.getString("dsc"));
+                model.setId(rs.getInt("id"));
+
+                ProjectRepository prjR = new ProjectRepository();
+                model.setPrj_nme((prjR.getById(model.getProject_id())).getN_process());
+
+                EmployeeRepository employeeR = new EmployeeRepository();
+                model.setEmployee_nme((employeeR.getById(model.getEmployee_id())).getNme());
+
+                AssingmentRepository assingmentRepositoryR = new AssingmentRepository();
+                model.setAssingment_nme((assingmentRepositoryR.getById(model.getAssingment_id())).getDsc());
+
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
+    }
+
 }

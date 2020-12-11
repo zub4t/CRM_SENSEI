@@ -6,11 +6,13 @@
 package management.project.services;
 
 import java.util.List;
+import javafx.scene.control.Pagination;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import management.project.model.ProjectEmployeeTime;
 import management.project.model.ProjectModel;
 import management.project.repository.ProjectRepository;
+import util.PaginationModel;
 
 /**
  *
@@ -19,7 +21,7 @@ import management.project.repository.ProjectRepository;
 public class ProjectServices {
 
     public void setListOfAllPrj(HttpServletRequest req, HttpServletResponse resp) {
-        req.setAttribute("list_prj", new ProjectRepository().getAll());
+        req.setAttribute("projectList", new ProjectRepository().getAll());
     }
 
     public void insert(HttpServletRequest req) {
@@ -31,9 +33,9 @@ public class ProjectServices {
         float effective_purchase = Float.parseFloat(req.getParameter("effective_purchase"));
         float honorary = Float.parseFloat(req.getParameter("honorary"));
 
-        repository.insertProject(n_process, nme, expected_sale, effective_sale, effective_purchase,honorary);
+        repository.insertProject(n_process, nme, expected_sale, effective_sale, effective_purchase, honorary);
     }
-    
+
     public ProjectModel update(HttpServletRequest req) {
         ProjectRepository repository = new ProjectRepository();
         int id = Integer.parseInt(req.getParameter("projectId"));
@@ -42,19 +44,24 @@ public class ProjectServices {
         float expected_sale = Float.parseFloat(req.getParameter("expected_sale"));
         float effective_sale = Float.parseFloat(req.getParameter("effective_sale"));
         float effective_purchase = Float.parseFloat(req.getParameter("effective_purchase"));
-        return repository.updateProject(id, n_process, nme, expected_sale,effective_sale, effective_purchase);
+        return repository.updateProject(id, n_process, nme, expected_sale, effective_sale, effective_purchase);
     }
 
-    public void setProjects(HttpServletRequest req, HttpServletResponse resp) {
+    public void setProjects(HttpServletRequest req, HttpServletResponse resp, int n) {
         ProjectRepository repository = new ProjectRepository();
-        req.setAttribute("projectList", repository.getAll());
+        PaginationModel pagination = new PaginationModel();
+        pagination.setPage(n);
+        req.setAttribute("pagination", pagination);
+        pagination.setUrl("/CRM_SENSEI/ProjectController?pwhat=pagination");
+
+        req.setAttribute("projectList", repository.getN(n));
     }
-    
+
     public List<ProjectEmployeeTime> getProjectEmployees(String id) {
         ProjectRepository repository = new ProjectRepository();
         return repository.getAllProjectEmployeeTime(id);
     }
-    
+
     public ProjectModel getById(int id) {
         ProjectRepository repository = new ProjectRepository();
         return repository.getById(id);

@@ -8,6 +8,7 @@ package management.assingment.services;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import management.assingment.repository.AssingmentRepository;
+import util.PaginationModel;
 
 /**
  *
@@ -18,7 +19,15 @@ public class AssingmentServices {
     public void setListOfAllAssingment(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute("list_assng", new AssingmentRepository().getAll());
     }
+    public void setAssingment(HttpServletRequest req, HttpServletResponse resp, int n) {
+        AssingmentRepository repository = new AssingmentRepository();
+        PaginationModel pagination = new PaginationModel();
+        pagination.setPage(n);
+        req.setAttribute("pagination", pagination);
+        pagination.setUrl("/CRM_SENSEI/AssingmentController?pwhat=pagination");
 
+        req.setAttribute("assingmentList", repository.getN(n));
+    }
     public void insert(HttpServletRequest req) {
         AssingmentRepository repository = new AssingmentRepository();
         String dsc = req.getParameter("dsc");

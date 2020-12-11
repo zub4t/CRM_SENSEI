@@ -49,7 +49,7 @@
                  <div class="form__group">
                     <input  type="number" step="0.01" name="honorary" placeholder="honorário" class="form__input item"  />
                 </div>
-                <button class="btn" type="button">Register</button>
+                <button class="btn-1" type="button">Register</button>
             </form>
         </div>        
     </body>

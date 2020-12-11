@@ -15,7 +15,7 @@
     <body>
         <form class="form" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=login">
             <div class="login container">
-                <div class="login logo"><img src="/CRM_SENSEI/resources/shistudio-logo-160x90.png"></div>
+                <div class="login logo"><img src="/CRM_SENSEI/resources/logo.png"></div>
 
                 <div id="input-group">
                     <div class="group">      

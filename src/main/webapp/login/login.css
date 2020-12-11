@@ -10,7 +10,7 @@ and open the template in the editor.
 
 
 .container{
-    background-color: white;
+    background-color: rgba(255,255,255,0.9);
     width: 20vw;
     height: 50vh;
     border-radius: 10px;
@@ -27,6 +27,8 @@ and open the template in the editor.
 }
 body{
     /*  background-image: url(../resources/apresentacao1_0.jpg);*/
+    background-image: url(../resources/Japan-Kyoto-houses-snow-trees.jpg);
+
     background-color: white;
     background-repeat: no-repeat;
     background-position-x: center;

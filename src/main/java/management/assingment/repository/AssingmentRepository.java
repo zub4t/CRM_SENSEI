@@ -97,4 +97,26 @@ public class AssingmentRepository {
             DBManager.closeConnection(con);
         }
     }
+
+    public List<AssingmentModel> getN(int n) {
+        List<AssingmentModel> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from assingment limit " + (n * 20) + " , 20");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                AssingmentModel model = new AssingmentModel();
+                model.setId(rs.getInt("id"));
+                model.setDsc(rs.getString("dsc"));
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
+    }
 }
