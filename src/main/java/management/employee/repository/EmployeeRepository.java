@@ -41,6 +41,26 @@ public class EmployeeRepository {
         }
         return list;
     }
+    
+    public int getUserLevelById(int id){
+        int userLevel = 0;
+         int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select level from usr where id=?;");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                userLevel = rs.getInt("level");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return userLevel;
+    }
 
     public EmployeeModel getById(int id) {
         EmployeeModel model = new EmployeeModel();

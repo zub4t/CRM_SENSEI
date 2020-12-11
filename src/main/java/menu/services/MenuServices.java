@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import management.employee.repository.EmployeeRepository;
 import menu.model.MenuModel;
 import menu.model.MenuStructure;
 import menu.repository.MenuRepository;
@@ -57,5 +59,13 @@ public class MenuServices {
     public MenuModel update(HttpServletRequest req) {
         MenuRepository repository = new MenuRepository();
         return repository.update(Integer.parseInt(req.getParameter("menuId")),req.getParameter("nme"), req.getParameter("userLevel"));
+    }
+    
+    public boolean isVisible(HttpServletRequest req, int n){
+        HttpSession session = req.getSession();
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        int id =  (int)session.getAttribute("userId");
+        int userLevel = employeeRepository.getUserLevelById(id);
+        return (userLevel <= n);
     }
 }

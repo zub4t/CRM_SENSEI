@@ -33,8 +33,9 @@
             <input type="hidden" name="id" value="">
         </form>
         <div id="table_container">
+            <% if(menu.isVisible(request, 2)){ %>
             <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/interventions/interventions_nar.jsp'"><img  src="https://cdn3.iconfinder.com/data/icons/ui-thick-outline-1-of-5/100/ui_01_of_9-02-512.png" width="20px"/></span>
-
+            <% } %>
             <div class="table_header"></div>
             <div id="table">
                 <%@include file="interventions_table.jsp" %>

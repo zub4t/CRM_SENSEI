@@ -15,6 +15,7 @@
         <%
             MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
+            request.setCharacterEncoding("UTF-8");
         %>
         <script src="/CRM_SENSEI/management/gestMenu/gestMenu.js"></script>
         <link href="/CRM_SENSEI/management/gestMenu/gestMenu.css" rel="stylesheet"/>
