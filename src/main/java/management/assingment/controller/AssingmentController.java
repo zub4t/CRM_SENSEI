@@ -38,6 +38,7 @@ public class AssingmentController extends HttpServlet {
         switch (pwhat) {
             case "insert":
                 services.insert(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 RequestDispatcher dis = req.getRequestDispatcher("/management/assingment/assingment_res.jsp");
                 try {
                     dis.forward(req, resp);
@@ -47,6 +48,7 @@ public class AssingmentController extends HttpServlet {
                 break;
             case "delete":
                 services.remove(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/assingment/assingment_psq.jsp");
                 try {
                     dis.forward(req, resp);
@@ -60,6 +62,7 @@ public class AssingmentController extends HttpServlet {
                     n = Integer.parseInt(req.getParameter("page"));
                 }
                 req.setAttribute("ppage", (n));
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/assingment/assingment_table.jsp");
                 try {
                     dis.forward(req, resp);

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import menu.model.MenuModel;
 import menu.model.MenuStructure;
 import menu.repository.MenuRepository;
+import util.PaginationModel;
 
 /**
  *
@@ -33,9 +34,28 @@ public class MenuServices {
         }
         return struct;
     }
+    
+    public void setMenu(HttpServletRequest req, HttpServletResponse resp, int n) {
+        MenuRepository repository = new MenuRepository();
+        PaginationModel pagination = new PaginationModel();
+        pagination.setPage(n);
+        req.setAttribute("pagination", pagination);
+        pagination.setUrl("/CRM_SENSEI/MenuController?pwhat=pagination");
+
+        req.setAttribute("menuList", repository.getN(n));
+    }
 
     public void setMenu(HttpServletRequest req, HttpServletResponse resp) {
-        MenuServices services = new MenuServices();
-        req.setAttribute("structure", services.createMenuStructure());
+        req.setAttribute("structure", createMenuStructure());
+    }
+
+    public MenuModel getById(int id) {
+        MenuRepository repository = new MenuRepository();
+        return repository.getById(id);
+    }
+
+    public MenuModel update(HttpServletRequest req) {
+        MenuRepository repository = new MenuRepository();
+        return repository.update(Integer.parseInt(req.getParameter("menuId")),req.getParameter("nme"), req.getParameter("userLevel"));
     }
 }

@@ -170,3 +170,11 @@ CREATE TABLE `project_employee` (
 
 
 UPDATE `crm`.`main_menu` SET `nme` = 'adicionar' WHERE (`id` = '14');
+
+INSERT INTO `crm`.`main_menu` (`id`, `nme`, `lvl`, `parent_id`) VALUES ('17', 'menus', '1', '1');
+
+ALTER TABLE `main_menu`
+	ADD COLUMN `user_level` INT(3) NULL AFTER `url`;
+
+
+UPDATE `crm`.`main_menu` SET `url`='/management/gestMenu/gestMenu_psq.jsp' WHERE  `id`=17;

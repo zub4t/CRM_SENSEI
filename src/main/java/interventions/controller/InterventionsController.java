@@ -39,6 +39,7 @@ public class InterventionsController extends HttpServlet {
         switch (pwhat) {
             case "insert":
                 services.insert(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 RequestDispatcher dis = req.getRequestDispatcher("/interventions/interventions_res.jsp");
                 try {
                     dis.forward(req, resp);
@@ -51,6 +52,7 @@ public class InterventionsController extends HttpServlet {
                 InterventionsModel model = services.getById(Integer.parseInt(req.getParameter("id")));
                 req.setAttribute("model", model);
                 req.setAttribute("edit", "true");
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/interventions/interventions_nar.jsp");
                 try {
                     dis.forward(req, resp);
@@ -61,6 +63,7 @@ public class InterventionsController extends HttpServlet {
             case "delete":
 
                 services.remove(Integer.parseInt(req.getParameter("id")));
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/interventions/interventions_psq.jsp");
                 try {
                     dis.forward(req, resp);
@@ -71,6 +74,7 @@ public class InterventionsController extends HttpServlet {
 
             case "update":
                 services.update(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/interventions/interventions_psq.jsp");
                 try {
                     dis.forward(req, resp);
@@ -85,6 +89,7 @@ public class InterventionsController extends HttpServlet {
                     n = Integer.parseInt(req.getParameter("page"));
                 }
                 req.setAttribute("ppage", (n));
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/interventions/interventions_table.jsp");
                 try {
                     dis.forward(req, resp);

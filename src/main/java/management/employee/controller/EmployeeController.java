@@ -41,6 +41,7 @@ public class EmployeeController extends HttpServlet {
         switch (pwhat) {
             case "insert":
                 services.insert(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/employee/employee_res.jsp");
                 try {
                     dis.forward(req, resp);
@@ -51,10 +52,12 @@ public class EmployeeController extends HttpServlet {
             case "login":
                 int id = 0;
                 if ((id = services.login(req)) != 0) {
+                    resp.setContentType("text/html;charset=UTF-8");
                     dis = req.getRequestDispatcher("/main/main.jsp");
                     HttpSession session = req.getSession();
                     session.setAttribute("userId", id);
                 } else {
+                    resp.setContentType("text/html;charset=UTF-8");
                     dis = req.getRequestDispatcher("/login/login.jsp");
 
                 }
@@ -67,6 +70,7 @@ public class EmployeeController extends HttpServlet {
             case "edit":
                 employee = services.getById(Integer.parseInt(req.getParameter("empId")));
                 req.setAttribute("model", employee);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/employee/employee_edit.jsp");
                 try {
                     dis.forward(req, resp);
@@ -77,6 +81,7 @@ public class EmployeeController extends HttpServlet {
             case "update":
                 employee = services.update(req);
                 req.setAttribute("model", employee);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/employee/employee_psq.jsp");
                 try {
                     dis.forward(req, resp);
@@ -86,6 +91,7 @@ public class EmployeeController extends HttpServlet {
                 break;
             case "delete":
                 services.remove(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/employee/employee_psq.jsp");
                 try {
                     dis.forward(req, resp);
@@ -100,6 +106,7 @@ public class EmployeeController extends HttpServlet {
                     n = Integer.parseInt(req.getParameter("page"));
                 }
                 req.setAttribute("ppage", (n));
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/employee/employee_table.jsp");
                 try {
                     dis.forward(req, resp);

@@ -44,6 +44,7 @@ public class ProjectController extends HttpServlet {
         switch (pwhat) {
             case "insert":
                 services.insert(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/project/project_res.jsp");
                 try {
                     dis.forward(req, resp);
@@ -53,6 +54,7 @@ public class ProjectController extends HttpServlet {
                 break;
             case "setCurProjectId":
                 session.setAttribute("curProjectId", req.getParameter("curProjectId"));
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/main/main.jsp");
                 try {
                     dis.forward(req, resp);
@@ -63,6 +65,7 @@ public class ProjectController extends HttpServlet {
             case "edit":
                 projectModel = services.getById(Integer.parseInt(req.getParameter("projectId")));
                 req.setAttribute("model", projectModel);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/project/project_edit.jsp");
                 try {
                     dis.forward(req, resp);
@@ -73,6 +76,7 @@ public class ProjectController extends HttpServlet {
             case "update":
                 projectModel = services.update(req);
                 req.setAttribute("model", projectModel);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/project/project_psq.jsp");
                 try {
                     dis.forward(req, resp);
@@ -82,6 +86,7 @@ public class ProjectController extends HttpServlet {
                 break;
             case "delete":
                 services.remove(req);
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/project/project_psq.jsp");
                 try {
                     dis.forward(req, resp);
@@ -96,6 +101,7 @@ public class ProjectController extends HttpServlet {
                     n = Integer.parseInt(req.getParameter("page"));
                 }
                 req.setAttribute("ppage", (n));
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/project/project_table.jsp");
                 try {
                     dis.forward(req, resp);

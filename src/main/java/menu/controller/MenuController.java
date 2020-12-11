@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import menu.model.MenuModel;
 import menu.services.MenuServices;
 
 /**
@@ -34,13 +35,53 @@ public class MenuController extends HttpServlet {
     public void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pwhat = req.getParameter("pwhat");
         MenuServices services = new MenuServices();
-        RequestDispatcher requestDispatcher = null;
+        RequestDispatcher dis = null;
+        MenuModel menu = null;
 
         switch (pwhat) {
             case "get":
                 req.setAttribute("structure", services.createMenuStructure());
-                requestDispatcher = req.getRequestDispatcher("/menu/menu.jsp");
-                requestDispatcher.forward(req, resp);
+                resp.setContentType("text/html;charset=UTF-8");
+                dis = req.getRequestDispatcher("/menu/menu.jsp");
+                dis.forward(req, resp);
+                break;
+            case "edit":
+                menu = services.getById(Integer.parseInt(req.getParameter("menuId")));
+                req.setAttribute("model", menu);
+                resp.setContentType("text/html;charset=UTF-8");
+                dis = req.getRequestDispatcher("/management/gestMenu/gestMenu_edit.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "update":
+                menu = services.update(req);
+                req.setAttribute("model", menu);
+                resp.setContentType("text/html;charset=UTF-8");
+                dis = req.getRequestDispatcher("/management/gestMenu/gestMenu_psq.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case "pagination":
+                int n = 0;
+                if (req.getParameter("page") != null) {
+                    n = Integer.parseInt(req.getParameter("page"));
+                }
+                resp.setContentType("text/html;charset=UTF-8");
+                req.setAttribute("ppage", (n));
+                dis = req.getRequestDispatcher("/management/gestMenu/gestMenu_table.jsp");
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 break;
         }
     }

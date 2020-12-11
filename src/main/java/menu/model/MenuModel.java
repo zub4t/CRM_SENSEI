@@ -16,6 +16,7 @@ public class MenuModel {
     private int lvl;
     private int parent_id;
     private String url;
+    private int userLevel;
 
     public MenuModel(int id, String nme, int lvl, int parent_id, String url) {
         this.id = id;
@@ -74,5 +75,15 @@ public class MenuModel {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public int getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(int userLevel) {
+        this.userLevel = userLevel;
+    }
+    
+    
 
 }
