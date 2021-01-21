@@ -179,5 +179,7 @@ ALTER TABLE `main_menu`
 
 UPDATE `crm`.`main_menu` SET `url`='/management/gestMenu/gestMenu_psq.jsp' WHERE  `id`=17;
 
-ALTER TABLE `usr`
-	CHANGE COLUMN `level` `level` INT(3) NOT NULL DEFAULT '0' AFTER `pass`;
+ALTER TABLE `usr` add COLUMN `level`  INT(3) NOT NULL DEFAULT '0' AFTER `pass`;
+ALTER TABLE project
+ADD ctr_date datetime NOT NULL DEFAULT NOW();
+UPDATE `crm`.`main_menu` SET `url` = '/report/report_psq.jsp' WHERE (`id` = '16');

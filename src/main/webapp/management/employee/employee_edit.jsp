@@ -45,7 +45,7 @@
                 <div class="form__group">
                     <input    type="number" value="${model.salary}" name="salary" placeholder="salary" class="form__input item" />
                 </div>
-                <button class="btn" type="button">Edit</button>
+                <button class="btn-1" type="button">Edit</button>
             </form>
         </div>        
     </body>

@@ -55,12 +55,16 @@ public class Rpt1 extends HttpServlet {
         wb.setCompressTempFiles(true);
         String user = session.getAttribute("user") == null ? "administrador" : (String) session.getAttribute("user");
 
+        String date_in = req.getParameter("date_in");
+        String date_out = req.getParameter("date_out");
+        String[] prjct_selected = req.getParameterValues("prjct_selected");
+
         //Folha1
         String sheetName0 = "Relátorio Geral de Projetos";
         String sheetName1 = "Detalhes de Projetos";
 
-        rptSheet0(wb, sheetName0, user);
-        rptSheet1(wb, sheetName1, user);
+        rptSheet0(wb, sheetName0, user, date_in, date_out, prjct_selected);
+        rptSheet1(wb, sheetName1, user, date_in, date_out, prjct_selected);
 
         resp.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xlsx");
         resp.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -77,7 +81,7 @@ public class Rpt1 extends HttpServlet {
 
     }
 
-    private void rptSheet1(SXSSFWorkbook wb, String sheetName, String user) {
+    private void rptSheet1(SXSSFWorkbook wb, String sheetName, String user, String date_in, String date_out, String[] prjct_selected) {
         CellStyles cs = new CellStyles(wb);
         SXSSFSheet sheet = (SXSSFSheet) wb.createSheet(sheetName);
 
@@ -85,7 +89,20 @@ public class Rpt1 extends HttpServlet {
             sheet.setColumnWidth(i, 8000);
         }
         createReportHeader(wb, sheet, cs, sheetName, user, 9, 6);
+        String where = "  where ";
+        if (date_in != null && date_out != null) {
+            where += "ctr_date >='" + date_in + "' and  ctr_date<='" + date_out + "' and ";
+        }
+        if (prjct_selected != null) {
+            where += " project.id  in (";
+            for (String prj : prjct_selected) {
+                where += "'" + prj + "',";
+            }
+            where = where.substring(0, where.length() - 1);
 
+            where += ") and";
+        }
+        where += " 1=1";
         //Cabeçalho
         int lin = 7;
         int cel = 0;
@@ -99,7 +116,36 @@ public class Rpt1 extends HttpServlet {
         cs.newCellTxt(row, cel++, "Tempo Despedido", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Observações", cs.headerBlueLeftWrap());
 
-        String sql = "select n_process,customer_nme, dte,( select dsc from assingment where id= assingment_id) as assignment,( select nme from employee where id= employee_id) as performer,( select salary from employee where id= employee_id) as salary,spend_time,dsc from project_employee inner join project on project_employee.project_id = project.id;";
+        String sql = "SELECT \n"
+                + "    n_process,\n"
+                + "    customer_nme,\n"
+                + "    dte,\n"
+                + "    (SELECT \n"
+                + "            dsc\n"
+                + "        FROM\n"
+                + "            assingment\n"
+                + "        WHERE\n"
+                + "            id = assingment_id) AS assignment,\n"
+                + "    (SELECT \n"
+                + "            nme\n"
+                + "        FROM\n"
+                + "            employee\n"
+                + "        WHERE\n"
+                + "            id = employee_id) AS performer,\n"
+                + "    (SELECT \n"
+                + "            salary\n"
+                + "        FROM\n"
+                + "            employee\n"
+                + "        WHERE\n"
+                + "            id = employee_id) AS salary,\n"
+                + "    spend_time,\n"
+                + "    dsc,\n"
+                + "    project.ctr_date\n"
+                + "FROM\n"
+                + "    project_employee\n"
+                + "        INNER JOIN\n"
+                + "    project ON project_employee.project_id = project.id  "
+                + "" + where + ";";
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
@@ -167,7 +213,7 @@ public class Rpt1 extends HttpServlet {
 
     }
 
-    private void rptSheet0(SXSSFWorkbook wb, String sheetName0, String user) {
+    private void rptSheet0(SXSSFWorkbook wb, String sheetName0, String user, String date_in, String date_out, String[] prjct_selected) {
 
         CellStyles cs = new CellStyles(wb);
         SXSSFSheet sheet = (SXSSFSheet) wb.createSheet(sheetName0);
@@ -176,13 +222,25 @@ public class Rpt1 extends HttpServlet {
             sheet.setColumnWidth(i, 8000);
         }
         createReportHeader(wb, sheet, cs, sheetName0, user, 7, 7);
-
+        String where = " where ";
         //Cabeçalho
         int lin = 7;
         int cel = 0;
         Row row = sheet.createRow(lin++);
         cel = 0;
+        if (date_in != null && date_out != null) {
+            where += "ctr_date >='" + date_in + "' and  ctr_date<='" + date_out + "' and ";
+        }
+        if (prjct_selected != null) {
+            where += " project.id  in (";
+            for (String prj : prjct_selected) {
+                where += "'" + prj + "',";
+            }
+            where = where.substring(0, where.length() - 1);
 
+            where += ") and";
+        }
+        where += " 1=1";
         if (true) {
             cs.newCellTxt(row, cel++, "Nº Processo", cs.headerBlueLeftWrap());
             cs.newCellTxt(row, cel++, "Honorários", cs.headerBlueLeftWrap());
@@ -193,7 +251,31 @@ public class Rpt1 extends HttpServlet {
             cs.newCellTxt(row, cel++, "Lucro Projeto", cs.headerBlueLeftWrap());
 
         }
-        String sql = "select n_process, sum(costByProjectFunc) as spentWithFunc,expected_sale,effective_sale,effective_purchase  ,honorary from (select n_process, nme,  sum(TIME_TO_SEC(spend_time))*(salary/3600)  as  costByProjectFunc,honorary ,expected_sale,effective_sale,effective_purchase  from project_employee inner join project on  project_employee.project_id = project.id  inner join employee on project_employee.employee_id = employee.id group by project_id , employee_id) as t  group by n_process;";
+        String sql = "SELECT \n"
+                + "    n_process,\n"
+                + "    SUM(costByProjectFunc) AS spentWithFunc,\n"
+                + "    expected_sale,\n"
+                + "    effective_sale,\n"
+                + "    effective_purchase,\n"
+                + "    honorary\n"
+                + "FROM\n"
+                + "    (SELECT \n"
+                + "        n_process,\n"
+                + "            nme,\n"
+                + "            SUM(TIME_TO_SEC(spend_time)) * (salary / 3600) AS costByProjectFunc,\n"
+                + "            honorary,\n"
+                + "            expected_sale,\n"
+                + "            effective_sale,\n"
+                + "            effective_purchase,\n"
+                + "            ctr_date\n"
+                + "    FROM\n"
+                + "        project_employee\n"
+                + "    INNER JOIN project ON project_employee.project_id = project.id \n"
+                + "    INNER JOIN employee ON project_employee.employee_id = employee.id \n"
+                + " " + where + " "
+                + "    GROUP BY project_id , employee_id) AS t\n"
+                + "GROUP BY n_process;\n"
+                + "";
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 

@@ -7,7 +7,7 @@
 
 window.addEventListener("load", function (event) {
 
-    const button = document.querySelector('.btn');
+    const button = document.querySelector('.btn-1');
     const form = document.querySelector('.form');
     if (button != null)
         button.addEventListener('click', function () {
@@ -36,9 +36,9 @@ window.addEventListener("load", function (event) {
             if (!valid) {
 
                 form.classList.add('form--no');
-                document.querySelector(".btn").style.backgroundColor = "red";
+                document.querySelector(".btn-1").style.backgroundColor = "red";
                 setTimeout(function () {
-                    document.querySelector(".btn").style.backgroundColor = "var(--color-primary"
+                    document.querySelector(".btn-1").style.backgroundColor = "var(--color-primary"
                     form.classList.remove('form--no');
                 }, 500);
             } else {

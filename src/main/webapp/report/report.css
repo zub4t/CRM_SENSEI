@@ -24,7 +24,7 @@ and open the template in the editor.
 
 }
 .table_header::after{
-    content: "Intervenções";
+    content: "Relatório";
     font-size: 30px;
     color: white;
     padding: 22.5vw;
@@ -245,7 +245,21 @@ body {
         background-position: 0 0
     }
 }   
+.main-content{
+    width: 50%;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    height: 500px;
+}
+.item{
+    width: fit-content;
+    margin-left: 33%;
+    margin-bottom: 10px;
 
+}
 .main_label h1{
     color: white;
     font-size: 30px;
@@ -300,3 +314,5 @@ body {
     opacity: 1;
     transform: scale(1,1);
 }
+
+

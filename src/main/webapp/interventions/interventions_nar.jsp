@@ -54,7 +54,7 @@
                 <input type="hidden" name="pwhat" value="insert">
                 <div class="form__group">
                     <select name="project_id"   class="form__input  item">
-                        <c:forEach items="${list_prj}" var="item">
+                        <c:forEach items="${projectList}" var="item">
                             <option value="${item.getId()}">${item.getN_process()}</option>
                         </c:forEach>
 
@@ -77,7 +77,7 @@
                 <div class="form__group">
                     <textarea name="dsc" rows="4" cols="50" class="form__input  item" placeholder="Descrição detalhada">${model.dsc}</textarea>
                 </div>
-                <button class="btn" type="button">Register</button>
+                <button class="btn-1" type="button">Register</button>
             </form>
         </div>        
     </body>
