@@ -29,12 +29,21 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                document.querySelector(".form").submit();
+                fetch("/CRM_SENSEI/ProjectController", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+                    },
+                    body: $(".form").serialize()}).then(function (data) {
+
+                    window.location.href = "/CRM_SENSEI/management/project/project_psq.jsp"
+
+                });
             }
         });
 });
 
-function goToProjectId(projectId){
+function goToProjectId(projectId) {
     var form = document.getElementById("goToProject");
     document.querySelector("[name=projectId]").value = projectId;
     form.action = "/CRM_SENSEI/ProjectController";
@@ -42,7 +51,7 @@ function goToProjectId(projectId){
 }
 
 
-function removeProject(projectId){
+function removeProject(projectId) {
     var form = document.getElementById("goToProject");
     document.querySelector("[name=projectId]").value = projectId;
     document.querySelector("[name=pwhat]").value = "delete";

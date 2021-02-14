@@ -29,11 +29,17 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                document.querySelector(".form").submit();
+                fetch("/CRM_SENSEI/InterventionsController", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+                    },
+                    body: $(".form").serialize()});
+                window.location.href = "/CRM_SENSEI/interventions/interventions_psq.jsp"
             }
         });
 });
-function goToInterventionId(id){
+function goToInterventionId(id) {
     var form = document.getElementById("formId");
     document.querySelector("[name=id]").value = id;
     form.action = "/CRM_SENSEI/InterventionsController";
@@ -41,7 +47,7 @@ function goToInterventionId(id){
 }
 
 
-function removeIntervention(id){
+function removeIntervention(id) {
     var form = document.getElementById("formId");
     document.querySelector("[name=id]").value = id;
     document.querySelector("[name=pwhat]").value = "delete";

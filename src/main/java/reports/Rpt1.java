@@ -88,7 +88,7 @@ public class Rpt1 extends HttpServlet {
         for (int i = 0; i < 20; i++) {
             sheet.setColumnWidth(i, 8000);
         }
-        createReportHeader(wb, sheet, cs, sheetName, user, 9, 6);
+        createReportHeader(wb, sheet, cs, sheetName, user, 9, 8);
         String where = "  where ";
         if (date_in != null && date_out != null) {
             where += "ctr_date >='" + date_in + "' and  ctr_date<='" + date_out + "' and ";
@@ -114,6 +114,7 @@ public class Rpt1 extends HttpServlet {
         cs.newCellTxt(row, cel++, "Executante ", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Data", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Tempo Despedido", cs.headerBlueLeftWrap());
+        cs.newCellTxt(row, cel++, "Custo/Hora", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Observações", cs.headerBlueLeftWrap());
 
         String sql = "SELECT \n"
@@ -140,11 +141,14 @@ public class Rpt1 extends HttpServlet {
                 + "            id = employee_id) AS salary,\n"
                 + "    spend_time,\n"
                 + "    dsc,\n"
+                + "	truncate((salary*(hour(spend_time) + minute(spend_time)/60)),2) as CostHour,\n"
                 + "    project.ctr_date\n"
+                + "    \n"
                 + "FROM\n"
                 + "    project_employee\n"
                 + "        INNER JOIN\n"
-                + "    project ON project_employee.project_id = project.id  "
+                + "    project ON project_employee.project_id = project.id  \n"
+                + "    inner join employee on project_employee.employee_id = employee.id\n "
                 + "" + where + ";";
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
@@ -162,6 +166,7 @@ public class Rpt1 extends HttpServlet {
                 String ddte = rs.getString("dte");
                 cs.newCellDateValue(row, cel++, util.Util.data(ddte, "yyyy-MM-dd"));
                 cs.newCellGenericValue(row, cel++, rs.getString("spend_time"), cs.normal());
+                cs.newCellNum(row, cel++, rs.getFloat("CostHour"), cs.eurosCent());
                 cs.newCellGenericValue(row, cel++, rs.getString("dsc"), cs.normal());
 
             }
@@ -229,7 +234,7 @@ public class Rpt1 extends HttpServlet {
         Row row = sheet.createRow(lin++);
         cel = 0;
         if (date_in != null && date_out != null) {
-            where += "ctr_date >='" + date_in + "' and  ctr_date<='" + date_out + "' and ";
+            where += "ctr_date >='" + date_in + " 00:00:00' and  ctr_date<='" + date_out + " 23:59:59' and ";
         }
         if (prjct_selected != null) {
             where += " project.id  in (";
@@ -282,19 +287,21 @@ public class Rpt1 extends HttpServlet {
         try {
             pstmt = DBManager.getPreparedStatement(con, sql);
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                row = sheet.createRow(lin++);
-                cel = 0;
+            if (rs.next()) {
+                do {
+                    row = sheet.createRow(lin++);
+                    cel = 0;
 
-                cs.newCellGenericValue(row, cel++, rs.getString("n_process"), cs.normal());
-                cs.newCellNum(row, cel++, rs.getFloat("honorary"), cs.eurosCent());
-                cs.newCellNum(row, cel++, rs.getFloat("spentWithFunc"), cs.eurosCent());
-                cs.newCellNum(row, cel++, rs.getFloat("expected_sale"), cs.eurosCent());
-                cs.newCellNum(row, cel++, rs.getFloat("effective_sale"), cs.eurosCent());
-                cs.newCellNum(row, cel++, rs.getFloat("effective_purchase"), cs.eurosCent());
-                float lucro = rs.getFloat("effective_sale") - (rs.getFloat("effective_purchase") + rs.getFloat("spentWithFunc"));
-                cs.newCellNum(row, cel++, lucro, cs.eurosCent());
+                    cs.newCellGenericValue(row, cel++, rs.getString("n_process"), cs.normal());
+                    cs.newCellNum(row, cel++, rs.getFloat("honorary"), cs.eurosCent());
+                    cs.newCellNum(row, cel++, rs.getFloat("spentWithFunc"), cs.eurosCent());
+                    cs.newCellNum(row, cel++, rs.getFloat("expected_sale"), cs.eurosCent());
+                    cs.newCellNum(row, cel++, rs.getFloat("effective_sale"), cs.eurosCent());
+                    cs.newCellNum(row, cel++, rs.getFloat("effective_purchase"), cs.eurosCent());
+                    float lucro = rs.getFloat("effective_sale") - (rs.getFloat("effective_purchase") + rs.getFloat("spentWithFunc"));
+                    cs.newCellNum(row, cel++, lucro, cs.eurosCent());
 
+                } while (rs.next());
             }
 
         } catch (Exception e) {

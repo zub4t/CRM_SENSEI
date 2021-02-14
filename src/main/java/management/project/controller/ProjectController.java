@@ -100,6 +100,10 @@ public class ProjectController extends HttpServlet {
                 if (req.getParameter("page") != null) {
                     n = Integer.parseInt(req.getParameter("page"));
                 }
+                int max = services.getMaxPage();
+                if ((n + 1) > max) {
+                    n = max;
+                }
                 req.setAttribute("ppage", (n));
                 resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/project/project_table.jsp");

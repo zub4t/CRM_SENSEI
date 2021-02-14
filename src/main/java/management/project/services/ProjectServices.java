@@ -71,4 +71,10 @@ public class ProjectServices {
         int id = Integer.parseInt(req.getParameter("projectId"));
         repository.remove(id);
     }
+    
+    public int getMaxPage() {
+        ProjectRepository repository = new ProjectRepository();
+        return repository.getMaxPage();
+
+    }
 }

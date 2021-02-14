@@ -8,6 +8,11 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="menu.services.MenuServices"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+ // returns null if no session or session is invalid
+if(session.getAttribute("username")!=null) {
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,8 +31,8 @@
 
         <div class="user">
             <header class="user__header">
-                <img id="logo" src="../../resources/SHI_LOGO-HORIZONTAL-blanco.png" alt="" />
-                <h1 class="user__title">registro de menu</h1>
+                <img id="logo" src="/CRM_SENSEI/resources/SHI_LOGO-HORIZONTAL-blanco.png" alt="" />
+                <h1 class="user__title">edição de menu</h1>
             </header>
 
             <form class="form" method="POST" action="/CRM_SENSEI/MenuController?pwhat=update">
@@ -39,7 +44,10 @@
                     <input    type="number" value="${model.userLevel}" name="userLevel" placeholder="level" class="form__input item" />
                 </div>
                 <button class="btn-1" type="button">Edit</button>
+                <input type="hidden" name="pwhat" value="update">
+
             </form>
         </div>        
     </body>
 </html>
+<%}else{out.print("Usuario não está logado");}%>

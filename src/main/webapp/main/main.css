@@ -7,22 +7,21 @@ and open the template in the editor.
     Created on : 4/nov/2020, 19:49:56
     Author     : marco
 */
-.watermark{
-    background-image: url(../resources/apresentacao1_0.jpg);
-    background-color: white;
+.wall{
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+    height: 100vh;
+    /*
+    background-image: url(../resources/wood.jpg);
     background-repeat: no-repeat;
-    background-position-x: right;
-    opacity: 0.5;
-    top: 63px;
-    /* left: 135px; */
-    bottom: 0;
-    right: 113px;
-    position: absolute;
-    z-index: -1;
-    width: 20vw;
-    height: auto;
-    background-size: contain;
+    background-position: center;
+    filter: blur(8px);*/
+    width: 100vw;
+    height: 100vh;
 }
+
 .main-content{
     margin-left: 150px;
 }
@@ -30,8 +29,14 @@ and open the template in the editor.
     position: relative !important;
 }
 #canvans-content{
-    width: calc(100vw - 150px);
-    height: 100vh;
+    width: 70vw;
+    height: 600px;
+    position: absolute;
+    bottom: 10px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: 1px solid black;
+    left: 20vw;
 }
 canvas{
 
@@ -48,52 +53,52 @@ canvas{
 
 /* Reset Select */
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: 0;
-  box-shadow: none;
-  border: 0 !important;
-  background: #2c3e50;
-  background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
 }
 /* Remove IE arrow */
 select::-ms-expand {
-  display: none;
+    display: none;
 }
 /* Custom Select */
 .select {
-  position: relative;
-  display: flex;
-  width: 20vw;
-  height: 3em;
-  line-height: 3;
-  background: #2c3e50;
-  overflow: hidden;
-  border-radius: .25em;
+    position: relative;
+    display: flex;
+    width: 20vw;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
 }
 select {
-  flex: 1;
-  padding: 0 .5em;
-  color: #fff;
-  cursor: pointer;
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
 }
 /* Arrow */
 .select::after {
-  content: '\25BC';
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0 1em;
-  background: #34495e;
-  cursor: pointer;
-  pointer-events: none;
-  -webkit-transition: .25s all ease;
-  -o-transition: .25s all ease;
-  transition: .25s all ease;
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #34495e;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
 }
 /* Transition */
 .select:hover::after {
-  color: #86d4f9;
+    color: #86d4f9;
 }

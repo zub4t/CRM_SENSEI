@@ -56,8 +56,11 @@ public class EmployeeController extends HttpServlet {
                     dis = req.getRequestDispatcher("/main/main.jsp");
                     HttpSession session = req.getSession();
                     session.setAttribute("userId", id);
+                    session.setAttribute("username", req.getParameter("nickname"));
+
                 } else {
                     resp.setContentType("text/html;charset=UTF-8");
+                    resp.setHeader("Cache-Control", "no-cache");
                     dis = req.getRequestDispatcher("/login/login.jsp");
 
                 }
@@ -105,9 +108,15 @@ public class EmployeeController extends HttpServlet {
                 if (req.getParameter("page") != null) {
                     n = Integer.parseInt(req.getParameter("page"));
                 }
-                req.setAttribute("ppage", (n));
                 resp.setContentType("text/html;charset=UTF-8");
+                int max = services.getMaxPage();
+                if ((n + 1) > max) {
+                    n = max;
+                }
+                req.setAttribute("ppage", (n));
+
                 dis = req.getRequestDispatcher("/management/employee/employee_table.jsp");
+
                 try {
                     dis.forward(req, resp);
                 } catch (Exception e) {

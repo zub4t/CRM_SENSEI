@@ -10,6 +10,10 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="menu.services.MenuServices"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+if(session.getAttribute("username")!= null) {
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,8 +37,8 @@
             <input type="hidden" name="id" value="">
         </form>
         <div id="table_container">
-            <% if(menu.isVisible(request, 2)){ %>
-            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/interventions/interventions_nar.jsp'"><img  src="https://cdn3.iconfinder.com/data/icons/ui-thick-outline-1-of-5/100/ui_01_of_9-02-512.png" width="20px"/></span>
+            <% if(menu.isVisible(request, 11)){ %>
+            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/interventions/interventions_nar.jsp'"><img  src="/CRM_SENSEI/resources/plus-sign.png" width="20px"/></span>
             <% } %>
             <div class="table_header"></div>
             <div id="table">
@@ -45,3 +49,4 @@
         </div>
     </body>
 </html>
+<%}else{out.print("Usuario não está logado");}%>

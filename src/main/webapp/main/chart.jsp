@@ -9,62 +9,67 @@
     String backgroundColor = "[";
     int max = 255;
     int min = 0;
-    for(ProjectEmployeeTime projectEmployeeTime : projectEmployeeTimeList){
-        
+    boolean flag = false;
+    for (ProjectEmployeeTime projectEmployeeTime : projectEmployeeTimeList) {
+        flag = true;
         employees += "'" + projectEmployeeTime.getEmployee() + "'" + ",";
-        data += + projectEmployeeTime.getTime_spent()+ ",";
-        backgroundColor +=  "'rgba(" + (int)(Math.random() * (max - min + 1) + min) +","+ (int)(Math.random() * (max - min + 1) + min)+","+ (int)(Math.random() * (max - min + 1) + min)+",0.8)',";
+        data += +projectEmployeeTime.getTime_spent() + ",";
+        backgroundColor += "'rgba(" + (int) (Math.random() * (max - min + 1) + min) + "," + (int) (Math.random() * (max - min + 1) + min) + "," + (int) (Math.random() * (max - min + 1) + min) + ",1)',";
     }
-    employees = employees.substring(0, employees.length() - 1);
-    data = data.substring(0, data.length() - 1);
-    backgroundColor = backgroundColor.substring(0, backgroundColor.length() - 1);
+    if (flag) {
+        employees = employees.substring(0, employees.length() - 1);
+        data = data.substring(0, data.length() - 1);
+        backgroundColor = backgroundColor.substring(0, backgroundColor.length() - 1);
+
+    }
     employees += "]";
     data += "]";
     backgroundColor += "]";
 %>
 
 <script>
-    window.addEventListener("load", function(event) {
+    window.addEventListener("load", function (event) {
         var idSelected = "<%=id%>";
-        document.getElementById("projeto_" + idSelected).setAttribute("selected","");
+        if (document.getElementById("projeto_" + idSelected) != null)
+            document.getElementById("projeto_" + idSelected).setAttribute("selected", "");
     });
 
     var employees = <%=employees%>;
     window.addEventListener("load", function (event) {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: employees,
-            datasets: [{
-                    label: 'Horas trabalhadas',
-                    data: <%=data%>,
-                    backgroundColor: <%=backgroundColor%>,
-                    borderColor: <%=backgroundColor%>,
-                    borderWidth: 1
-                }]
-        },
-        options: {
-            responsive: true,
-            responsiveAnimationDuration: 2000,
-            maintainAspectRatio: false,
-            layout: {
-                /* padding: {
-                 left: 50,
-                 right: 0,
-                 top: 0,
-                 bottom: 0
-                 }*/
-            },
-
-            scales: {
-                yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: employees,
+                datasets: [{
+                        label: 'Horas trabalhadas',
+                        data: <%=data%>,
+                        backgroundColor: <%=backgroundColor%>,
+                        borderColor: <%=backgroundColor%>,
+                        borderWidth: 1
                     }]
+            },
+            options: {
+                responsive: true,
+                responsiveAnimationDuration: 2000,
+                maintainAspectRatio: false,
+                layout: {
+                    /* padding: {
+                     left: 50,
+                     right: 0,
+                     top: 0,
+                     bottom: 0
+                     }*/
+                },
+
+                scales: {
+                    yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                }
             }
-        }
+        });
     });
-});
 </script>

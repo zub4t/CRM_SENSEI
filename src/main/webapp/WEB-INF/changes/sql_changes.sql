@@ -183,3 +183,4 @@ ALTER TABLE `usr` add COLUMN `level`  INT(3) NOT NULL DEFAULT '0' AFTER `pass`;
 ALTER TABLE project
 ADD ctr_date datetime NOT NULL DEFAULT NOW();
 UPDATE `crm`.`main_menu` SET `url` = '/report/report_psq.jsp' WHERE (`id` = '16');
+alter table assingment add column ord int(10);

@@ -23,7 +23,7 @@ public class EmployeeRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from employee;");
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id) ;");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 EmployeeModel model = new EmployeeModel();
@@ -31,6 +31,7 @@ public class EmployeeRepository {
                 model.setNme(rs.getString("nme"));
                 model.setTel(rs.getString("tel"));
                 model.setEmail(rs.getString("email"));
+                model.setUserLevel(rs.getInt("level"));
                 list.add(model);
             }
         } catch (Exception e) {
@@ -41,10 +42,10 @@ public class EmployeeRepository {
         }
         return list;
     }
-    
-    public int getUserLevelById(int id){
+
+    public int getUserLevelById(int id) {
         int userLevel = 0;
-         int con = DBManager.getConnetion();
+        int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
             pstmt = DBManager.getPreparedStatement(con, "select level from usr where id=?;");
@@ -68,7 +69,7 @@ public class EmployeeRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from employee where id=?;");
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)  where employee.id=?;");
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -77,6 +78,8 @@ public class EmployeeRepository {
                 model.setTel(rs.getString("tel"));
                 model.setEmail(rs.getString("email"));
                 model.setSalary(rs.getFloat("salary"));
+                model.setUserLevel(rs.getInt("level"));
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +111,7 @@ public class EmployeeRepository {
         }
     }
 
-    public void insertEmployee(String nme, String tel, String email, String salary, String nickname, String pass) {
+    public void insertEmployee(String nme, String tel, String email, String salary, String nickname, String pass, String level) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
@@ -124,10 +127,12 @@ public class EmployeeRepository {
             if (rs.next()) {
                 last_inserted_id = rs.getInt(1);
             }
-            pstmt = DBManager.getPreparedStatement(con, "INSERT INTO usr (id,usrnme, pass) VALUES (?,?, MD5(?));");
+            pstmt = DBManager.getPreparedStatement(con, "INSERT INTO usr (id,usrnme, pass,level) VALUES (?,?, MD5(?),?);");
             pstmt.setInt(1, last_inserted_id);
             pstmt.setString(2, nickname);
             pstmt.setString(3, pass);
+            pstmt.setString(4, level);
+
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,7 +142,7 @@ public class EmployeeRepository {
         }
     }
 
-    public EmployeeModel updateEmployee(int id, String nme, String tel, String email, String salary) {
+    public EmployeeModel updateEmployee(int id, String nme, String tel, String email, String salary, String level) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         EmployeeModel employeeModel = getById(id);
@@ -149,6 +154,11 @@ public class EmployeeRepository {
             pstmt.setString(4, salary);
             pstmt.setInt(5, id);
             pstmt.executeUpdate();
+            pstmt = DBManager.getPreparedStatement(con, "UPDATE usr SET level = ? where id = ?");
+            pstmt.setString(1, level);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+
             employeeModel.setNme(nme);
             employeeModel.setEmail(email);
             employeeModel.setTel(tel);
@@ -188,7 +198,7 @@ public class EmployeeRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from employee  limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)   limit " + (n * 10) + " , 10");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 EmployeeModel model = new EmployeeModel();
@@ -196,6 +206,7 @@ public class EmployeeRepository {
                 model.setNme(rs.getString("nme"));
                 model.setTel(rs.getString("tel"));
                 model.setEmail(rs.getString("email"));
+                model.setUserLevel(rs.getInt("level"));
                 list.add(model);
             }
         } catch (Exception e) {
@@ -205,5 +216,27 @@ public class EmployeeRepository {
             DBManager.closeConnection(con);
         }
         return list;
+    }
+
+    public int getMaxPage() {
+
+        int max = 0;
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "SELECT count(*) max  from employee;");
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                max = rs.getInt("max");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+            max = (int) (Math.ceil(max) / 10.0);
+            return max;
+        }
     }
 }

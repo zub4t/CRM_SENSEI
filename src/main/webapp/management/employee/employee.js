@@ -26,12 +26,12 @@ window.addEventListener("load", function (event) {
                 if (document.querySelector("[name=email]").value.indexOf("@") == -1) {
                     valid = false;
                 }
-                if(document.querySelectorAll("[name=pass]").length > 0){
+                if (document.querySelectorAll("[name=pass]").length > 0) {
                     if (document.querySelectorAll("[name=pass]")[0].value != document.querySelectorAll("[name=pass]")[1].value) {
                         valid = false;
                     }
                 }
-                
+
             }
             if (!valid) {
 
@@ -42,21 +42,30 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                document.querySelector(".form").submit();
+                fetch("/CRM_SENSEI/EmployeeController", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+                    },
+                    body: $(".form").serialize()}).then(function (data) {
+
+                    window.location.href = "/CRM_SENSEI/management/employee/employee_psq.jsp"
+
+                });
 
 
             }
         });
 });
 
-function goToEmployeeId(employeeId){
+function goToEmployeeId(employeeId) {
     var form = document.getElementById("goToEmployee");
     document.querySelector("[name=empId]").value = employeeId;
     form.action = "/CRM_SENSEI/EmployeeController";
     form.submit();
 }
 
-function removeEmployee(employeeId){
+function removeEmployee(employeeId) {
     var form = document.getElementById("goToEmployee");
     document.querySelector("[name=empId]").value = employeeId;
     document.querySelector("[name=pwhat]").value = "delete";

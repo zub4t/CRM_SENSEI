@@ -66,4 +66,10 @@ public class InterventionsServices {
         repository.updateInterventions(id, project_id, employee_id, assingment_id, spend_time, dsc);
 
     }
+    
+    public int getMaxPage() {
+        InterventionsRepository repository = new InterventionsRepository();
+        return repository.getMaxPage();
+
+    }
 }

@@ -8,6 +8,11 @@
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+ // returns null if no session or session is invalid
+if(session.getAttribute("username")!=null) {
+
+%>
 <html>
     <head>
         <base href="/CRM_SENSEI">
@@ -37,3 +42,4 @@
         </div>
     </body>
 </html>
+<%}else{out.print("Usuario não está logado");}%>

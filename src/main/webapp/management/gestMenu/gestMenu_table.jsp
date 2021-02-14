@@ -14,6 +14,7 @@
         n = (Integer) request.getAttribute("ppage");
     }
     menu.setMenu(request, response, n);
+
 %>
 
 <table id="table_menu" cellspacing="0">
@@ -33,9 +34,14 @@
                 ${item.userLevel}
 
             </td>
+            <% if (menu.isVisible(request, 1)) { %>
             <td onclick="goToMenuId(${item.id})">
+
                 <img style="cursor:pointer" src="https://img1.gratispng.com/20180920/eqx/kisspng-computer-icons-editing-portable-network-graphics-i-edit-profile-svg-png-icon-free-download-194863-5ba3457963b929.9651381015374268094085.jpg" width="20px"/>
             </td>
+            <%} else {%>
+            <td></td>
+            <%}%>
         </tr>
     </c:forEach>
     <tr>

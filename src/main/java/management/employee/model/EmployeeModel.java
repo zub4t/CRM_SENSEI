@@ -16,6 +16,7 @@ public class EmployeeModel {
     private String tel;
     private String email;
     private float salary;
+    private int userLevel;
 
     public int getId() {
         return id;
@@ -56,5 +57,13 @@ public class EmployeeModel {
     public void setSalary(float salary) {
         this.salary = salary;
     }
-    
+
+    public int getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(int userLevel) {
+        this.userLevel = userLevel;
+    }
+
 }

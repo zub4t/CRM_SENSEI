@@ -28,7 +28,7 @@ and open the template in the editor.
     content: "Projetos";
     font-size: 30px;
     color: white;
-    padding: 20vw;
+    padding: 23vw;
 }
 #table_project{
     background-color: white;
@@ -85,7 +85,7 @@ and open the template in the editor.
 #table_container{
     width: 50vw;
     position: absolute;
-    top: 50px;
+    top: 150px;
     left: 25vw;
 
 }
@@ -136,7 +136,8 @@ body {
 .user {
     width: 90%;
     max-width: 340px;
-    margin: 10vh auto;
+    margin-left: 45vw;
+    padding-top: 10vw;
 }
 
 .user__header {

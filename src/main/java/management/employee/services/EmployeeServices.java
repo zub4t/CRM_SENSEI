@@ -40,7 +40,8 @@ public class EmployeeServices {
         String salary = req.getParameter("salary");
         String nickname = req.getParameter("nickname");
         String pass = req.getParameterValues("pass")[0];
-        repository.insertEmployee(nme, tel, email, salary, nickname, pass);
+        String level = req.getParameter("userLevel");
+        repository.insertEmployee(nme, tel, email, salary, nickname, pass, level);
     }
 
     public EmployeeModel update(HttpServletRequest req) {
@@ -50,7 +51,9 @@ public class EmployeeServices {
         String tel = req.getParameter("tel");
         String email = req.getParameter("email");
         String salary = req.getParameter("salary");
-        return repository.updateEmployee(id, nme, tel, email, salary);
+        String level = req.getParameter("userLevel");
+
+        return repository.updateEmployee(id, nme, tel, email, salary, level);
     }
 
     public int login(HttpServletRequest req) {
@@ -73,6 +76,12 @@ public class EmployeeServices {
     public void remove(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();
         repository.removeEmployee(Integer.parseInt(req.getParameter("empId")));
+    }
+
+    public int getMaxPage() {
+        EmployeeRepository repository = new EmployeeRepository();
+        return repository.getMaxPage();
+
     }
 
 }

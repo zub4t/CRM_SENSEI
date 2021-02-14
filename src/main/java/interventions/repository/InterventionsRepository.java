@@ -181,4 +181,25 @@ public class InterventionsRepository {
         return list;
     }
 
+    public int getMaxPage() {
+
+        int max = 0;
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "SELECT count(*) max  from project_employee;");
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                max = rs.getInt("max");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+            max = (int) (Math.ceil(max) / 20.0);
+            return max;
+        }
+    }
 }

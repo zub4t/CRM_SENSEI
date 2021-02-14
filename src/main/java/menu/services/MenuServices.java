@@ -36,7 +36,7 @@ public class MenuServices {
         }
         return struct;
     }
-    
+
     public void setMenu(HttpServletRequest req, HttpServletResponse resp, int n) {
         MenuRepository repository = new MenuRepository();
         PaginationModel pagination = new PaginationModel();
@@ -58,14 +58,23 @@ public class MenuServices {
 
     public MenuModel update(HttpServletRequest req) {
         MenuRepository repository = new MenuRepository();
-        return repository.update(Integer.parseInt(req.getParameter("menuId")),req.getParameter("nme"), req.getParameter("userLevel"));
+        return repository.update(Integer.parseInt(req.getParameter("menuId")), req.getParameter("nme"), req.getParameter("userLevel"));
     }
-    
-    public boolean isVisible(HttpServletRequest req, int n){
+
+    public boolean isVisible(HttpServletRequest req, int n) {
         HttpSession session = req.getSession();
         EmployeeRepository employeeRepository = new EmployeeRepository();
-        int id =  (int)session.getAttribute("userId");
+        MenuRepository repository = new MenuRepository();
+
+        int id = (int) session.getAttribute("userId");
         int userLevel = employeeRepository.getUserLevelById(id);
-        return (userLevel <= n);
+        int userLevel_menu = repository.getUserLevelById(n);
+        return (userLevel <= userLevel_menu);
+    }
+    
+    public int getMaxPage() {
+        MenuRepository repository = new MenuRepository();
+        return repository.getMaxPage();
+
     }
 }

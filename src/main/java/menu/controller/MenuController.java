@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import menu.model.MenuModel;
 import menu.services.MenuServices;
 
@@ -73,8 +74,13 @@ public class MenuController extends HttpServlet {
                 if (req.getParameter("page") != null) {
                     n = Integer.parseInt(req.getParameter("page"));
                 }
-                resp.setContentType("text/html;charset=UTF-8");
+
+                int max = services.getMaxPage();
+                if ((n + 1) > max) {
+                    n = max;
+                }
                 req.setAttribute("ppage", (n));
+                resp.setContentType("text/html;charset=UTF-8");
                 dis = req.getRequestDispatcher("/management/gestMenu/gestMenu_table.jsp");
                 try {
                     dis.forward(req, resp);
@@ -83,8 +89,19 @@ public class MenuController extends HttpServlet {
                 }
 
                 break;
+            case "logout":
+                dis = req.getRequestDispatcher("/");
+
+                HttpSession session = req.getSession();
+                session.invalidate();
+                try {
+                    dis.forward(req, resp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
         }
     }
-
 
 }

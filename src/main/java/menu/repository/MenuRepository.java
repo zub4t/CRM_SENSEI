@@ -69,7 +69,7 @@ public class MenuRepository {
         }
         return list;
     }
-    
+
     public MenuModel getById(int id) {
         MenuModel menu = null;
         int con = DBManager.getConnetion();
@@ -101,7 +101,7 @@ public class MenuRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from main_menu  limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from main_menu where lvl =0 limit " + (n * 20) + " , 20");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 MenuModel model = new MenuModel();
@@ -121,10 +121,9 @@ public class MenuRepository {
         }
         return list;
     }
-        
 
     public MenuModel update(int id, String name, String userLevel) {
-       int con = DBManager.getConnetion();
+        int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         MenuModel menuModel = getById(id);
         try {
@@ -141,6 +140,48 @@ public class MenuRepository {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
             return menuModel;
+        }
+    }
+
+    public int getUserLevelById(int id) {
+        int userLevel = 0;
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select user_level from main_menu where id=?;");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                userLevel = rs.getInt("user_level");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return userLevel;
+
+    }
+     public int getMaxPage() {
+
+        int max = 0;
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "SELECT count(*) max  from main_menu where `lvl`!=0;");
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                max = rs.getInt("max");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+            max = (int) (Math.ceil(max) / 20.0);
+            return max;
         }
     }
 }

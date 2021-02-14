@@ -11,7 +11,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item"><a class="page-link"  onclick="previus()" >Previous</a></li>
-            <li class="page-item">  <input class="display-n" type="text" disabled="" value="${pagination.page}"></li>
+            <li class="page-item">  <input class="display-n" type="text" disabled="" value="${pagination.page +1}"></li>
 
             <li class="page-item"><a class="page-link" onclick="next()">Next</a></li>
         </ul>

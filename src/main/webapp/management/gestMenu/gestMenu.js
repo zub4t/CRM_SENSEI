@@ -20,7 +20,7 @@ window.addEventListener("load", function (event) {
 
             });
             if (valid) {
-                
+
             }
             if (!valid) {
 
@@ -31,14 +31,22 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                document.querySelector(".form").submit();
+                fetch("/CRM_SENSEI/MenuController", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+                    },
+                    body: $(".form").serialize()}).then(function (data) {
 
+                    window.location.href = "/CRM_SENSEI/management/gestMenu/gestMenu_psq.jsp"
+
+                });
 
             }
         });
 });
 
-function goToMenuId(menuId){
+function goToMenuId(menuId) {
     var form = document.getElementById("goToGestMenu");
     document.querySelector("[name=menuId]").value = menuId;
     form.action = "/CRM_SENSEI/MenuController";
