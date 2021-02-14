@@ -62,6 +62,52 @@ public class EmployeeRepository {
         }
         return userLevel;
     }
+    
+    public EmployeeModel getByUsername(String username) {
+        EmployeeModel model = new EmployeeModel();
+
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)  where usr.usrnme=?;");
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                model.setId(rs.getInt("id"));
+                model.setNme(rs.getString("nme"));
+                model.setTel(rs.getString("tel"));
+                model.setEmail(rs.getString("email"));
+                model.setSalary(rs.getFloat("salary"));
+                model.setUserLevel(rs.getInt("level"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return model;
+    }
+    
+    public boolean setNewPass(int id, String newPass){
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        boolean returnValue = true;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "UPDATE usr SET pass = MD5(?) where id = ?");
+            pstmt.setString(1, newPass);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnValue = false;
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return returnValue;
+    }
 
     public EmployeeModel getById(int id) {
         EmployeeModel model = new EmployeeModel();

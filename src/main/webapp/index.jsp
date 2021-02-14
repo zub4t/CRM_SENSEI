@@ -11,9 +11,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <link rel="stylesheet" href="/CRM_SENSEI/login/login.css">
+        <script type="application/javascript" src="/CRM_SENSEI/login/login.js"></script>
     </head>
     <body>
-        <form class="form" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=login">
+        <form class="form" id="loginForm" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=login">
             <div class="login container">
                 <div class="login logo"><img src="/CRM_SENSEI/resources/logo.png"></div>
 
@@ -36,7 +37,9 @@
                         <input style="cursor:pointer" type="submit" value="Login">
                     </div>
 
-
+                    <div class="group">
+                        <a onclick=getNewPass()>Esqueceu-se da password</a>
+                    </div>
                 </div>
             </div>
         </form>

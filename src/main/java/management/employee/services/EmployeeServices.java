@@ -72,6 +72,16 @@ public class EmployeeServices {
         EmployeeRepository repository = new EmployeeRepository();
         return repository.getById(id);
     }
+    
+    public EmployeeModel getByUsername(String username) {
+        EmployeeRepository repository = new EmployeeRepository();
+        return repository.getByUsername(username);
+    }
+    
+    public boolean setNewPass(int id, String newPass) {
+        EmployeeRepository repository = new EmployeeRepository();
+        return repository.setNewPass(id, newPass);
+    }
 
     public void remove(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();

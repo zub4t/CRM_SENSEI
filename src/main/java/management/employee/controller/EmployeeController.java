@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import management.employee.model.EmployeeModel;
 import management.employee.services.EmployeeServices;
+import util.SendEmail;
 
 /**
  *
@@ -123,6 +124,14 @@ public class EmployeeController extends HttpServlet {
                     e.printStackTrace();
                 }
 
+                break;
+            case "forgotPass":
+                String username = req.getParameter("nickname");
+                EmployeeModel model = services.getByUsername(username);
+                String email = model.getEmail();
+                String newPass = "shistudiopass";
+                SendEmail.send(email, newPass);
+                services.setNewPass(model.getId(), newPass); 
                 break;
         }
     }

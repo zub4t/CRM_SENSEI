@@ -17,46 +17,41 @@ import javax.activation.*;
 
 public class SendEmail {
 
-   public static void main(String [] args) {    
-      // Recipient's email ID needs to be mentioned.
-      String to = "abcd@gmail.com";
+   public static void send(String toEmail, String newPass) {    
+        final String username = "individualsort@gmail.com";
+        final String password = "2021@fcup";
 
-      // Sender's email ID needs to be mentioned
-      String from = "web@gmail.com";
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+        
+        Session session = Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
 
-      // Assuming you are sending email from localhost
-      String host = "localhost";
+        try {
 
-      // Get system properties
-      Properties properties = System.getProperties();
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("individualsort@gmail.com"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(toEmail)
+            );
+            message.setSubject("Nova Password");
+            message.setText("Caro Utilizador,"
+                    + "\n\n Utilize " + newPass + " como sua nova palavra-passe apartir de agora. Entre em contacto com o administrador para fazer uma nova mudança de palavra-passe. \n\n Obrigado");
 
-      // Setup mail server
-      properties.setProperty("mail.smtp.host", host);
+            Transport.send(message);
 
-      // Get the default Session object.
-      Session session = Session.getDefaultInstance(properties);
+            System.out.println("Done");
 
-      try {
-         // Create a default MimeMessage object.
-         MimeMessage message = new MimeMessage(session);
-
-         // Set From: header field of the header.
-         message.setFrom(new InternetAddress(from));
-
-         // Set To: header field of the header.
-         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-         // Set Subject: header field
-         message.setSubject("Essa");
-
-         // Now set the actual message
-         message.setText("This is actual message");
-
-         // Send message
-         Transport.send(message);
-         System.out.println("Sent message successfully....");
-      } catch (MessagingException mex) {
-         mex.printStackTrace();
-      }
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
    }
 }
