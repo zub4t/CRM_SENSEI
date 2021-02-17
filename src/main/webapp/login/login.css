@@ -75,6 +75,7 @@ body{
 .group 			  { 
     position:relative; 
     margin-bottom:45px; 
+    text-align: center;
 
 }
 input 				{
@@ -219,4 +220,8 @@ input:focus ~ .highlight {
 .btn-three:hover::after {
     opacity: 1;
     transform: scale(1,1);
+}
+#forgot_pass{
+    cursor:pointer;
+    text-decoration: underline;
 }

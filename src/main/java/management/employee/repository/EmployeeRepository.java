@@ -62,7 +62,7 @@ public class EmployeeRepository {
         }
         return userLevel;
     }
-    
+
     public EmployeeModel getByUsername(String username) {
         EmployeeModel model = new EmployeeModel();
 
@@ -72,7 +72,7 @@ public class EmployeeRepository {
             pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)  where usr.usrnme=?;");
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 model.setId(rs.getInt("id"));
                 model.setNme(rs.getString("nme"));
                 model.setTel(rs.getString("tel"));
@@ -80,6 +80,13 @@ public class EmployeeRepository {
                 model.setSalary(rs.getFloat("salary"));
                 model.setUserLevel(rs.getInt("level"));
 
+            } else {
+                model.setId(0);
+                model.setNme("");
+                model.setTel("");
+                model.setEmail("");
+                model.setSalary(0);
+                model.setUserLevel(0);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,8 +96,8 @@ public class EmployeeRepository {
         }
         return model;
     }
-    
-    public boolean setNewPass(int id, String newPass){
+
+    public boolean setNewPass(int id, String newPass) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         boolean returnValue = true;

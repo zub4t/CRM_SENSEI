@@ -11,7 +11,7 @@
 <script src="/CRM_SENSEI/pagination/pagination.js"></script>
 
 <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
-<link rel="stylesheet" href="/CRM_SENSEI/menu/menu.css">
+<link rel="stylesheet" href="/CRM_SENSEI/menu/menu.css?v1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/CRM_SENSEI/pagination/pagination.css">
@@ -19,7 +19,7 @@
 
 <div class="header">
     <div id="user_loggedIn"><%= session.getAttribute("username")%></div>
-    <div class="logout_icon" onclick="window.location.href = '/CRM_SENSEI/MenuController?pwhat=logout'"><img src="/CRM_SENSEI/resources/logout.png" width="24"></div>
+    <div class="logout_icon" onclick="window.location.href = '/CRM_SENSEI/MenuController?pwhat=logout'"><img src="/CRM_SENSEI/resources/logout.png" width="20"></div>
 </div>
 <div class="wall"></div>
 <div class="menu-content">
@@ -27,7 +27,7 @@
         <div class="lvl-0">
             <div class="main-nme closed" onclick="openMenuTab(this)" id="${s.parent.getId()}">${s.parent.getNme()}</div>
             <c:forEach items="${s.getChildren()}" var="child">
-                <a href="http://localhost:8080/CRM_SENSEI${child.getUrl()}"><div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >${child.getNme()}</div></a>
+                <a href="http://shistudio.ddns.net:8080/CRM_SENSEI${child.getUrl()}"><div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >${child.getNme()}</div></a>
                 </c:forEach>
         </div>
     </c:forEach>

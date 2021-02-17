@@ -40,7 +40,7 @@
                 <select onchange="setCurrentProjectId(this)" name="prjct-selected" id="slct">
                     <option id="" >Nenhum projeto selecionado</option>
                     <c:forEach items="${projectList}" var="item"   varStatus="loop">
-                        <option id="projeto_${item.id}" value="${item.id}">${item.n_process} </option>
+                        <option id="projeto_${item.id}" value="${item.id}">${item.n_process} | ${item.customer_nme} </option>
                     </c:forEach>
                 </select>
             </div>

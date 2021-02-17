@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import management.employee.model.EmployeeModel;
 import management.employee.services.EmployeeServices;
+import org.json.JSONObject;
 import util.SendEmail;
+import util.Util;
 
 /**
  *
@@ -62,7 +64,7 @@ public class EmployeeController extends HttpServlet {
                 } else {
                     resp.setContentType("text/html;charset=UTF-8");
                     resp.setHeader("Cache-Control", "no-cache");
-                    dis = req.getRequestDispatcher("/login/login.jsp");
+                    dis = req.getRequestDispatcher("/");
 
                 }
                 try {
@@ -126,12 +128,26 @@ public class EmployeeController extends HttpServlet {
 
                 break;
             case "forgotPass":
-                String username = req.getParameter("nickname");
-                EmployeeModel model = services.getByUsername(username);
-                String email = model.getEmail();
-                String newPass = "shistudiopass";
-                SendEmail.send(email, newPass);
-                services.setNewPass(model.getId(), newPass); 
+                resp.setContentType("text/html;charset=UTF-8");
+                try {
+                    JSONObject obj = new JSONObject(Util.getBody(req));
+                    String username = obj.getString("nickname");
+                    EmployeeModel model = services.getByUsername(username);
+                    if (model.getId() != 0) {
+                        String email = model.getEmail();
+                        String newPass = "shistudiopass";
+                        SendEmail.send(email, newPass);
+                        services.setNewPass(model.getId(), newPass);
+                        resp.getWriter().println("Foi enviado uma menssagem para o email associado a esse username. Por favor siga os passos lá descritos.");
+
+                    } else {
+                        resp.getWriter().println("Esse username não corresponde a nenhum cadastrado na nossa base de dados.");
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 break;
         }
     }

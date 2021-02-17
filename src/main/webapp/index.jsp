@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="group">
-                        <a onclick=getNewPass()>Esqueceu-se da password</a>
+                        <a id="forgot_pass" onclick=getNewPass()>Esqueceu-se da password</a>
                     </div>
                 </div>
             </div>

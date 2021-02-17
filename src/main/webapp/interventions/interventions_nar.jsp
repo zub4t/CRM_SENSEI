@@ -59,7 +59,7 @@ if(session.getAttribute("username")!= null) {
                 <div class="form__group">
                     <select name="project_id"   class="form__input  item">
                         <c:forEach items="${projectList}" var="item">
-                            <option value="${item.getId()}">${item.getN_process()}</option>
+                            <option value="${item.getId()}">${item.getN_process()} | ${item.getCustomer_nme()} </option>
                         </c:forEach>
 
                     </select>
