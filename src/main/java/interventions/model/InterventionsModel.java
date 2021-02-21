@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,8 +11,10 @@ package interventions.model;
  * @author marco
  */
 public class InterventionsModel {
+
     private int id;
     private int project_id;
+    private String customer;
     private int employee_id;
     private int assingment_id;
     private String speend_time;
@@ -20,15 +23,24 @@ public class InterventionsModel {
     private String employee_nme;
     private String assingment_nme;
 
-    public InterventionsModel(int project_id, int employee_id, int assingment_id, String speend_time, String dsc) {
+    public InterventionsModel(int project_id, int employee_id, int assingment_id, String speend_time, String dsc, String customer) {
         this.project_id = project_id;
         this.employee_id = employee_id;
         this.assingment_id = assingment_id;
         this.speend_time = speend_time;
         this.dsc = dsc;
+        this.customer = customer;
     }
 
     public InterventionsModel() {
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
     public int getId() {

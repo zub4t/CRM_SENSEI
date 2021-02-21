@@ -5,15 +5,15 @@
 --%>
 <script>
     var page = ${pagination.page};
+    var max_page = ${pagination.max_page};
+
     var url = "${pagination.url}"
 </script>
 <div class="pagination-content">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link"  onclick="previus()" >Previous</a></li>
-            <li class="page-item">  <input class="display-n" type="text" disabled="" value="${pagination.page +1}"></li>
-
-            <li class="page-item"><a class="page-link" onclick="next()">Next</a></li>
-        </ul>
-    </nav>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link"  onclick="previus()" ><</a></li>
+        <li class="page-item">  <input class="display-n" type="text" disabled="" value="${pagination.page }/${pagination.max_page}"></li>
+        <li class="page-item"><a class="page-link" onclick="next()">></a></li>
+    </ul>
+</nav>
 </div>

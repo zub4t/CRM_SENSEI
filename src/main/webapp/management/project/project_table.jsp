@@ -7,6 +7,8 @@
 --%>
 <%@page import="util.PaginationModel"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <%@page import="management.project.services.ProjectServices"%>
 <%
@@ -19,38 +21,39 @@
     MenuServices menu_1 = new MenuServices();
 
 %>
-<table id="table_project" cellspacing="0">
+<fmt:setLocale value="es_ES"/>
+<table id="table" cellspacing="0">
     <tr>
-        <td>Número do Processo</td>
-        <td>Nome do Cliente</td>
-        <td>Venda Esperada</td>  
-        <td>Venda Efetiva</td>
-        <td>Compra Efetiva</td>
+        <td class="td_left">Número do Processo</td>
+        <td class="td_left">Nome do Cliente</td>
+        <td class="td_left">Venda Esperada</td>  
+        <td class="td_left">Venda Efetiva</td>
+        <td class="td_left">Compra Efetiva</td>
         <td>Editar</td>
         <td>Remover</td>
     </tr>
     <c:forEach items="${projectList}" var="item"   varStatus="loop">
         <tr>
-            <td>
+            <td class="td_left">
                 ${item.getN_process()}
             </td>
-            <td>
+            <td class="td_left">
                 ${item.getCustomer_nme()}
             </td>
 
+            <td class="td_left">
 
-            <td>
-                ${item.getExpected_sale()}
-
+                <fmt:formatNumber value="${item.getExpected_sale()}" type="currency"/>
             </td>
 
+            <td class="td_left">
 
-            <td>
-                ${item.getEffective_sale()}
+                <fmt:formatNumber value="${item.getEffective_sale()}" type="currency"/>
 
             </td>
-            <td>
-                ${item.getEffective_purchase()}
+            <td class="td_left">
+                <fmt:formatNumber value="${item.getEffective_purchase()}" type="currency"/>
+
 
             </td>
             <% if (menu_1.isVisible(request, 1)) { %>

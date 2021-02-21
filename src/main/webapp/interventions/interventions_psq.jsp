@@ -3,8 +3,6 @@
     Created on : 19/nov/2020, 10:48:28
     Author     : marco
 --%>
-<%@page import="interventions.services.InterventionsServices"%>
-<%@page import="management.assingment.services.AssingmentServices"%>
 <!DOCTYPE html>
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -21,8 +19,6 @@ if(session.getAttribute("username")!= null) {
         <%
             MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
-            InterventionsServices assingment = new InterventionsServices();
-            assingment.setListOfAllInterventions(request, response);
         %>
         <script src="/CRM_SENSEI/interventions/interventions.js"></script>
         <link href="/CRM_SENSEI/interventions/interventions.css" rel="stylesheet"/>
@@ -39,7 +35,7 @@ if(session.getAttribute("username")!= null) {
         <div id="table_container">
             <% if(menu.isVisible(request, 11)){ %>
             <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/interventions/interventions_nar.jsp'"><img  src="/CRM_SENSEI/resources/plus-sign.png" width="20px"/></span>
-            <% } %>
+                <% } %>
             <div class="table_header"></div>
             <div id="table">
                 <%@include file="interventions_table.jsp" %>

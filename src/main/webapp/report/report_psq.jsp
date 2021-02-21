@@ -34,33 +34,35 @@ if(session.getAttribute("username")!=null) {
     <body>
 
         <%@include file="../../menu/menu.jsp" %>
-        <form name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt1">
-            <div class="main-content">  
-                <div class="table_header"></div>         
-                <div class="item">
-                    <div>Data de inicio</div>
-                    <div>
-                        <input id="date_in"  name="date_in" type="date" value="2020-06-01">
-                        -to-
-                        <input id="date_out" name="date_out" type="date" value="2021-06-01">
-                    </div>
-                </div>
+        <div class="main-content">  
+            <div class="form">
+                <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt1">
+                    <div class="form__group">
 
-                <div class="select item" >
-                    <div>Projeto</div>
-                    <select  name="prjct_selected" id="slct" multiple="multiple">
-                        <c:forEach items="${projectList}" var="item"   varStatus="loop">
-                            <option id="projeto_${item.id}" value="${item.id}">${item.n_process} </option>
-                        </c:forEach>
-                    </select>
-                </div>
+                        <div class="form_label">Projetos com intervenções entre o periodo</div>
+                        <div class="form_item">
+                            <input id="date_in"  name="date_in" type="date" value="2020-06-01">
+                            -to-
+                            <input id="date_out" name="date_out" type="date" value="2021-06-01">
+                        </div>
+                    </div>
+                    <div class="form__group" style="margin-bottom: 200px">
+
+                        <div class="form_label">Projetos</div>
+                        <div class="form_item"> 
+                            <select  name="prjct_selected" id="slct" multiple="multiple">
+                                <c:forEach items="${projectList}" var="item"   varStatus="loop">
+                                    <option id="projeto_${item.id}" value="${item.id}">${item.n_process} | ${item.customer_nme}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                </form>
                 <% if(menu.isVisible(request, 15)){ %>
-                <div class="item">
-                    <input type="submit" value="Exportar relatório" class="btn-1" style=" width: 20vw;">
-                </div>
+                <button  onclick="$('.formnar').submit();"class="btn-1" type="button">Exportar</button>
                 <%}%>
             </div>
-        </form>
+        </div>
     </body>
 </html>
 <%}else{out.print("Usuario não está logado");}%>

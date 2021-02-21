@@ -168,7 +168,7 @@ public class ProjectRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from project limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from project order by id DESC limit " + (n * 20) + " , 20");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 ProjectModel model = new ProjectModel();

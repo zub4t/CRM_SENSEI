@@ -30,8 +30,8 @@ if(session.getAttribute("username")!= null) {
         <link href="/CRM_SENSEI/interventions/interventions.css" rel="stylesheet"/>
         <script>
             window.addEventListener("load", function (event) {
-                document.querySelector("[name=project_id]").value = ${model.project_id};
-                document.querySelector("[name=assingment_id]").value = ${model.assingment_id};
+                document.querySelector("[name=project_id]").value = "${model.project_id}";
+                document.querySelector("[name=assingment_id]").value = "${model.assingment_id}";
             <%if(request.getAttribute("edit") != null){%>
                 document.querySelector("[name=pwhat]").value = "update";
 
@@ -42,48 +42,64 @@ if(session.getAttribute("username")!= null) {
     </head>
     <body>
         <%@include file="../../menu/menu.jsp" %>
+        <div class="main-content">
+            <div class="form">
 
-        <div class="user">
-            <header class="user__header">
-                <img id="logo" src="../resources/SHI_LOGO-HORIZONTAL-blanco.png" alt="" />
-                <h1 class="user__title">registro/edição de intervenção</h1>
-            </header>
+                <form class="formnar" method="POST" action="/CRM_SENSEI/InterventionsController">
 
-            <form class="form" method="POST" action="/CRM_SENSEI/InterventionsController">
+                    <%if(request.getAttribute("edit") != null){%>
+                    <input type="hidden" name="id" value="${model.id}">
 
-                <%if(request.getAttribute("edit") != null){%>
-                <input type="hidden" name="id" value="${model.id}">
+                    <%}%>
+                    <input type="hidden" name="pwhat" value="insert">
+                    <div class="form__group">
 
-                <%}%>
-                <input type="hidden" name="pwhat" value="insert">
-                <div class="form__group">
-                    <select name="project_id"   class="form__input  item">
-                        <c:forEach items="${projectList}" var="item">
-                            <option value="${item.getId()}">${item.getN_process()} | ${item.getCustomer_nme()} </option>
-                        </c:forEach>
+                        <div class="form_label">Projeto:</div>
+                        <div class="form_item">
+                            <select name="project_id"   class="form__input  item">
+                                <c:forEach items="${projectList}" var="item">
+                                    <option value="${item.getId()}">${item.getN_process()} | ${item.getCustomer_nme()} </option>
+                                </c:forEach>
 
-                    </select>
-                </div>
-                <div class="form__group">
-                    <select name="assingment_id"  class="form__input  item">
-                        <c:forEach items="${list_assng}" var="item">
-                            <option value="${item.getId()}">${item.getDsc()}</option>
-                        </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Tarefa realizada:</div>
+                        <div class="form_item">
+                            <select name="assingment_id"  class="form__input  item">
+                                <c:forEach items="${list_assng}" var="item">
+                                    <option value="${item.getId()}">${item.getDsc()}</option>
+                                </c:forEach>
 
-                    </select>
-                </div>
+                            </select>
+                        </div>
+                    </div>
 
+                    <div class="form__group">
+                        <div class="form_label">Tempo Gasto:</div>
+                        <div class="form_item">
+                            <input name="spend_time" type="time"  class="form__input  item" placeholder="Tempo dedicado">
+                        </div>                  
+                    </div>  
+                    <div class="form__group">
+                        <div class="form_label">Descrição:</div>
+                        <div class="form_item">
+                            <input name="dsc" type="text"  value="${model.dsc}" class="form__input  item" placeholder="Descrição" />
+                        </div>                 
+                    </div>
 
+                    <div class="form__group">
+                        <div class="form_label">Data:</div>
+                        <div class="form_item">
+                            <input id="date_in"  name="date_in"  class="form__input  item"  type="date" value="">
+                        </div>                 
+                    </div>
+                </form>
+            </div>    
+            <button onclick="event.preventDefault();" class="btn-1" type="button" >Gravar</button>
 
-                <div class="form__group">
-                    <input name="spend_time" type="time"  class="form__input  item" placeholder="Tempo dedicado">
-                </div>  
-                <div class="form__group">
-                    <textarea name="dsc" rows="4" cols="50" class="form__input  item" placeholder="Descrição detalhada">${model.dsc}</textarea>
-                </div>
-                <button class="btn-1" type="button">Register</button>
-            </form>
-        </div>        
+        </div>
     </body>
 </html>
 <%}else{out.print("Usuario não está logado");}%>

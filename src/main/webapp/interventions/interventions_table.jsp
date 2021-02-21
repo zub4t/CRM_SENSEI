@@ -5,46 +5,46 @@
 
 <%@page import="management.project.services.ProjectServices"%>
 <%
-    InterventionsServices interventions = new InterventionsServices();
+    InterventionsServices inter = new InterventionsServices();
 
     int n = 0;
     if (request.getAttribute("ppage") != null) {
         n = (Integer) request.getAttribute("ppage");
     }
-    interventions.setInterventions(request, response, n);
-    MenuServices menu_1= new MenuServices();
+    inter.setInterventions(request, response, n);
+    MenuServices menu_1 = new MenuServices();
 
 %>
-<table id="table_interventions" cellspacing="0">
+<table id="table" cellspacing="0">
     <tr>
-        <td>Projeto</td>
-        <td>Funcionario</td>
-        <td>Tarefa</td>
-        <td>Tempo Gasto</td>
-        <td>Descrição</td>
+        <td class="td_left">Projeto</td>
+        <td class="td_left">Funcionario</td>
+        <td class="td_left">Tarefa</td>
+        <td class="td_left">Tempo Gasto</td>
+        <td class="td_left" >Descrição</td>
         <td>Editar</td>
         <td>Remover</td>
 
     </tr>
     <c:forEach items="${interventionList}" var="item"   varStatus="loop">
         <tr>
-            <td>
-                ${item.prj_nme}
+            <td class="td_left">
+                ${item.prj_nme} | ${item.customer}
             </td>
 
-            <td>
+            <td class="td_left">
                 ${item.employee_nme}
             </td>  
 
-            <td>
+            <td class="td_left">
                 ${item.assingment_nme}
             </td> 
 
-            <td>
+            <td class="td_left">
                 ${item.getSpeend_time()}
             </td>
 
-            <td>
+            <td class="td_left">
                 ${item.getDsc()}
             </td>      
             <% if (menu_1.isVisible(request, 11)) { %>

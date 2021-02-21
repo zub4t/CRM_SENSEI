@@ -40,7 +40,8 @@ public class MenuServices {
     public void setMenu(HttpServletRequest req, HttpServletResponse resp, int n) {
         MenuRepository repository = new MenuRepository();
         PaginationModel pagination = new PaginationModel();
-        pagination.setPage(n);
+        pagination.setPage(n + 1);
+        pagination.setMax_page(getMaxPage() + 1);
         req.setAttribute("pagination", pagination);
         pagination.setUrl("/CRM_SENSEI/MenuController?pwhat=pagination");
 
@@ -71,7 +72,7 @@ public class MenuServices {
         int userLevel_menu = repository.getUserLevelById(n);
         return (userLevel <= userLevel_menu);
     }
-    
+
     public int getMaxPage() {
         MenuRepository repository = new MenuRepository();
         return repository.getMaxPage();

@@ -27,42 +27,67 @@
     <body>
         <%@include file="../../menu/menu.jsp" %>
 
-        <div class="user">
-            <header class="user__header">
-                <img id="logo" src="/CRM_SENSEI/resources/SHI_LOGO-HORIZONTAL-blanco.png" alt="" />
-                <h1 class="user__title">registro de funcionarios</h1>
-            </header>
 
-            <form class="form" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=insert">
-                <div class="form__group">
-                    <input  type="text" name="nme" placeholder="nome" class="form__input  item" />
-                </div>
+        <div class="main-content">
 
-                <div class="form__group">
-                    <input   type="tel" name="tel" placeholder="913648628" class="form__input item"  pattern="[0-9]{9}" />
-                </div>
+            <div class="form">
+                <form class="formnar" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=insert">
+                    <div class="form__group">
+                        <div class="form_label">Nome :</div>
+                        <div class="form_item">
+                            <input  type="text" name="nme" placeholder="nome" class="form__input  item" />
+                        </div>
+                    </div>
 
-                <div class="form__group">
-                    <input   type="email" name="email" placeholder="seuemail@gmail.com" class="form__input item item" />
-                </div>
-                <div class="form__group">
-                    <input    type="number" name="salary" placeholder="salary" class="form__input item" />
-                </div>
-                <div class="form__group">
-                    <input    type="number" name="userLevel" placeholder="nivel do user (0 é o mais prioritário)" class="form__input item" />
-                </div>
-                <div class="form__group">
-                    <input    type="text" name="nickname" placeholder="nickname" class="form__input item" />
-                </div>
-                <div class="form__group">
-                    <input    type="password" name="pass" placeholder="senha" class="form__input  item" />
-                </div>
-                <div class="form__group">
-                    <input    type="password" name="pass" placeholder="confirmar senha" class="form__input item" />
-                </div>
-                <input type="hidden" name="pwhat" value="insert">
-                <button class="btn-1" type="button">Register</button>
-            </form>
+                    <div class="form__group">
+                        <div class="form_label">Telefone :</div>
+                        <div class="form_item">
+                            <input   type="tel" name="tel" placeholder="913648628" class="form__input item"  pattern="[0-9]{9}" />
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <div class="form_label">Email:</div>
+                        <div class="form_item">
+                            <input   type="email" name="email" placeholder="seuemail@gmail.com" class="form__input item item" />
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Salário:</div>
+                        <div class="form_item">
+                            <input    type="number" name="salary" placeholder="salary" class="form__input item" />
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Nivel de Acesso </div>
+                        <div class="form_item">
+                            <input    type="number" name="userLevel" placeholder="nivel do user (0 é o mais prioritário)" class="form__input item" />
+                        </div>
+
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Nome  de acesso </div>
+                        <div class="form_item">
+                            <input    type="text" name="nickname" placeholder="nickname" class="form__input item" />
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Senha de acesso  </div>
+                        <div class="form_item">
+                            <input    type="password" name="pass" placeholder="senha" class="form__input  item" />
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Confirmação da senha de acesso </div>
+                        <div class="form_item">
+                            <input    type="password" name="pass" placeholder="confirmar senha" class="form__input item" />
+                        </div>
+                    </div>
+                    <input type="hidden" name="pwhat" value="insert">
+                </form>
+                <button class="btn-1" onclick="event.preventDefault()" type="button">Register</button>
+
+            </div>
         </div>        
     </body>
 </html>

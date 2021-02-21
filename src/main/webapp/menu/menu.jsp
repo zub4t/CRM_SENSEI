@@ -9,12 +9,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script src="/CRM_SENSEI/menu/menu.js"></script>
 <script src="/CRM_SENSEI/pagination/pagination.js"></script>
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100;1,300;1,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
 <link rel="stylesheet" href="/CRM_SENSEI/menu/menu.css?v1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/CRM_SENSEI/pagination/pagination.css">
+<%@include file="../modal/modal.jsp" %>
 
 
 <div class="header">
@@ -27,7 +29,7 @@
         <div class="lvl-0">
             <div class="main-nme closed" onclick="openMenuTab(this)" id="${s.parent.getId()}">${s.parent.getNme()}</div>
             <c:forEach items="${s.getChildren()}" var="child">
-                <a href="http://shistudio.ddns.net:8080/CRM_SENSEI${child.getUrl()}"><div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >${child.getNme()}</div></a>
+                <a href="http://localhost:8084/CRM_SENSEI${child.getUrl()}"><div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >${child.getNme()}</div></a>
                 </c:forEach>
         </div>
     </c:forEach>

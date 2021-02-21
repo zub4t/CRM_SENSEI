@@ -13,9 +13,7 @@ and open the template in the editor.
     align-items: center;
     justify-content: center;
     height: fit-content;
-    position: absolute;
-    right: 42%;
-    bottom: 0%;
+
 }
 .page-link{
     cursor: pointer;

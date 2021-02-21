@@ -91,7 +91,7 @@ public class Rpt1 extends HttpServlet {
         createReportHeader(wb, sheet, cs, sheetName, user, 9, 8);
         String where = "  where ";
         if (date_in != null && date_out != null) {
-            where += "ctr_date >='" + date_in + "' and  ctr_date<='" + date_out + "' and ";
+            where += "ctr_date >='" + date_in + " 00:00:00' and  ctr_date<='" + date_out + "  23:59:59' and ";
         }
         if (prjct_selected != null) {
             where += " project.id  in (";

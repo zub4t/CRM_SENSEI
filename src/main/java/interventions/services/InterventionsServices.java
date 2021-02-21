@@ -20,12 +20,22 @@ public class InterventionsServices {
 
     public void setListOfAllInterventions(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute("list_interventions", new InterventionsRepository().getAll());
+        int max = getMaxPage();
+        PaginationModel pagination = new PaginationModel();
+        pagination.setPage(1);
+        pagination.setMax_page(max + 1);
+        req.setAttribute("pagination", pagination);
+        pagination.setUrl("/CRM_SENSEI/InterventionsController?pwhat=pagination");
+        req.setAttribute("pagination", pagination);
+
     }
 
     public void setInterventions(HttpServletRequest req, HttpServletResponse resp, int n) {
+        int max = getMaxPage();
         InterventionsRepository repository = new InterventionsRepository();
         PaginationModel pagination = new PaginationModel();
-        pagination.setPage(n);
+        pagination.setPage(n + 1);
+        pagination.setMax_page(max + 1);
         req.setAttribute("pagination", pagination);
         pagination.setUrl("/CRM_SENSEI/InterventionsController?pwhat=pagination");
 
@@ -40,7 +50,9 @@ public class InterventionsServices {
         int assingment_id = Integer.parseInt(req.getParameter("assingment_id"));
         String spend_time = req.getParameter("spend_time");
         String dsc = req.getParameter("dsc");
-        repository.insertInterventions(project_id, employee_id, assingment_id, spend_time, dsc);
+        String dte = req.getParameter("date_in");
+
+        repository.insertInterventions(project_id, employee_id, assingment_id, spend_time, dsc,dte);
     }
 
     public InterventionsModel getById(int id) {
@@ -66,7 +78,7 @@ public class InterventionsServices {
         repository.updateInterventions(id, project_id, employee_id, assingment_id, spend_time, dsc);
 
     }
-    
+
     public int getMaxPage() {
         InterventionsRepository repository = new InterventionsRepository();
         return repository.getMaxPage();

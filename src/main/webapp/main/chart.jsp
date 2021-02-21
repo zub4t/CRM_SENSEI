@@ -10,11 +10,17 @@
     int max = 255;
     int min = 0;
     boolean flag = false;
+    int c = 0;
     for (ProjectEmployeeTime projectEmployeeTime : projectEmployeeTimeList) {
         flag = true;
         employees += "'" + projectEmployeeTime.getEmployee() + "'" + ",";
         data += +projectEmployeeTime.getTime_spent() + ",";
-        backgroundColor += "'rgba(" + (int) (Math.random() * (max - min + 1) + min) + "," + (int) (Math.random() * (max - min + 1) + min) + "," + (int) (Math.random() * (max - min + 1) + min) + ",1)',";
+        if (c % 2 == 0) {
+            backgroundColor += "'#7b9696',";
+        } else {
+            backgroundColor += "'#566b6b',";
+
+        }
     }
     if (flag) {
         employees = employees.substring(0, employees.length() - 1);
@@ -28,7 +34,14 @@
 %>
 
 <script>
+    var arr_worked_hours = <%=data.length() > 0 ? data : "[]"%>;
+    var total_worked_hours = 0;
+    for (let hours of arr_worked_hours) {
+        total_worked_hours += hours;
+    }
     window.addEventListener("load", function (event) {
+        $("#total_hours").text(total_worked_hours);
+
         var idSelected = "<%=id%>";
         if (document.getElementById("projeto_" + idSelected) != null)
             document.getElementById("projeto_" + idSelected).setAttribute("selected", "");

@@ -27,36 +27,48 @@
     <body>
         <%@include file="../../menu/menu.jsp" %>
 
-        <div class="user">
-            <header class="user__header">
-                <img id="logo" src="/CRM_SENSEI/resources/SHI_LOGO-HORIZONTAL-blanco.png" alt="" />
-                <h1 class="user__title">edição de funcionarios</h1>
-            </header>
+        <div class="main-content">
+            <div class="form">
 
-            <form class="form" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=update">
-                <input type="hidden" value="${model.id}" name="empId"/>
-                <div class="form__group">
-                    <input  type="text" value="${model.nme}" name="nme" placeholder="nome" class="form__input  item" />
-                </div>
+                <form class="formnar" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=update">
+                    <input type="hidden" value="${model.id}" name="empId"/>
+                    <div class="form__group">
+                        <div class="form_label">Nome :</div>
+                        <div class="form_item">
+                            <input  type="text" value="${model.nme}" name="nme" placeholder="nome" class="form__input  item" />
+                        </div>
+                    </div>
 
-                <div class="form__group">
-                    <input   type="tel" value="${model.tel}" name="tel" placeholder="913648628" class="form__input item"  pattern="[0-9]{9}" />
-                </div>
+                    <div class="form__group">
+                        <div class="form_label">Telefone :</div>
+                        <div class="form_item">
+                            <input   type="tel" value="${model.tel}" name="tel" placeholder="913648628" class="form__input item"  pattern="[0-9]{9}" />
+                        </div>
+                    </div>
 
-                <div class="form__group">
-                    <input   type="email" value="${model.email}" name="email" placeholder="seuemail@gmail.com" class="form__input item item" />
-                </div>
-                <div class="form__group">
-                    <input    type="number" value="${model.salary}" name="salary" placeholder="salary" class="form__input item" />
-                </div>
-                <div class="form__group">
-                    <input    type="number" value="${model.userLevel}" name="userLevel" placeholder="nivel do user (0 é o mais prioritário)" class="form__input item" />
-                </div>
-                <button class="btn-1" type="button">Edit</button>
-                <input type="hidden" name="pwhat" value="update">
-
-            </form>
-        </div>        
+                    <div class="form__group">
+                        <div class="form_label">Email :</div>
+                        <div class="form_item">
+                            <input   type="email" value="${model.email}" name="email" placeholder="seuemail@gmail.com" class="form__input item item" />
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Salário :</div>
+                        <div class="form_item">
+                            <input    type="number" value="${model.salary}" name="salary" placeholder="salary" class="form__input item" />
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">Nivel de Acesso :</div>
+                        <div class="form_item">
+                            <input    type="number" value="${model.userLevel}" name="userLevel" placeholder="nivel do user (0 é o mais prioritário)" class="form__input item" />
+                        </div>
+                    </div>
+                    <button class="btn-1" type="button">Edit</button>
+                    <input type="hidden" name="pwhat" value="update">
+                </form>
+            </div> 
+        </div>
     </body>
 </html>
 <%} else {

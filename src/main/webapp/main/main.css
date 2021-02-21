@@ -7,20 +7,7 @@ and open the template in the editor.
     Created on : 4/nov/2020, 19:49:56
     Author     : marco
 */
-.wall{
-    background-size: 200% 100% !important;
-    animation: move 10s ease infinite;
-    transform: translate3d(0, 0, 0);
-    background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
-    height: 100vh;
-    /*
-    background-image: url(../resources/wood.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: blur(8px);*/
-    width: 100vw;
-    height: 100vh;
-}
+
 
 .main-content{
     margin-left: 150px;
@@ -28,15 +15,14 @@ and open the template in the editor.
 .chartjs-size-monitor{
     position: relative !important;
 }
-#canvans-content{
-    width: 70vw;
+#canvas-content{
     height: 600px;
     position: absolute;
-    bottom: 10px;
-    background-color: whitesmoke;
+    bottom: 50px;
     border-radius: 20px;
-    border: 1px solid black;
-    left: 20vw;
+    width: 80%;
+    left: 10%;
+
 }
 canvas{
 
@@ -46,8 +32,11 @@ canvas{
 }
 #project-selector{
     position: absolute;
-    right:35vw;
-    top:50px;
+    right: center;
+    top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -60,7 +49,7 @@ select {
     outline: 0;
     box-shadow: none;
     border: 0 !important;
-    background: #2c3e50;
+    background: #7b9696;
     background-image: none;
 }
 /* Remove IE arrow */
@@ -71,12 +60,11 @@ select::-ms-expand {
 .select {
     position: relative;
     display: flex;
-    width: 20vw;
-    height: 3em;
+    width: 500px;
     line-height: 3;
     background: #2c3e50;
     overflow: hidden;
-    border-radius: .25em;
+    border-radius: .5em;
 }
 select {
     flex: 1;
@@ -91,7 +79,7 @@ select {
     top: 0;
     right: 0;
     padding: 0 1em;
-    background: #34495e;
+    background: #7b9696;
     cursor: pointer;
     pointer-events: none;
     -webkit-transition: .25s all ease;

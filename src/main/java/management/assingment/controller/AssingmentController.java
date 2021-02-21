@@ -37,69 +37,84 @@ public class AssingmentController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String pwhat = req.getParameter("pwhat");
-        //BufferedReader body = req.getReader();
-        AssingmentServices services = new AssingmentServices();
-        RequestDispatcher dis = null;
-        resp.setContentType("text/html;charset=UTF-8");
+        JSONObject data = new JSONObject();
+        try {
 
-        PrintWriter out = resp.getWriter();
+            String pwhat = req.getParameter("pwhat");
+            //BufferedReader body = req.getReader();
+            AssingmentServices services = new AssingmentServices();
+            RequestDispatcher dis = null;
+            resp.setContentType("text/html;charset=UTF-8");
 
-        switch (pwhat) {
-            case "insert":
-                services.insert(req);/*
-                resp.setContentType("text/html;charset=UTF-8");
-                RequestDispatcher dis = req.getRequestDispatcher("/management/assingment/assingment_res.jsp");
-                try {
-                    dis.forward(req, resp);
+            PrintWriter out = resp.getWriter();
+
+            switch (pwhat) {
+                case "insert":
+                    try {
+                    services.insert(req);
+                    data.put("header", "Alerta");
+                    data.put("body", "Tudo correu como previsto uma nova tarefa foi adicionada");
                 } catch (Exception e) {
                     e.printStackTrace();
-                }*/
+                    data.put("header", "Alerta");
+                    data.put("body", "Ocorreu um erro durante a inserção de um nova tarefa");
+                }
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                out.print(data);
+                out.flush();
                 break;
-            case "delete":
-                services.remove(req);
-                resp.setContentType("text/html;charset=UTF-8");
-                dis = req.getRequestDispatcher("/management/assingment/assingment_psq.jsp");
-                try {
-                    dis.forward(req, resp);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "pagination":
-                int n = 0;
-                if (req.getParameter("page") != null) {
-                    n = Integer.parseInt(req.getParameter("page"));
-                }
+                case "delete":
+                    services.remove(req);
+                    resp.setContentType("text/html;charset=UTF-8");
+                    dis = req.getRequestDispatcher("/management/assingment/assingment_psq.jsp");
+                    try {
+                        dis.forward(req, resp);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "pagination":
+                    int n = 0;
+                    if (req.getParameter("page") != null) {
+                        n = Integer.parseInt(req.getParameter("page"));
+                    }
 
-                int max = services.getMaxPage();
-                if ((n + 1) > max) {
-                    n = max;
-                }
-                req.setAttribute("ppage", (n));
+                    int max = services.getMaxPage();
+                    if ((n + 1) > max) {
+                        n = max;
+                    }
+                    req.setAttribute("ppage", (n));
 
-                resp.setContentType("text/html;charset=UTF-8");
-                dis = req.getRequestDispatcher("/management/assingment/assingment_table.jsp");
-                try {
-                    dis.forward(req, resp);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                    resp.setContentType("text/html;charset=UTF-8");
+                    dis = req.getRequestDispatcher("/management/assingment/assingment_table.jsp");
+                    try {
+                        dis.forward(req, resp);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-                break;
-            case "saveOrder":
-                String payloadRequest = Util.getBody(req);
-                int size = Integer.parseInt(req.getParameter("size"));
-                JSONObject json = new JSONObject(payloadRequest);
-                boolean flag = services.serOrder(size, json);
-                if (flag) {
-                    out.println("Ordenação salva !!");
-                } else {
-                    out.println("Ordenação salva !!");
+                    break;
+                case "saveOrder":
+                    String payloadRequest = Util.getBody(req);
+                    int size = Integer.parseInt(req.getParameter("size"));
+                    JSONObject json = new JSONObject(payloadRequest);
+                    boolean flag = services.serOrder(size, json);
+                    if (flag) {
+                        out.println("Ordenação salva !!");
+                    } else {
+                        out.println("Ordenação salva !!");
 
-                }
-                break;
+                    }
+                    break;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.put("header", "Alerta");
+            data.put("body", "Ocorreu um erro interno " + e.toString());
         }
+
     }
 
 }

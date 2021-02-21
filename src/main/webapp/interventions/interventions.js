@@ -8,16 +8,14 @@
 window.addEventListener("load", function (event) {
 
     const button = document.querySelector('.btn-1');
-    const form = document.querySelector('.form');
+    const form = document.querySelector('.formnar');
     if (button != null)
         button.addEventListener('click', function () {
             let valid = true;
             document.querySelectorAll(".item").forEach(function (m) {
-
                 if (m.value.length == 0) {
                     valid = false;
                 }
-
             });
 
             if (!valid) {
@@ -34,8 +32,18 @@ window.addEventListener("load", function (event) {
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
                     },
-                    body: $(".form").serialize()});
-                window.location.href = "/CRM_SENSEI/interventions/interventions_psq.jsp"
+                    body: $(".formnar").serialize()}).then(function (data) {
+                    return data.json();
+
+                }).then(function (data) {
+                    $("#modal_crm .modal-header").text(data.header);
+                    $("#modal_crm #modal_content").text(data.body);
+                    $("#modal_crm").show();
+
+
+
+                });
+                // window.location.href = "/CRM_SENSEI/interventions/interventions_psq.jsp"
             }
         });
 });

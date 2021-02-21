@@ -9,16 +9,15 @@
 <%@page import="menu.services.MenuServices"%>
 <%@page pageEncoding="UTF-8"%>
 <%
- // returns null if no session or session is invalid
-if(session.getAttribute("username")!=null) {
+    // returns null if no session or session is invalid
+    if (session.getAttribute("username") != null) {
 
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestão Funcionarios </title>
-        <%
-            MenuServices menu = new MenuServices();
+        <%            MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
         %>
         <script src="/CRM_SENSEI/management/assingment/assingment.js"></script>
@@ -28,20 +27,25 @@ if(session.getAttribute("username")!=null) {
     <body>
         <%@include file="../../menu/menu.jsp" %>
 
-        <div class="user">
-            <header class="user__header">
-                <img id="logo" src="/CRM_SENSEI/resources/SHI_LOGO-HORIZONTAL-blanco.png" alt="" />
-                <h1 class="user__title">registro de tarefas</h1>
-            </header>
 
-            <form class="form">
-                <div class="form__group">
-                    <input  type="text" name="dsc" placeholder="Descrição da Tarefa" class="form__input  item" />
-                </div>
-                <input type="hidden" name="pwhat" value="insert">
-                <button class="btn-1" type="button">Register</button>
-            </form>
+        <div class="main-content">
+            <div class="form">
+                <form class="formnar">
+                    <div class="form__group">
+                        <div class="form_label">Descrição da Tarefa:</div>
+
+                        <div class="form_item">
+                            <input  type="text" name="dsc" placeholder="Descrição da Tarefa" class="form__input  item" />
+                        </div>
+                    </div>
+                    <input type="hidden" name="pwhat" value="insert">
+                </form>
+                <button onclick="event.preventDefault();" class="btn-1" type="button" >Gravar</button>
+
+            </div>
         </div>        
     </body>
 </html>
-<%}else{out.print("Usuario não está logado");}%>
+<%} else {
+        out.print("Usuario não está logado");
+    }%>

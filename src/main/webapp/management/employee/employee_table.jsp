@@ -19,28 +19,23 @@
 
 %>
 
-<table id="table_employee" cellspacing="0">
+<table id="table" cellspacing="0">
     <tr>
-        <td>Nome</td>
-        <td>Email</td>  
-        <td>Telefone</td>
+        <td class="td_left" >Nome</td>
+        <td class="td_left">Email</td>  
+        <td class="td_left">Telefone</td>
         <td>Editar</td>
         <td>Remover</td>
     </tr>
     <c:forEach items="${employeeList}" var="item"   varStatus="loop">
         <tr>
-            <td>
+            <td class="td_left">
                 ${item.getNme()}
             </td>
-
-
-            <td>
+            <td class="td_left">
                 ${item.getEmail()}
-
             </td>
-
-
-            <td>
+            <td class="td_left">
                 ${item.getTel()}
 
             </td>

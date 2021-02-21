@@ -50,6 +50,7 @@ public class InterventionsRepository {
 
                 list.add(model);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -59,17 +60,19 @@ public class InterventionsRepository {
         return list;
     }
 
-    public void insertInterventions(int project_id, int employee_id, int assingment_id, String spend_time, String dsc) {
+    public void insertInterventions(int project_id, int employee_id, int assingment_id, String spend_time, String dsc, String dte) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "insert into project_employee (project_id,employee_id,assingment_id,spend_time,dsc,dte) values(?,?,?,?,?,NOW())");
+            pstmt = DBManager.getPreparedStatement(con, "insert into project_employee (project_id,employee_id,assingment_id,spend_time,dsc,dte) values(?,?,?,?,?,?)");
             pstmt.setInt(1, project_id);
             pstmt.setInt(2, employee_id);
             pstmt.setInt(3, assingment_id);
             pstmt.setString(4, spend_time);
             pstmt.setString(5, dsc);
+            pstmt.setString(6, dte);
+
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,7 +153,7 @@ public class InterventionsRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from project_employee  limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from project_employee inner join project  on project_employee.project_id = project.id order by project_employee.id DESC limit " + (n * 20) + " , 20 ");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 InterventionsModel model = new InterventionsModel();
@@ -160,7 +163,7 @@ public class InterventionsRepository {
                 model.setSpeend_time(rs.getString("spend_time"));
                 model.setDsc(rs.getString("dsc"));
                 model.setId(rs.getInt("id"));
-
+                model.setCustomer(rs.getString("customer_nme"));
                 ProjectRepository prjR = new ProjectRepository();
                 model.setPrj_nme((prjR.getById(model.getProject_id())).getN_process());
 

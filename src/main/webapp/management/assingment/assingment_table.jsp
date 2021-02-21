@@ -25,7 +25,7 @@
         $("#sortable").disableSelection();
     });
 </script>
-<div id="table_assingment" cellspacing="0">
+<div id="table" cellspacing="0">
     <div class="row">
         <div class="col">Descrição Do Tarefa</div>
         <div class="col">Remover</div>
@@ -46,7 +46,7 @@
             </div>
         </c:forEach>
     </div>
-    <div  class="row">
+    <div  class="row" style="display: flex;justify-content: center;">
         <div >
             <div>
                 <%@include file="../../pagination/pagination.jsp" %>

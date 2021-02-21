@@ -17,11 +17,11 @@
 
 %>
 
-<table id="table_menu" cellspacing="0">
+<table id="table" cellspacing="0">
     <tr>
-        <td>Nome</td>
-        <td>Nivel</td>  
-        <td>Editar</td>
+        <td class="td_left">Nome</td>
+        <td class="td_left">Nivel</td>  
+        <td class="td_left">Editar</td>
     </tr>
     <c:forEach items="${menuList}" var="item"   varStatus="loop">
         <tr>

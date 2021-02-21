@@ -24,10 +24,10 @@ public class AssingmentServices {
     public void setAssingment(HttpServletRequest req, HttpServletResponse resp, int n) {
         AssingmentRepository repository = new AssingmentRepository();
         PaginationModel pagination = new PaginationModel();
-        pagination.setPage(n);
+        pagination.setPage(n + 1);
+        pagination.setMax_page(getMaxPage() + 1);
         req.setAttribute("pagination", pagination);
         pagination.setUrl("/CRM_SENSEI/AssingmentController?pwhat=pagination");
-
         req.setAttribute("assingmentList", repository.getN(n));
     }
 

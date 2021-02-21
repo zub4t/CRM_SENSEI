@@ -46,7 +46,8 @@
             </div>
         </div>
         <div class="main-content">
-            <div id="canvans-content">
+            <div id="canvas-content">
+                <p>Total de horas trabalhadas:<mark><span id="total_hours"></span></mark></p>
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
 

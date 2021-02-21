@@ -9,16 +9,15 @@
 <%@page import="menu.services.MenuServices"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
- // returns null if no session or session is invalid
-if(session.getAttribute("username")!=null) {
+    // returns null if no session or session is invalid
+    if (session.getAttribute("username") != null) {
 
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestão Menu </title>
-        <%
-            MenuServices menu = new MenuServices();
+        <%            MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
             request.setCharacterEncoding("UTF-8");
         %>
@@ -29,25 +28,34 @@ if(session.getAttribute("username")!=null) {
     <body>
         <%@include file="../../menu/menu.jsp" %>
 
-        <div class="user">
-            <header class="user__header">
-                <img id="logo" src="/CRM_SENSEI/resources/SHI_LOGO-HORIZONTAL-blanco.png" alt="" />
-                <h1 class="user__title">edição de menu</h1>
-            </header>
+        <div class="main-content">
+            <div class="form">
 
-            <form class="form" method="POST" action="/CRM_SENSEI/MenuController?pwhat=update">
-                <input type="hidden" value="${model.id}" name="menuId"/>
-                <div class="form__group">
-                    <input  type="text" value="${model.nme}" name="nme" placeholder="nome" class="form__input  item" />
-                </div>
-                <div class="form__group">
-                    <input    type="number" value="${model.userLevel}" name="userLevel" placeholder="level" class="form__input item" />
-                </div>
-                <button class="btn-1" type="button">Edit</button>
-                <input type="hidden" name="pwhat" value="update">
 
-            </form>
-        </div>        
+                <form class="formnar" method="POST" action="/CRM_SENSEI/MenuController?pwhat=update">
+                    <input type="hidden" value="${model.id}" name="menuId"/>
+                    <div class="form__group">
+                        <div class="form_label">Nome: </div>
+                        <div class="form_item">
+                            <input  type="text" value="${model.nme}" name="nme" placeholder="nome" class="form__input  item" />
+                        </div>
+                    </div>
+                    <div class="form__group">
+
+                        <div class="form_label">Nivel de usuario requerido para aceder a esse menu : </div>
+                        <div class="form_item">
+                            <input    type="number" value="${model.userLevel}" name="userLevel" placeholder="level" class="form__input item" />
+                        </div>
+                    </div>
+                    <input type="hidden" name="pwhat" value="update">
+
+                </form>
+                <button class="btn-1" type="button">Gravar</button>
+
+            </div>  
+        </div>
     </body>
 </html>
-<%}else{out.print("Usuario não está logado");}%>
+<%} else {
+        out.print("Usuario não está logado");
+    }%>
