@@ -31,7 +31,7 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                fetch("/CRM_SENSEI_EXTERNAL/MenuController", {
+                fetch("/CRM_SENSEI/MenuController", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -55,6 +55,6 @@ window.addEventListener("load", function (event) {
 function goToMenuId(menuId) {
     var form = document.getElementById("goToGestMenu");
     document.querySelector("[name=menuId]").value = menuId;
-    form.action = "/CRM_SENSEI_EXTERNAL/MenuController";
+    form.action = "/CRM_SENSEI/MenuController";
     form.submit();
 }

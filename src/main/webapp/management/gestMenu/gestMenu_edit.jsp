@@ -21,8 +21,8 @@
             menu.setMenu(request, response);
             request.setCharacterEncoding("UTF-8");
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/management/gestMenu/gestMenu.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/management/gestMenu/gestMenu.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/management/gestMenu/gestMenu.js"></script>
+        <link href="/CRM_SENSEI/management/gestMenu/gestMenu.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -32,7 +32,7 @@
             <div class="form">
 
 
-                <form class="formnar" method="POST" action="/CRM_SENSEI_EXTERNAL/MenuController?pwhat=update">
+                <form class="formnar" method="POST" action="/CRM_SENSEI/MenuController?pwhat=update">
                     <input type="hidden" value="${model.id}" name="menuId"/>
                     <div class="form__group">
                         <div class="form_label">Nome: </div>

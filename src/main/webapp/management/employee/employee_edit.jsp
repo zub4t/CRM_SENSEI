@@ -20,8 +20,8 @@
         <%            MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/management/employee/employee.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/management/employee/employee.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/management/employee/employee.js"></script>
+        <link href="/CRM_SENSEI/management/employee/employee.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -30,7 +30,7 @@
         <div class="main-content">
             <div class="form">
 
-                <form class="formnar" method="POST" action="/CRM_SENSEI_EXTERNAL/EmployeeController?pwhat=update">
+                <form class="formnar" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=update">
                     <input type="hidden" value="${model.id}" name="empId"/>
                     <div class="form__group">
                         <div class="form_label">Nome :</div>

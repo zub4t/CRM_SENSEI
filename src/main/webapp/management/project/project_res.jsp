@@ -21,14 +21,14 @@ if(request.getSession(false) ==null) {
             MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
         %>
-        <link href="/CRM_SENSEI_EXTERNAL/management/employee/employee.css" rel="stylesheet"/>
+        <link href="/CRM_SENSEI/management/employee/employee.css" rel="stylesheet"/>
 
     </head>
     <body>
         <%@include file="../../menu/menu.jsp" %>
         <div class="main_label ">
             <h1 >Projeto registrado com sucesso!!</h1>
-            <a href="/CRM_SENSEI_EXTERNAL/management/project/project_psq.jsp">
+            <a href="/CRM_SENSEI/management/project/project_psq.jsp">
                 <div class="box-3">
                     <div class="btn-1 btn-three">
                         <span>Voltar</span>
