@@ -20,8 +20,8 @@ if(session.getAttribute("username")!= null) {
             MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
         %>
-        <script src="/CRM_SENSEI/interventions/interventions.js"></script>
-        <link href="/CRM_SENSEI/interventions/interventions.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI_EXTERNAL/interventions/interventions.js"></script>
+        <link href="/CRM_SENSEI_EXTERNAL/interventions/interventions.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -34,7 +34,7 @@ if(session.getAttribute("username")!= null) {
         </form>
         <div id="table_container">
             <% if(menu.isVisible(request, 11)){ %>
-            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/interventions/interventions_nar.jsp'"><img  src="/CRM_SENSEI/resources/plus-sign.png" width="20px"/></span>
+            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI_EXTERNAL/interventions/interventions_nar.jsp'"><img  src="/CRM_SENSEI_EXTERNAL/resources/plus-sign.png" width="20px"/></span>
                 <% } %>
             <div class="table_header"></div>
             <div id="table">

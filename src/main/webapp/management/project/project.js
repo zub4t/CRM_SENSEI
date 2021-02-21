@@ -26,7 +26,7 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                fetch("/CRM_SENSEI/ProjectController", {
+                fetch("/CRM_SENSEI_EXTERNAL/ProjectController", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -49,7 +49,7 @@ window.addEventListener("load", function (event) {
 function goToProjectId(projectId) {
     var form = document.getElementById("goToProject");
     document.querySelector("[name=projectId]").value = projectId;
-    form.action = "/CRM_SENSEI/ProjectController";
+    form.action = "/CRM_SENSEI_EXTERNAL/ProjectController";
     form.submit();
 }
 
@@ -58,6 +58,6 @@ function removeProject(projectId) {
     var form = document.getElementById("goToProject");
     document.querySelector("[name=projectId]").value = projectId;
     document.querySelector("[name=pwhat]").value = "delete";
-    form.action = "/CRM_SENSEI/ProjectController";
+    form.action = "/CRM_SENSEI_EXTERNAL/ProjectController";
     form.submit();
 }
