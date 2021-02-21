@@ -22,7 +22,7 @@
         <td class="td_left">Tarefa</td>
         <td class="td_left">Tempo Gasto</td>
         <td class="td_left" >Descrição</td>
-        <td>Editar</td>
+        <td >Editar</td>
         <td>Remover</td>
 
     </tr>

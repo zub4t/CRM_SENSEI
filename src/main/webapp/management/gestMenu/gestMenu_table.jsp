@@ -21,7 +21,7 @@
     <tr>
         <td class="td_left">Nome</td>
         <td class="td_left">Nivel</td>  
-        <td class="td_left">Editar</td>
+        <td >Editar</td>
     </tr>
     <c:forEach items="${menuList}" var="item"   varStatus="loop">
         <tr>
