@@ -2,7 +2,7 @@ function getNewPass() {
     let nick = document.querySelector("[name=nickname]").value;
     if (nick.length > 0) {
 
-        fetch("/CRM_SENSEI/EmployeeController?pwhat=forgotPass", {
+        fetch("/CRM_SENSEI_EXTERNAL/EmployeeController?pwhat=forgotPass", {
             method: "POST",
             body: JSON.stringify({"nickname": nick}),
             headers: {

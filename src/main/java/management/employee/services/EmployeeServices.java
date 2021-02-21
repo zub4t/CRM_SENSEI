@@ -28,7 +28,7 @@ public class EmployeeServices {
         pagination.setPage(n + 1);
         pagination.setMax_page(getMaxPage() + 1);
         req.setAttribute("pagination", pagination);
-        pagination.setUrl("/CRM_SENSEI/EmployeeController?pwhat=pagination");
+        pagination.setUrl("/CRM_SENSEI_EXTERNAL/EmployeeController?pwhat=pagination");
         
         req.setAttribute("employeeList", repository.getN(n));
     }

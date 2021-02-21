@@ -12,7 +12,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 body::after {
-    background-image: url("/CRM_SENSEI/resources/SHI_LOGO-HORIZONTAL transp_low-0.png");
+    background-image: url("/CRM_SENSEI_EXTERNAL/resources/SHI_LOGO-HORIZONTAL transp_low-0.png");
     position: absolute;
     right: 0;
     top: 50px;

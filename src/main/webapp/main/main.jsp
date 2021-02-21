@@ -18,8 +18,8 @@
         <title>CRM</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-        <script src="/CRM_SENSEI/main/main.js"></script>
-        <link href="/CRM_SENSEI/main/main.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI_EXTERNAL/main/main.js"></script>
+        <link href="/CRM_SENSEI_EXTERNAL/main/main.css" rel="stylesheet"/>
 
 
     </head>
