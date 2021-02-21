@@ -68,10 +68,14 @@ public class MenuController extends HttpServlet {
                     req.setAttribute("model", menu);
                     data.put("header", "Alerta");
                     data.put("body", "Tudo ocorreu conforme previsto, o menu foi alterado");
+                    data.put("redirect", true);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     data.put("header", "Alerta");
                     data.put("body", "Ocorreu um erro ao alterar o menu");
+                    data.put("redirect", false);
+
                 }
 
                 out = resp.getWriter();
@@ -118,6 +122,7 @@ public class MenuController extends HttpServlet {
             e.printStackTrace();
             data.put("header", "Alerta");
             data.put("body", "Ocorreu um erro interno " + e.toString());
+            data.put("redirect", false);
         }
 
     }

@@ -64,9 +64,10 @@
                             <input    type="number" value="${model.userLevel}" name="userLevel" placeholder="nivel do user (0 é o mais prioritário)" class="form__input item" />
                         </div>
                     </div>
-                    <button class="btn-1" type="button">Edit</button>
                     <input type="hidden" name="pwhat" value="update">
                 </form>
+                <button class="btn-1" onclick="event.preventDefault();" type="button">Gravar</button>
+
             </div> 
         </div>
     </body>

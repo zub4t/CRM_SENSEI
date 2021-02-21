@@ -48,9 +48,12 @@ public class InterventionsController extends HttpServlet {
                     services.insert(req);
                     data.put("header", "Alerta");
                     data.put("body", "Tudo correu como previsto");
+                    data.put("redirect", false);
+
                 } catch (Exception e) {
                     data.put("header", "Alerta");
                     data.put("body", "Algo correu mal durante a inserção da nova intervenção " + e.toString());
+                    data.put("redirect", false);
 
                 }
                 out = resp.getWriter();
@@ -79,9 +82,12 @@ public class InterventionsController extends HttpServlet {
                     services.update(req);
                     data.put("header", "Alerta");
                     data.put("body", "Tudo correu como previsto, a intervenção foi alterada");
+                    data.put("redirect", true);
+
                 } catch (Exception e) {
                     data.put("header", "Alerta");
                     data.put("body", "Algo correu mal durante a inserção da nova intervenção " + e.toString());
+                    data.put("redirect", false);
 
                 }
 
@@ -112,6 +118,8 @@ public class InterventionsController extends HttpServlet {
         } catch (Exception e) {
             data.put("header", "Algo Correu mal internamente");
             data.put("body", e.toString());
+            data.put("redirect", false);
+
         }
 
     }

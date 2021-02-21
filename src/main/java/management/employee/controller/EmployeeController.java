@@ -44,6 +44,7 @@ public class EmployeeController extends HttpServlet {
             EmployeeServices services = new EmployeeServices();
             RequestDispatcher dis = null;
             EmployeeModel employee = null;
+            PrintWriter out;
             switch (pwhat) {
                 case "insert":
               
@@ -52,12 +53,16 @@ public class EmployeeController extends HttpServlet {
 
                     data.put("header", "Alerta");
                     data.put("body", "Tudo correu como previsto, um novo funcionario foi adicionado");
+                    data.put("redirect", false);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     data.put("header", "Alerta");
                     data.put("body", "Ocorreu um erro durante a inserção de um novo funcionario");
+                    data.put("redirect", false);
+
                 }
-                PrintWriter out = resp.getWriter();
+                out = resp.getWriter();
                 out.print(data);
                 out.flush();
                 break;
@@ -94,16 +99,23 @@ public class EmployeeController extends HttpServlet {
                     }
                     break;
                 case "update":
+                try {
                     employee = services.update(req);
-                    req.setAttribute("model", employee);
-                    resp.setContentType("text/html;charset=UTF-8");
-                    dis = req.getRequestDispatcher("/management/employee/employee_psq.jsp");
-                    try {
-                        dis.forward(req, resp);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    break;
+                    data.put("header", "Alerta");
+                    data.put("body", "Tudo correu como previsto, o  funcionario foi editado");
+                    data.put("redirect", true);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("header", "Alerta");
+                    data.put("body", "Ocorreu um erro durante a inserção de um novo funcionario");
+                    data.put("redirect", false);
+                }
+                out = resp.getWriter();
+                out.print(data);
+                out.flush();
+
+                break;
                 case "delete":
                     services.remove(req);
                     resp.setContentType("text/html;charset=UTF-8");
@@ -163,6 +175,8 @@ public class EmployeeController extends HttpServlet {
             e.printStackTrace();
             data.put("header", "Alerta");
             data.put("body", "Ocorreu um erro interno " + e.toString());
+            data.put("redirect", false);
+
         }
 
     }

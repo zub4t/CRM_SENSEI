@@ -63,9 +63,9 @@
                         </div>
                     </div>
                     <div class="form__group">
-                        <div class="form_label">honorário</div>
+                        <div class="form_label">honorários</div>
                         <div class="form_item">
-                            <input  type="number" step="0.01" name="honorary" placeholder="honorário" class="form__input item"  />
+                            <input  type="number" step="0.01" name="honorary" placeholder="honorários" class="form__input item"  />
                         </div>    
                     </div>
                     <input type="hidden" name="pwhat" value="insert">

@@ -54,10 +54,14 @@ public class ProjectController extends HttpServlet {
                         services.insert(req);
                         data.put("header", "Alerta");
                         data.put("body", "Tudo Correu Bem, o projeto foi inserido");
+                        data.put("redirect", false);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         data.put("header", "Alerta");
                         data.put("body", "Ocorreu um erro ao inserir um novo projeto");
+                        data.put("redirect", false);
+
                     }
                     out = resp.getWriter();
                     out.print(data);
@@ -92,10 +96,13 @@ public class ProjectController extends HttpServlet {
                         req.setAttribute("model", projectModel);
                         data.put("header", "Alerta");
                         data.put("body", "Tudo Correu Bem, o projeto foi alterado");
+                        data.put("redirect", true);
                     } catch (Exception e) {
                         e.printStackTrace();
                         data.put("header", "Alerta");
                         data.put("body", "Ocorreu um erro ao inserir um novo projeto");
+                        data.put("redirect", false);
+
                     }
                     out = resp.getWriter();
                     out.print(data);
@@ -137,6 +144,8 @@ public class ProjectController extends HttpServlet {
             e.printStackTrace();
             data.put("header", "Alerta");
             data.put("body", "Ocorreu um erro interno " + e.toString());
+            data.put("redirect", false);
+
         }
 
     }

@@ -50,7 +50,7 @@
                     <input type="hidden" name="pwhat" value="update">
 
                 </form>
-                <button class="btn-1" type="button">Gravar</button>
+                <button class="btn-1"   onclick="event.preventDefault();" type="button">Gravar</button>
 
             </div>  
         </div>

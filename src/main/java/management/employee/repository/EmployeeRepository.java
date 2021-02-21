@@ -251,7 +251,7 @@ public class EmployeeRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)   limit " + (n * 10) + " , 10");
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)   limit " + (n * 20) + " , 20");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 EmployeeModel model = new EmployeeModel();
@@ -288,7 +288,7 @@ public class EmployeeRepository {
         } finally {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
-            max = (int) (Math.ceil(max) / 10.0);
+            max = (int) (Math.ceil(max) / 20.0);
             return max;
         }
     }

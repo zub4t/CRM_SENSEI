@@ -26,7 +26,7 @@ if(session.getAttribute("username")!= null) {
             ProjectServices project = new ProjectServices();
             project.setListOfAllPrj(request, response);
         %>
-        <script src="/CRM_SENSEI/interventions/interventions.js"></script>
+        <script src="/CRM_SENSEI/interventions/interventions.js?v1"></script>
         <link href="/CRM_SENSEI/interventions/interventions.css" rel="stylesheet"/>
         <script>
             window.addEventListener("load", function (event) {

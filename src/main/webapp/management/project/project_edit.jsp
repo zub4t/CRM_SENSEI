@@ -29,7 +29,7 @@
 
 
         <div class="main-content">
-            <div class="formnar">
+            <div class="form">
 
                 <form class="formnar" method="POST" action="/CRM_SENSEI/ProjectController?pwhat=update">
                     <input type="hidden" value="${model.id}" name="projectId"/>
@@ -66,10 +66,11 @@
                             <input  type="number" step="0.01" value="${model.effective_purchase}" name="effective_purchase" placeholder="Compra Efetiva" class="form__input item"  />
                         </div>
                     </div>
-                    <button class="btn-1" type="button">Edit</button>
                     <input type="hidden" name="pwhat" value="update">
 
                 </form>
+                <button class="btn-1"   onclick="event.preventDefault();" type="button">Gravar</button>
+
             </div>  
         </div>
     </body>

@@ -40,10 +40,13 @@ window.addEventListener("load", function (event) {
                     return data.json();
 
                 }).then(function (data) {
-                    $("#modal_crm .modal-header").text(data.header);
-                    $("#modal_crm #modal_content").text(data.body);
-                    $("#modal_crm").show();
-
+                    if (data.redirect) {
+                        window.location.href = "/CRM_SENSEI/management/gestMenu/gestMenu_psq.jsp";
+                    } else {
+                        $("#modal_crm .modal-header").text(data.header);
+                        $("#modal_crm #modal_content").text(data.body);
+                        $("#modal_crm").show();
+                    }
 
 
                 });
