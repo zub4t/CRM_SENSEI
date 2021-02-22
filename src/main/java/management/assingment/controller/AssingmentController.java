@@ -53,7 +53,7 @@ public class AssingmentController extends HttpServlet {
                     try {
                     services.insert(req);
                     data.put("header", "Alerta");
-                    data.put("body", "Tudo correu como previsto uma nova tarefa foi adicionada");
+                    data.put("body", "Registo efetuado uma nova tarefa foi adicionada");
                 } catch (Exception e) {
                     e.printStackTrace();
                     data.put("header", "Alerta");

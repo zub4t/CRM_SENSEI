@@ -47,7 +47,7 @@ public class InterventionsController extends HttpServlet {
                 try {
                     services.insert(req);
                     data.put("header", "Alerta");
-                    data.put("body", "Tudo correu como previsto");
+                    data.put("body", "Registo efetuado");
                     data.put("redirect", false);
 
                 } catch (Exception e) {
@@ -81,7 +81,7 @@ public class InterventionsController extends HttpServlet {
                     try {
                     services.update(req);
                     data.put("header", "Alerta");
-                    data.put("body", "Tudo correu como previsto, a intervenção foi alterada");
+                    data.put("body", "Registo efetuado, a intervenção foi alterada");
                     data.put("redirect", true);
 
                 } catch (Exception e) {

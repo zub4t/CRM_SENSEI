@@ -1,4 +1,5 @@
 
+<%@page import="management.employee.repository.EmployeeRepository"%>
 <%@page import="menu.services.MenuServices"%>
 <%-- 
     Document   : project_table
@@ -19,6 +20,7 @@
     }
     project.setProjects(request, response, n);
     MenuServices menu_1 = new MenuServices();
+    EmployeeRepository employeeRepository = new EmployeeRepository();
 
 %>
 <fmt:setLocale value="es_ES"/>
@@ -42,19 +44,23 @@
             </td>
 
             <td class="td_left">
-
+                <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
                 <fmt:formatNumber value="${item.getExpected_sale()}" type="currency"/>
+                <%}%>
             </td>
 
             <td class="td_left">
+                <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
 
                 <fmt:formatNumber value="${item.getEffective_sale()}" type="currency"/>
-
+                <%}%>
             </td>
             <td class="td_left">
+                <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
+
                 <fmt:formatNumber value="${item.getEffective_purchase()}" type="currency"/>
 
-
+                <%}%>
             </td>
             <% if (menu_1.isVisible(request, 1)) { %>
             <td onclick="goToProjectId(${item.id})">

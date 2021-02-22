@@ -67,7 +67,7 @@ public class MenuController extends HttpServlet {
                     menu = services.update(req);
                     req.setAttribute("model", menu);
                     data.put("header", "Alerta");
-                    data.put("body", "Tudo ocorreu conforme previsto, o menu foi alterado");
+                    data.put("body", "Registo efetuado, o menu foi alterado");
                     data.put("redirect", true);
 
                 } catch (Exception e) {

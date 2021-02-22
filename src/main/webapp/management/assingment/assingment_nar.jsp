@@ -20,8 +20,8 @@
         <%            MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/management/assingment/assingment.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/management/assingment/assingment.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/management/assingment/assingment.js"></script>
+        <link href="/CRM_SENSEI/management/assingment/assingment.css" rel="stylesheet"/>
 
     </head>
     <body>

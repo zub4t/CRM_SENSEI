@@ -52,7 +52,7 @@ public class EmployeeController extends HttpServlet {
                     services.insert(req);
 
                     data.put("header", "Alerta");
-                    data.put("body", "Tudo correu como previsto, um novo funcionario foi adicionado");
+                    data.put("body", "Registo efetuado, um novo funcionario foi adicionado");
                     data.put("redirect", false);
 
                 } catch (Exception e) {
@@ -102,7 +102,7 @@ public class EmployeeController extends HttpServlet {
                 try {
                     employee = services.update(req);
                     data.put("header", "Alerta");
-                    data.put("body", "Tudo correu como previsto, o  funcionario foi editado");
+                    data.put("body", "Registo efetuado, o  funcionario foi editado");
                     data.put("redirect", true);
 
                 } catch (Exception e) {

@@ -53,7 +53,7 @@ public class ProjectController extends HttpServlet {
                     try {
                         services.insert(req);
                         data.put("header", "Alerta");
-                        data.put("body", "Tudo Correu Bem, o projeto foi inserido");
+                        data.put("body", "Registo efetuado, o projeto foi inserido");
                         data.put("redirect", false);
 
                     } catch (Exception e) {
@@ -95,7 +95,7 @@ public class ProjectController extends HttpServlet {
                         projectModel = services.update(req);
                         req.setAttribute("model", projectModel);
                         data.put("header", "Alerta");
-                        data.put("body", "Tudo Correu Bem, o projeto foi alterado");
+                        data.put("body", "Registo efetuado, o projeto foi alterado");
                         data.put("redirect", true);
                     } catch (Exception e) {
                         e.printStackTrace();

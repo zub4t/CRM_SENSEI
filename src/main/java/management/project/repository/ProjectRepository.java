@@ -25,7 +25,7 @@ public class ProjectRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from project;");
+            pstmt = DBManager.getPreparedStatement(con, "select * from project order by customer_nme;");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 ProjectModel model = new ProjectModel();

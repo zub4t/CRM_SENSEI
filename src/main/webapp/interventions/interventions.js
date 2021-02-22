@@ -27,7 +27,7 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                fetch("/CRM_SENSEI_EXTERNAL/InterventionsController", {
+                fetch("/CRM_SENSEI/InterventionsController", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -38,7 +38,7 @@ window.addEventListener("load", function (event) {
                 }).then(function (data) {
 
                     if (data.redirect) {
-                        window.location.href = "/CRM_SENSEI_EXTERNAL/interventions/interventions_psq.jsp"
+                        window.location.href = "/CRM_SENSEI/interventions/interventions_psq.jsp"
                     } else {
                         $("#modal_crm .modal-header").text(data.header);
                         $("#modal_crm #modal_content").text(data.body);
@@ -55,7 +55,7 @@ window.addEventListener("load", function (event) {
 function goToInterventionId(id) {
     var form = document.getElementById("formId");
     document.querySelector("[name=id]").value = id;
-    form.action = "/CRM_SENSEI_EXTERNAL/InterventionsController";
+    form.action = "/CRM_SENSEI/InterventionsController";
     form.submit();
 }
 
@@ -64,6 +64,6 @@ function removeIntervention(id) {
     var form = document.getElementById("formId");
     document.querySelector("[name=id]").value = id;
     document.querySelector("[name=pwhat]").value = "delete";
-    form.action = "/CRM_SENSEI_EXTERNAL/InterventionsController";
+    form.action = "/CRM_SENSEI/InterventionsController";
     form.submit();
 }

@@ -27,8 +27,8 @@ if(session.getAttribute("username")!=null) {
             ProjectServices projectServices = new ProjectServices();
             projectServices.setListOfAllPrj(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/report/report.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/report/report.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/report/report.js"></script>
+        <link href="/CRM_SENSEI/report/report.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -36,7 +36,7 @@ if(session.getAttribute("username")!=null) {
         <%@include file="../../menu/menu.jsp" %>
         <div class="main-content">  
             <div class="form">
-                <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI_EXTERNAL/Rpt1">
+                <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt1">
                     <div class="form__group">
 
                         <div class="form_label">Projetos com intervenções entre o periodo</div>
