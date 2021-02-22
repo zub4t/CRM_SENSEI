@@ -42,7 +42,7 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                fetch("/CRM_SENSEI/EmployeeController", {
+                fetch("/CRM_SENSEI_EXTERNAL/EmployeeController", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -52,7 +52,7 @@ window.addEventListener("load", function (event) {
 
                 }).then(function (data) {
                     if (data.redirect) {
-                        window.location.href = "/CRM_SENSEI/management/employee/employee_psq.jsp"
+                        window.location.href = "/CRM_SENSEI_EXTERNAL/management/employee/employee_psq.jsp"
                     } else {
                         $("#modal_crm .modal-header").text(data.header);
                         $("#modal_crm #modal_content").text(data.body);
@@ -69,7 +69,7 @@ window.addEventListener("load", function (event) {
 function goToEmployeeId(employeeId) {
     var form = document.getElementById("goToEmployee");
     document.querySelector("[name=empId]").value = employeeId;
-    form.action = "/CRM_SENSEI/EmployeeController";
+    form.action = "/CRM_SENSEI_EXTERNAL/EmployeeController";
     form.submit();
 }
 
@@ -77,6 +77,6 @@ function removeEmployee(employeeId) {
     var form = document.getElementById("goToEmployee");
     document.querySelector("[name=empId]").value = employeeId;
     document.querySelector("[name=pwhat]").value = "delete";
-    form.action = "/CRM_SENSEI/EmployeeController";
+    form.action = "/CRM_SENSEI_EXTERNAL/EmployeeController";
     form.submit();
 }

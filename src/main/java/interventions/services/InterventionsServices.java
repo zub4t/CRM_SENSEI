@@ -25,7 +25,7 @@ public class InterventionsServices {
         pagination.setPage(1);
         pagination.setMax_page(max + 1);
         req.setAttribute("pagination", pagination);
-        pagination.setUrl("/CRM_SENSEI/InterventionsController?pwhat=pagination");
+        pagination.setUrl("/CRM_SENSEI_EXTERNAL/InterventionsController?pwhat=pagination");
         req.setAttribute("pagination", pagination);
 
     }
@@ -37,7 +37,7 @@ public class InterventionsServices {
         pagination.setPage(n + 1);
         pagination.setMax_page(max + 1);
         req.setAttribute("pagination", pagination);
-        pagination.setUrl("/CRM_SENSEI/InterventionsController?pwhat=pagination");
+        pagination.setUrl("/CRM_SENSEI_EXTERNAL/InterventionsController?pwhat=pagination");
 
         req.setAttribute("interventionList", repository.getN(n));
     }

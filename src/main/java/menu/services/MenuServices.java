@@ -43,7 +43,7 @@ public class MenuServices {
         pagination.setPage(n + 1);
         pagination.setMax_page(getMaxPage() + 1);
         req.setAttribute("pagination", pagination);
-        pagination.setUrl("/CRM_SENSEI/MenuController?pwhat=pagination");
+        pagination.setUrl("/CRM_SENSEI_EXTERNAL/MenuController?pwhat=pagination");
 
         req.setAttribute("menuList", repository.getN(n));
     }
