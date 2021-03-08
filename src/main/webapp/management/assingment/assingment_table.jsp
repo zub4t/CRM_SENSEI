@@ -39,7 +39,7 @@
                 <% if (menu_1.isVisible(request, 1)) {%>
                 <div onclick="removeAssingment(${item.id})" class="col">
 
-                <img style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
+                <img style="cursor:pointer" src="/CRM_SENSEI_EXTERNAL/resources/cancel.png" width="12px"/>
 
                 </div>
                 <%}%>

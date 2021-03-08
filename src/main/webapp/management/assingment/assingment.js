@@ -31,7 +31,7 @@ window.addEventListener("load", function (event) {
             } else {
 
 
-                fetch("/CRM_SENSEI/AssingmentController", {
+                fetch("/CRM_SENSEI_EXTERNAL/AssingmentController", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -55,7 +55,7 @@ function removeAssingment(id) {
     var form = document.getElementById("formId");
     document.querySelector("[name=id]").value = id;
     document.querySelector("[name=pwhat]").value = "delete";
-    form.action = "/CRM_SENSEI/AssingmentController";
+    form.action = "/CRM_SENSEI_EXTERNAL/AssingmentController";
     form.submit();
 }
 function saveOrder() {
@@ -66,7 +66,7 @@ function saveOrder() {
     aux = aux.substring(0, aux.length - 1);
     aux += "}";
     let size = $("#sortable div.row").length;
-    fetch("/CRM_SENSEI/AssingmentController?pwhat=saveOrder&size=" + size, {
+    fetch("/CRM_SENSEI_EXTERNAL/AssingmentController?pwhat=saveOrder&size=" + size, {
         method: "POST",
         body: aux,
         headers: {

@@ -25,8 +25,8 @@ if(session.getAttribute("username")!=null) {
 
 
         %>
-        <script src="/CRM_SENSEI/management/project/project.js"></script>
-        <link href="/CRM_SENSEI/management/project/project.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI_EXTERNAL/management/project/project.js"></script>
+        <link href="/CRM_SENSEI_EXTERNAL/management/project/project.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -37,7 +37,7 @@ if(session.getAttribute("username")!=null) {
         <%@include file="../../menu/menu.jsp" %>
         <div id="table_container">
             <% if (menu.isVisible(request, 1)) { %>
-            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/management/project/project_nar.jsp'"><img  src="/CRM_SENSEI/resources/plus-sign.png" width="20px"/></span>
+            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI_EXTERNAL/management/project/project_nar.jsp'"><img  src="/CRM_SENSEI_EXTERNAL/resources/plus-sign.png" width="20px"/></span>
                 <%}%>
             <div class="table_header"></div>
           

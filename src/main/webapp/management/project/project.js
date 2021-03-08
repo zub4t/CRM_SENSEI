@@ -26,7 +26,7 @@ window.addEventListener("load", function (event) {
                     form.classList.remove('form--no');
                 }, 500);
             } else {
-                fetch("/CRM_SENSEI/ProjectController", {
+                fetch("/CRM_SENSEI_EXTERNAL/ProjectController", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -36,7 +36,7 @@ window.addEventListener("load", function (event) {
 
                 }).then(function (data) {
                     if (data.redirect) {
-                        window.location.href = "/CRM_SENSEI/management/project/project_psq.jsp";
+                        window.location.href = "/CRM_SENSEI_EXTERNAL/management/project/project_psq.jsp";
                     } else {
                         $("#modal_crm .modal-header").text(data.header);
                         $("#modal_crm #modal_content").text(data.body);
@@ -53,7 +53,7 @@ window.addEventListener("load", function (event) {
 function goToProjectId(projectId) {
     var form = document.getElementById("goToProject");
     document.querySelector("[name=projectId]").value = projectId;
-    form.action = "/CRM_SENSEI/ProjectController";
+    form.action = "/CRM_SENSEI_EXTERNAL/ProjectController";
     form.submit();
 }
 
@@ -62,6 +62,6 @@ function removeProject(projectId) {
     var form = document.getElementById("goToProject");
     document.querySelector("[name=projectId]").value = projectId;
     document.querySelector("[name=pwhat]").value = "delete";
-    form.action = "/CRM_SENSEI/ProjectController";
+    form.action = "/CRM_SENSEI_EXTERNAL/ProjectController";
     form.submit();
 }

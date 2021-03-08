@@ -37,7 +37,7 @@
             <% if (menu.isVisible(request, 1)) { %>
             <td >
 
-                <img onclick="goToMenuId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
+                <img onclick="goToMenuId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI_EXTERNAL/resources/editar-arquivo.png" width="16px"/>
             </td>
             <%} else {%>
             <td></td>
