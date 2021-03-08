@@ -17,18 +17,18 @@
 %>
 <table id="table" cellspacing="0">
     <tr>
-        <td class="td_left">Projeto</td>
-        <td class="td_left">Funcionario</td>
-        <td class="td_left">Tarefa</td>
-        <td class="td_left">Tempo Gasto</td>
-        <td class="td_left" >Descrição</td>
+        <td class="">Projeto</td>
+        <td class="">Funcionario</td>
+        <td class="">Tarefa</td>
+        <td class="">Tempo Gasto</td>
+        <td class="" >Descrição</td>
         <td >Editar</td>
         <td>Remover</td>
 
     </tr>
     <c:forEach items="${interventionList}" var="item"   varStatus="loop">
         <tr>
-            <td class="td_left">
+            <td class="td_left ">
                 ${item.prj_nme} | ${item.customer}
             </td>
 
@@ -44,18 +44,18 @@
                 ${item.getSpeend_time()}
             </td>
 
-            <td class="td_left">
+            <td class="td_left dots3">
                 ${item.getDsc()}
             </td>      
             <% if (menu_1.isVisible(request, 11)) { %>
-            <td onclick="goToInterventionId(${item.id})">
+            <td >
 
-                <img style="cursor:pointer" src="https://img1.gratispng.com/20180920/eqx/kisspng-computer-icons-editing-portable-network-graphics-i-edit-profile-svg-png-icon-free-download-194863-5ba3457963b929.9651381015374268094085.jpg" width="20px"/>
+                <img onclick="goToInterventionId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
             </td>
             <%}%>
             <% if (menu_1.isVisible(request, 11)) { %>
-            <td onclick="removeIntervention(${item.id})">
-                <img style="cursor:pointer" src="https://cdn4.iconfinder.com/data/icons/interface-2/100/14-512.png" width="35px"/>
+            <td >
+                <img onclick="removeIntervention(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
             </td>
             <%}%>
         </tr>

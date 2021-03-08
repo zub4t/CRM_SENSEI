@@ -27,7 +27,7 @@ public class AssingmentServices {
         pagination.setPage(n + 1);
         pagination.setMax_page(getMaxPage() + 1);
         req.setAttribute("pagination", pagination);
-        pagination.setUrl("/CRM_SENSEI_EXTERNAL/AssingmentController?pwhat=pagination");
+        pagination.setUrl("/CRM_SENSEI/AssingmentController?pwhat=pagination");
         req.setAttribute("assingmentList", repository.getN(n));
     }
 

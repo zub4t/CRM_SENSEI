@@ -20,11 +20,12 @@ and open the template in the editor.
 }
 .logo{
     padding-top: 10%;
-    margin-left: 30%;
+
+    margin-left: calc(50% - 60px);
 }
-#input-group{
-    margin: 10%;
-}
+
+
+
 body{
     /*  background-image: url(../resources/apresentacao1_0.jpg);*/
     background-image: url(../resources/Japan-Kyoto-houses-snow-trees.jpg);
@@ -72,9 +73,14 @@ body{
 
 
 /* form starting stylings ------------------------------- */
-.group 			  { 
+
+.group:not(:last-child){ 
+    margin-left: 10%;
+
+}
+.group{ 
     position:relative; 
-    margin-bottom:45px; 
+    margin-bottom:25px; 
     text-align: center;
 
 }
@@ -224,4 +230,13 @@ input:focus ~ .highlight {
 #forgot_pass{
     cursor:pointer;
     text-decoration: underline;
+}
+@media screen and (max-width: 1500px) {
+    .container{
+        width: 90vw !important;
+    }
+    input, .bar{
+        width: 70vw;
+    }
+
 }

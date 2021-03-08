@@ -45,6 +45,7 @@ public class EmployeeController extends HttpServlet {
             RequestDispatcher dis = null;
             EmployeeModel employee = null;
             PrintWriter out;
+            HttpSession session = req.getSession();
             switch (pwhat) {
                 case "insert":
               
@@ -71,7 +72,6 @@ public class EmployeeController extends HttpServlet {
                     if ((id = services.login(req)) != 0) {
                         resp.setContentType("text/html;charset=UTF-8");
                         dis = req.getRequestDispatcher("/main/main.jsp");
-                        HttpSession session = req.getSession();
                         session.setAttribute("userId", id);
                         session.setAttribute("username", req.getParameter("nickname"));
 

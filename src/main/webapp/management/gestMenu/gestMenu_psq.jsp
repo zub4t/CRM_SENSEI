@@ -15,7 +15,7 @@ if(session.getAttribute("username")!=null) {
 %>
 <html>
     <head>
-        <base href="/CRM_SENSEI_EXTERNAL">
+        <base href="/CRM_SENSEI">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestão Menus </title>
         <%
@@ -23,8 +23,8 @@ if(session.getAttribute("username")!=null) {
             MenuServices menu1 = new MenuServices();
             menu1.setMenu(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/management/gestMenu/gestMenu.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/management/gestMenu/gestMenu.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/management/gestMenu/gestMenu.js"></script>
+        <link href="/CRM_SENSEI/management/gestMenu/gestMenu.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -35,9 +35,9 @@ if(session.getAttribute("username")!=null) {
         <%@include file="../../menu/menu.jsp" %>
         <div id="table_container">
             <div class="table_header"></div>
-            <div id="table">
+         
                 <%@include file="gestMenu_table.jsp" %>
-            </div>
+        
             <div class="table_footer"></div>
 
         </div>

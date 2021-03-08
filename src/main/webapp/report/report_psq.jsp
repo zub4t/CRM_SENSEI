@@ -27,8 +27,8 @@ if(session.getAttribute("username")!=null) {
             ProjectServices projectServices = new ProjectServices();
             projectServices.setListOfAllPrj(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/report/report.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/report/report.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/report/report.js"></script>
+        <link href="/CRM_SENSEI/report/report.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -36,31 +36,35 @@ if(session.getAttribute("username")!=null) {
         <%@include file="../../menu/menu.jsp" %>
         <div class="main-content">  
             <div class="form">
-                <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI_EXTERNAL/Rpt1">
-                    <div class="form__group">
-
-                        <div class="form_label">Projetos com intervenções entre o periodo</div>
-                        <div class="form_item">
-                            <input id="date_in"  name="date_in" type="date" value="2020-06-01">
-                            -to-
-                            <input id="date_out" name="date_out" type="date" value="2021-06-01">
-                        </div>
-                    </div>
-                    <div class="form__group" style="margin-bottom: 200px">
-
-                        <div class="form_label">Projetos</div>
-                        <div class="form_item"> 
-                            <select  name="prjct_selected" id="slct" multiple="multiple">
-                                <c:forEach items="${projectList}" var="item"   varStatus="loop">
-                                    <option id="projeto_${item.id}" value="${item.id}">${item.n_process} | ${item.customer_nme}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                </form>
                 <% if(menu.isVisible(request, 15)){ %>
-                <button  onclick="$('.formnar').submit();"class="btn-1" type="button">Exportar</button>
-                <%}%>
+
+                <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt1">
+                    <%}else{%>
+                    <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt2">
+
+                        <%}%>
+                        <div class="form__group">
+
+                            <div class="form_label dots3">Projetos com intervenções entre o periodo</div>
+                            <div class="form_item">
+                                <input id="date_in"  name="date_in" type="date" value="2020-06-01">
+                                -to-
+                                <input id="date_out" name="date_out" type="date" value="2021-06-01">
+                            </div>
+                        </div>
+                        <div class="form__group" style="margin-bottom: 200px">
+
+                            <div class="form_label">Projetos</div>
+                            <div class="form_item"> 
+                                <select  name="prjct_selected" id="slct" multiple="multiple">
+                                    <c:forEach items="${projectList}" var="item"   varStatus="loop">
+                                        <option id="projeto_${item.id}" value="${item.id}">${item.n_process} | ${item.customer_nme}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <button  onclick="$('.formnar').submit();"class="btn-1" type="button">Exportar</button>
             </div>
         </div>
     </body>

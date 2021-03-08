@@ -21,9 +21,9 @@
 
 <table id="table" cellspacing="0">
     <tr>
-        <td class="td_left" >Nome</td>
-        <td class="td_left">Email</td>  
-        <td class="td_left">Telefone</td>
+        <td class="" >Nome</td>
+        <td class="">Email</td>  
+        <td class="">Telefone</td>
         <td>Editar</td>
         <td>Remover</td>
     </tr>
@@ -40,15 +40,15 @@
 
             </td>
             <% if (menu_1.isVisible(request, 1)) { %>
-            <td onclick="goToEmployeeId(${item.id})">
-                <img style="cursor:pointer" src="https://img1.gratispng.com/20180920/eqx/kisspng-computer-icons-editing-portable-network-graphics-i-edit-profile-svg-png-icon-free-download-194863-5ba3457963b929.9651381015374268094085.jpg" width="20px"/>
+            <td >
+                <img onclick="goToEmployeeId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
             </td>
             <%} else {%>
             <td></td>
             <%}%>
             <% if (menu_1.isVisible(request, 1)) { %>
-            <td onclick="removeEmployee(${item.id})">
-                <img style="cursor:pointer" src="https://cdn4.iconfinder.com/data/icons/interface-2/100/14-512.png" width="35px"/>
+            <td >
+                <img onclick="removeEmployee(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
             </td>
             <%} else {%>
             <td></td>

@@ -113,7 +113,7 @@ public class Rpt1 extends HttpServlet {
         cs.newCellTxt(row, cel++, "Tarefa", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Executante ", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Data", cs.headerBlueLeftWrap());
-        cs.newCellTxt(row, cel++, "Tempo Despedido", cs.headerBlueLeftWrap());
+        cs.newCellTxt(row, cel++, "Tempo Despendido", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Custo/Hora", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Observações", cs.headerBlueLeftWrap());
 
@@ -226,7 +226,7 @@ public class Rpt1 extends HttpServlet {
         for (int i = 0; i < 20; i++) {
             sheet.setColumnWidth(i, 8000);
         }
-        createReportHeader(wb, sheet, cs, sheetName0, user, 7, 7);
+        createReportHeader(wb, sheet, cs, sheetName0, user, 7, 9);
         String where = " where ";
         //Cabeçalho
         int lin = 7;
@@ -248,7 +248,9 @@ public class Rpt1 extends HttpServlet {
         where += " 1=1";
         if (true) {
             cs.newCellTxt(row, cel++, "Nº Processo", cs.headerBlueLeftWrap());
+            cs.newCellTxt(row, cel++, "Nome do Cliente", cs.headerBlueLeftWrap());
             cs.newCellTxt(row, cel++, "Honorários", cs.headerBlueLeftWrap());
+            cs.newCellTxt(row, cel++, "Total de Horas", cs.headerBlueLeftWrap());
             cs.newCellTxt(row, cel++, "Total Custo das Horas", cs.headerBlueLeftWrap());
             cs.newCellTxt(row, cel++, "Venda Prevista", cs.headerBlueLeftWrap());
             cs.newCellTxt(row, cel++, "Venda Efetiva", cs.headerBlueLeftWrap());
@@ -258,6 +260,10 @@ public class Rpt1 extends HttpServlet {
         }
         String sql = "SELECT \n"
                 + "    n_process,\n"
+                + "    customer_nme,\n"
+                + "    project_id AS proj_id,\n"
+                + "    (SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(spend_time))) FROM project_employee WHERE project_employee.project_id = t.project_id GROUP BY project_employee.project_id ) \n"
+                + "    total_hours,\n"
                 + "    SUM(costByProjectFunc) AS spentWithFunc,\n"
                 + "    expected_sale,\n"
                 + "    effective_sale,\n"
@@ -266,6 +272,8 @@ public class Rpt1 extends HttpServlet {
                 + "FROM\n"
                 + "    (SELECT \n"
                 + "        n_process,\n"
+                + "        customer_nme,\n"
+                + "        project_id,\n"
                 + "            nme,\n"
                 + "            SUM(TIME_TO_SEC(spend_time)) * (salary / 3600) AS costByProjectFunc,\n"
                 + "            honorary,\n"
@@ -277,10 +285,8 @@ public class Rpt1 extends HttpServlet {
                 + "        project_employee\n"
                 + "    INNER JOIN project ON project_employee.project_id = project.id \n"
                 + "    INNER JOIN employee ON project_employee.employee_id = employee.id \n"
-                + " " + where + " "
-                + "    GROUP BY project_id , employee_id) AS t\n"
-                + "GROUP BY n_process;\n"
-                + "";
+                + where + "     GROUP BY project_id , employee_id) AS t\n"
+                + "GROUP BY n_process;";
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
@@ -293,7 +299,9 @@ public class Rpt1 extends HttpServlet {
                     cel = 0;
 
                     cs.newCellGenericValue(row, cel++, rs.getString("n_process"), cs.normal());
+                    cs.newCellGenericValue(row, cel++, rs.getString("customer_nme"), cs.normal());
                     cs.newCellNum(row, cel++, rs.getFloat("honorary"), cs.eurosCent());
+                    cs.newCellGenericValue(row, cel++, rs.getString("total_hours"), cs.eurosCent());
                     cs.newCellNum(row, cel++, rs.getFloat("spentWithFunc"), cs.eurosCent());
                     cs.newCellNum(row, cel++, rs.getFloat("expected_sale"), cs.eurosCent());
                     cs.newCellNum(row, cel++, rs.getFloat("effective_sale"), cs.eurosCent());

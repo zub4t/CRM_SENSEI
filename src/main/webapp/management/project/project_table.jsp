@@ -26,18 +26,18 @@
 <fmt:setLocale value="es_ES"/>
 <table id="table" cellspacing="0">
     <tr>
-        <td class="td_left">Número do Processo</td>
-        <td class="td_left">Nome do Cliente</td>
-        <td class="td_left">Venda Esperada</td>  
-        <td class="td_left">Venda Efetiva</td>
-        <td class="td_left">Compra Efetiva</td>
+        <td class="">Projeto</td>
+        <td class="">Nome do Cliente</td>
+        <td class="">Venda Esperada</td>  
+        <td class="">Venda Efetiva</td>
+        <td class="">Compra Efetiva</td>
         <td>Editar</td>
         <td>Remover</td>
     </tr>
     <c:forEach items="${projectList}" var="item"   varStatus="loop">
         <tr>
             <td class="td_left">
-                ${item.getN_process()}
+                ${item.getN_process()} |  ${item.getCustomer_nme()}
             </td>
             <td class="td_left">
                 ${item.getCustomer_nme()}
@@ -63,15 +63,15 @@
                 <%}%>
             </td>
             <% if (menu_1.isVisible(request, 1)) { %>
-            <td onclick="goToProjectId(${item.id})">
-                <img style="cursor:pointer" src="https://img1.gratispng.com/20180920/eqx/kisspng-computer-icons-editing-portable-network-graphics-i-edit-profile-svg-png-icon-free-download-194863-5ba3457963b929.9651381015374268094085.jpg" width="20px"/>
+            <td >
+                <img onclick="goToProjectId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
             </td>
             <%} else {%>
             <td></td>
             <%}%>
             <% if (menu_1.isVisible(request, 1)) { %>
-            <td onclick="removeProject(${item.id})">
-                <img style="cursor:pointer" src="https://cdn4.iconfinder.com/data/icons/interface-2/100/14-512.png" width="35px"/>
+            <td >
+                <img onclick="removeProject(${item.id})" style ="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
             </td>
             <%} else {%>
             <td></td>

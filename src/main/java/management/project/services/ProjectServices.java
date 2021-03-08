@@ -43,7 +43,9 @@ public class ProjectServices {
         float expected_sale = Float.parseFloat(req.getParameter("expected_sale"));
         float effective_sale = Float.parseFloat(req.getParameter("effective_sale"));
         float effective_purchase = Float.parseFloat(req.getParameter("effective_purchase"));
-        return repository.updateProject(id, n_process, nme, expected_sale, effective_sale, effective_purchase);
+        float honorary = Float.parseFloat(req.getParameter("honorary"));
+
+        return repository.updateProject(id, n_process, nme, expected_sale, effective_sale, effective_purchase, honorary);
     }
 
     public void setProjects(HttpServletRequest req, HttpServletResponse resp, int n) {
@@ -52,7 +54,7 @@ public class ProjectServices {
         pagination.setPage(n + 1);
         pagination.setMax_page(getMaxPage() + 1);
         req.setAttribute("pagination", pagination);
-        pagination.setUrl("/CRM_SENSEI_EXTERNAL/ProjectController?pwhat=pagination");
+        pagination.setUrl("/CRM_SENSEI/ProjectController?pwhat=pagination");
         req.setAttribute("projectList", repository.getN(n));
     }
 

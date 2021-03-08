@@ -35,9 +35,9 @@
 
             </td>
             <% if (menu.isVisible(request, 1)) { %>
-            <td onclick="goToMenuId(${item.id})">
+            <td >
 
-                <img style="cursor:pointer" src="https://img1.gratispng.com/20180920/eqx/kisspng-computer-icons-editing-portable-network-graphics-i-edit-profile-svg-png-icon-free-download-194863-5ba3457963b929.9651381015374268094085.jpg" width="20px"/>
+                <img onclick="goToMenuId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
             </td>
             <%} else {%>
             <td></td>

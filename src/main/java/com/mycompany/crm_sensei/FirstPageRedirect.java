@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.CRM_SENSEI_EXTERNAL;
+package com.mycompany.CRM_SENSEI;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;

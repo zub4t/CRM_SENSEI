@@ -20,8 +20,8 @@
         <%            MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/management/project/project.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/management/project/project.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/management/project/project.js"></script>
+        <link href="/CRM_SENSEI/management/project/project.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -31,7 +31,7 @@
         <div class="main-content">
             <div class="form">
 
-                <form class="formnar" method="POST" action="/CRM_SENSEI_EXTERNAL/ProjectController?pwhat=update">
+                <form class="formnar" method="POST" action="/CRM_SENSEI/ProjectController?pwhat=update">
                     <input type="hidden" value="${model.id}" name="projectId"/>
                     <div class="form__group">
 
@@ -65,6 +65,12 @@
                         <div class="form_item">
                             <input  type="number" step="0.01" value="${model.effective_purchase}" name="effective_purchase" placeholder="Compra Efetiva" class="form__input item"  />
                         </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form_label">honorários</div>
+                        <div class="form_item">
+                            <input  type="number" step="0.01" name="honorary" value="${model.honorary}"" placeholder="honorários" class="form__input item"  />
+                        </div>    
                     </div>
                     <input type="hidden" name="pwhat" value="update">
 

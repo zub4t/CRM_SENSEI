@@ -8,3 +8,9 @@ and open the template in the editor.
     Author     : marco
 */
 
+@media screen and (max-width: 1500px) {
+
+    body::after{
+        display: none;
+    }
+}
