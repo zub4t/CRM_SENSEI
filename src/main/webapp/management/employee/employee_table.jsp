@@ -41,14 +41,14 @@
             </td>
             <% if (menu_1.isVisible(request, 1)) { %>
             <td >
-                <img onclick="goToEmployeeId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI_EXTERNAL/resources/editar-arquivo.png" width="16px"/>
+                <img onclick="goToEmployeeId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
             </td>
             <%} else {%>
             <td></td>
             <%}%>
             <% if (menu_1.isVisible(request, 1)) { %>
             <td >
-                <img onclick="removeEmployee(${item.id})" style="cursor:pointer" src="/CRM_SENSEI_EXTERNAL/resources/cancel.png" width="12px"/>
+                <img onclick="removeEmployee(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
             </td>
             <%} else {%>
             <td></td>

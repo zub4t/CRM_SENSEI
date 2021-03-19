@@ -26,8 +26,8 @@ if(session.getAttribute("username")!= null) {
             ProjectServices project = new ProjectServices();
             project.setListOfAllPrj(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/interventions/interventions.js?v1"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/interventions/interventions.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/interventions/interventions.js?v1"></script>
+        <link href="/CRM_SENSEI/interventions/interventions.css" rel="stylesheet"/>
         <script>
             window.addEventListener("load", function (event) {
                 document.querySelector("[name=project_id]").value = "${model.project_id}";
@@ -45,7 +45,7 @@ if(session.getAttribute("username")!= null) {
         <div class="main-content">
             <div class="form">
 
-                <form class="formnar" method="POST" action="/CRM_SENSEI_EXTERNAL/InterventionsController">
+                <form class="formnar" method="POST" action="/CRM_SENSEI/InterventionsController">
 
                     <%if(request.getAttribute("edit") != null){%>
                     <input type="hidden" name="id" value="${model.id}">

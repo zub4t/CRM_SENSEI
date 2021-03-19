@@ -54,7 +54,7 @@ public class ProjectServices {
         pagination.setPage(n + 1);
         pagination.setMax_page(getMaxPage() + 1);
         req.setAttribute("pagination", pagination);
-        pagination.setUrl("/CRM_SENSEI_EXTERNAL/ProjectController?pwhat=pagination");
+        pagination.setUrl("/CRM_SENSEI/ProjectController?pwhat=pagination");
         req.setAttribute("projectList", repository.getN(n));
     }
 

@@ -22,7 +22,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 body::after {
-    background-image: url("/CRM_SENSEI_EXTERNAL/resources/logo.png");
+    background-image: url("/CRM_SENSEI/resources/logo.png");
     position: absolute;
     right: 50px;
     top: 50px;
@@ -455,7 +455,7 @@ body::after {
     }
     .menu-mobile{
 
-        background-image: url("/CRM_SENSEI_EXTERNAL/resources/interface-de-configuracao.png");
+        background-image: url("/CRM_SENSEI/resources/interface-de-configuracao.png");
         position: absolute;
         left: 10px;
         top: 16px;

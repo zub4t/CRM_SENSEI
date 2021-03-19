@@ -27,8 +27,8 @@ if(session.getAttribute("username")!=null) {
             ProjectServices projectServices = new ProjectServices();
             projectServices.setListOfAllPrj(request, response);
         %>
-        <script src="/CRM_SENSEI_EXTERNAL/report/report.js"></script>
-        <link href="/CRM_SENSEI_EXTERNAL/report/report.css" rel="stylesheet"/>
+        <script src="/CRM_SENSEI/report/report.js"></script>
+        <link href="/CRM_SENSEI/report/report.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -38,9 +38,9 @@ if(session.getAttribute("username")!=null) {
             <div class="form">
                 <% if(menu.isVisible(request, 15)){ %>
 
-                <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI_EXTERNAL/Rpt1">
+                <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt1">
                     <%}else{%>
-                    <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI_EXTERNAL/Rpt2">
+                    <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt2">
 
                         <%}%>
                         <div class="form__group">

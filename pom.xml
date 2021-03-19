@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mycompany</groupId>
-    <artifactId>CRM_SENSEI_EXTERNAL</artifactId>
+    <artifactId>CRM_SENSEI</artifactId>
     <version>_1</version>        
     <packaging>war</packaging>
 
-    <name>CRM_SENSEI_EXTERNAL</name>
+    <name>CRM_SENSEI</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

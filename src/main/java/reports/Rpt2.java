@@ -111,7 +111,7 @@ public class Rpt2 extends HttpServlet {
         Row row = sheet.createRow(lin++);
         cel = 0;
         cs.newCellTxt(row, cel++, "Nome do projeto", cs.headerBlueLeftWrap());
-        cs.newCellTxt(row, cel++, "Tempo despedido", cs.headerBlueLeftWrap());
+        cs.newCellTxt(row, cel++, "Tempo despendido", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Tarefa", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Observações", cs.headerBlueLeftWrap());
         cs.newCellTxt(row, cel++, "Data", cs.headerBlueLeftWrap());
@@ -174,7 +174,7 @@ public class Rpt2 extends HttpServlet {
         Row row = sheet.createRow(lin++);
         cel = 0;
         cs.newCellTxt(row, cel++, "Nome do projeto", cs.headerBlueLeftWrap());
-        cs.newCellTxt(row, cel++, "Tempo total despedido", cs.headerBlueLeftWrap());
+        cs.newCellTxt(row, cel++, "Tempo total despendido", cs.headerBlueLeftWrap());
 
         String sql = "SELECT CONCAT(project.n_process,\" | \",project.customer_nme) project_name, sec_to_time(SUM(time_to_sec(spend_time))) hours FROM project_employee INNER JOIN project  ON  project_employee.project_id = project.id\n"
                 + "INNER JOIN employee ON project_employee.employee_id = employee.id\n"
