@@ -6,6 +6,8 @@
 <%@page import="management.project.services.ProjectServices"%>
 <%@page import="interventions.services.InterventionsServices"%>
 <%@page import="management.assingment.services.AssingmentServices"%>
+<%@page import="management.employee.services.EmployeeServices"%>
+
 <!DOCTYPE html>
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -26,6 +28,9 @@ if(session.getAttribute("username")!=null) {
 
             ProjectServices projectServices = new ProjectServices();
             projectServices.setListOfAllPrj(request, response);
+            
+            EmployeeServices employeeServices = new EmployeeServices();
+            employeeServices.setListOfAllEmployes(request,response);
         %>
         <script src="/CRM_SENSEI/report/report.js"></script>
         <link href="/CRM_SENSEI/report/report.css" rel="stylesheet"/>
@@ -52,13 +57,25 @@ if(session.getAttribute("username")!=null) {
                                 <input id="date_out" name="date_out" type="date" value="2021-06-01">
                             </div>
                         </div>
-                        <div class="form__group" style="margin-bottom: 200px">
+                        <div class="form__group" >
 
                             <div class="form_label">Projetos</div>
                             <div class="form_item"> 
                                 <select  name="prjct_selected" id="slct" multiple="multiple">
                                     <c:forEach items="${projectList}" var="item"   varStatus="loop">
                                         <option id="projeto_${item.id}" value="${item.id}">${item.n_process} | ${item.customer_nme}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form__group">
+
+                            <div class="form_label">Funcionários </div>
+                            <div class="form_item"> 
+                                <select  name="prjct_selected" id="slct" multiple="multiple">
+                                    <c:forEach items="${list}" var="item"   varStatus="loop">
+                                        <option id="employee_${item.id}" value="${item.id}">${item.nme}</option>
                                     </c:forEach>
                                 </select>
                             </div>

@@ -8,6 +8,14 @@
             30
         </session-timeout>
     </session-config>
-
+    <servlet>
+        <servlet-name>InitConfig</servlet-name>
+        <servlet-class>util.InitConfig</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitConfig</servlet-name>
+        <url-pattern>/InitConfig</url-pattern>
+    </servlet-mapping>
 
 </web-app>

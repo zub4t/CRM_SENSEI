@@ -6,12 +6,17 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
+import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
 
 /**
  *
@@ -86,5 +91,16 @@ public class Util {
 
         body = stringBuilder.toString();
         return body;
+    }
+
+    public static void createDirectory(String dir) {
+        try {
+            File theDir = new File(dir);
+            if (!theDir.exists()) {
+                theDir.mkdirs();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

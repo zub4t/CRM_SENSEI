@@ -34,7 +34,7 @@ public class DBManager {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String BD_URL = "jdbc:mysql://mouraazevedo.dyndns.org:3306/crm?useTimezone=true&serverTimezone=UTC&user=monty&password=marco";
+            String BD_URL = "jdbc:mysql://localhost:3306/crm?useTimezone=true&serverTimezone=UTC&user=root&password=root";
             Connection con = DriverManager.getConnection(BD_URL);
             connection_list.add(con);
             return connection_list.size() - 1;

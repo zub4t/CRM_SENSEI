@@ -13,8 +13,11 @@
         <title>Login</title>
         <link rel="stylesheet" href="/CRM_SENSEI/login/login.css">
         <script type="application/javascript" src="/CRM_SENSEI/login/login.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+
     </head>
     <body>
+        <%@include file="/modal/modal.jsp" %>
         <form class="form" id="loginForm" method="POST" action="/CRM_SENSEI/EmployeeController?pwhat=login">
             <div class="login container">
                 <div class="login logo"><img src="/CRM_SENSEI/resources/logo.png"></div>

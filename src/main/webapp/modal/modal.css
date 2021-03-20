@@ -45,7 +45,6 @@ and open the template in the editor.
     color: white;
     position: ABSOLUTE;
     right: 50px;
-    top: 36px;
     width: fit-content;
     z-index: 99;
 }

@@ -73,7 +73,14 @@ body{
 
 
 /* form starting stylings ------------------------------- */
-
+.modal-content div:first-child{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+}
+.modal-content div div:nth-child(2){
+    padding-top: 25px;
+}
 .group:not(:last-child){ 
     margin-left: 10%;
 
