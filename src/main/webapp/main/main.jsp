@@ -26,32 +26,41 @@
     <%        MenuServices menu = new MenuServices();
         menu.setMenu(request, response);
         ProjectServices projectServices = new ProjectServices();
-        projectServices.setListOfAllPrj(request, response);
+        projectServices.setListOfModelProjectsByUser(request, response);
+
     %>
     <body>
-        <%@include file="../main/chart.jsp" %>
         <%@include file="../menu/menu.jsp" %>
-        <form id="changeChart" method="GET" action="">
-            <input type="hidden" name="pwhat" value="setCurProjectId">
-            <input type="hidden" name="curProjectId" value="">
-        </form>
-        <div id="project-selector">
-            <div class="select">
-                <select onchange="setCurrentProjectId(this)" name="prjct-selected" id="slct">
-                    <option id="" >Nenhum projeto selecionado</option>
-                    <c:forEach items="${projectList}" var="item"   varStatus="loop">
-                        <option id="projeto_${item.id}" value="${item.id}">${item.n_process} | ${item.customer_nme} </option>
-                    </c:forEach>
-                </select>
-            </div>
-        </div>
-        <div class="main-content">
-            <div id="canvas-content">
-                <p>Total de horas trabalhadas:<mark><span id="total_hours"></span></mark></p>
-                <canvas id="myChart" width="400" height="400"></canvas>
-            </div>
 
+        <div class="main-content" style="display: block">
+            <div class="user-header">
+                <div style="display: flex;">
+                    <div class="profile">
+                        <div id="profile-img"></div>
+                    </div>
+                    <div class="welcome-msg">
+                        <span id="salutation"> Bom dia</span><br><span id="user_nickname" style="color:#679596">Sr. <%=session.getAttribute("username")%></span>
+                    </div>
+                </div>
+                <div style="float: right">
+
+                    <div class="news">
+                        <div id="ring-icon"></div>
+                        <span style="color:#679596"> Notificações</span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="projects-in-working">
+                <%@include file="../componentes/card_view/card_view.jsp" %>
+
+            </div>
         </div>
+
+
+ <%@include file="../componentes/modal_add_hour/modal_add_hour.jsp" %>
+
+
     </body>
 </html>
 <%} else {

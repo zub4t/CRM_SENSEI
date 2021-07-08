@@ -86,7 +86,8 @@ public class EmployeeServices {
     
     public void remove(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();
-        repository.removeEmployee(Integer.parseInt(req.getParameter("empId")));
+        int id = Integer.parseInt(req.getParameter("id"));
+        repository.removeEmployee(id);
     }
     
     public int getMaxPage() {

@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 
-// Get the modal
-var modal_crm = document.getElementById("modal_crm");
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == modal_crm) {
-        modal_crm.style.display = "none";
+    if (event.target.id == "modal_crm") {
+        document.getElementById("modal_crm").style.display = "none";
     }
 }

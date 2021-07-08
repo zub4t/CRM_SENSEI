@@ -40,7 +40,7 @@ if(session.getAttribute("username")!=null) {
 
         <%@include file="../../menu/menu.jsp" %>
         <div class="main-content">  
-            <div class="form">
+            <div class="form" style="height: 500px">
                 <% if(menu.isVisible(request, 15)){ %>
 
                 <form class="formnar" name="reportPsq" method="POST" action="/CRM_SENSEI/Rpt1">
@@ -61,9 +61,9 @@ if(session.getAttribute("username")!=null) {
 
                             <div class="form_label">Projetos</div>
                             <div class="form_item"> 
-                                <select  name="prjct_selected" id="slct" multiple="multiple">
+                                <select  name="prjct_selected" id="prj_slct" multiple="multiple">
                                     <c:forEach items="${projectList}" var="item"   varStatus="loop">
-                                        <option id="projeto_${item.id}" value="${item.id}">${item.n_process} | ${item.customer_nme}</option>
+                                        <option id="projeto_${item.id}" value="${item.id}"> ${item.customer_nme}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -73,7 +73,7 @@ if(session.getAttribute("username")!=null) {
 
                             <div class="form_label">Funcionários </div>
                             <div class="form_item"> 
-                                <select  name="prjct_selected" id="slct" multiple="multiple">
+                                <select  name="employee_selected" id="employee_slct" multiple="multiple">
                                     <c:forEach items="${list}" var="item"   varStatus="loop">
                                         <option id="employee_${item.id}" value="${item.id}">${item.nme}</option>
                                     </c:forEach>

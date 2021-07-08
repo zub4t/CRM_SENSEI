@@ -26,13 +26,13 @@
     });
 </script>
 <div id="table" cellspacing="0">
-    <div class="row">
-        <div class="col">Descrição Do Tarefa</div>
-        <div class="col">Remover</div>
+    <div class="label-table-content">
+        <div class="col">Descrição Do Tarefa:</div>
+        <div class="col">Remover:</div>
     </div>
     <div id="sortable">
         <c:forEach items="${assingmentList}" var="item"   varStatus="loop">
-            <div class="row" task="${item.id}">
+            <div class="values-table-content" task="${item.id}">
                 <div class="col">
                     ${item.getDsc()}
                 </div>

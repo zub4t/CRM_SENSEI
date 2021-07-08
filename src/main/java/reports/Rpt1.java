@@ -54,7 +54,7 @@ public class Rpt1 extends HttpServlet {
         SXSSFWorkbook wb = new SXSSFWorkbook(100); // keep 100 rows in memory, exceeding rows will be flushed to disk        
         wb.setCompressTempFiles(true);
         String user = session.getAttribute("user") == null ? "administrador" : (String) session.getAttribute("user");
-
+        String[] employee_selected = req.getParameterValues("employee_selected");
         String date_in = req.getParameter("date_in");
         String date_out = req.getParameter("date_out");
         String[] prjct_selected = req.getParameterValues("prjct_selected");
@@ -63,8 +63,8 @@ public class Rpt1 extends HttpServlet {
         String sheetName0 = "Relátorio Geral de Projetos";
         String sheetName1 = "Detalhes de Projetos";
 
-        rptSheet0(wb, sheetName0, user, date_in, date_out, prjct_selected);
-        rptSheet1(wb, sheetName1, user, date_in, date_out, prjct_selected);
+        rptSheet0(wb, sheetName0, user, date_in, date_out, prjct_selected,employee_selected);
+        rptSheet1(wb, sheetName1, user, date_in, date_out, prjct_selected,employee_selected);
 
         resp.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xlsx");
         resp.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -81,7 +81,7 @@ public class Rpt1 extends HttpServlet {
 
     }
 
-    private void rptSheet1(SXSSFWorkbook wb, String sheetName, String user, String date_in, String date_out, String[] prjct_selected) {
+    private void rptSheet1(SXSSFWorkbook wb, String sheetName, String user, String date_in, String date_out, String[] prjct_selected, String[] employee_selected) {
         CellStyles cs = new CellStyles(wb);
         SXSSFSheet sheet = (SXSSFSheet) wb.createSheet(sheetName);
 
@@ -97,6 +97,15 @@ public class Rpt1 extends HttpServlet {
             where += " project.id  in (";
             for (String prj : prjct_selected) {
                 where += "'" + prj + "',";
+            }
+            where = where.substring(0, where.length() - 1);
+
+            where += ") and";
+        }
+        if (employee_selected != null) {
+            where += " employee.id  in (";
+            for (String empl : employee_selected) {
+                where += "'" + empl + "',";
             }
             where = where.substring(0, where.length() - 1);
 
@@ -218,7 +227,7 @@ public class Rpt1 extends HttpServlet {
 
     }
 
-    private void rptSheet0(SXSSFWorkbook wb, String sheetName0, String user, String date_in, String date_out, String[] prjct_selected) {
+    private void rptSheet0(SXSSFWorkbook wb, String sheetName0, String user, String date_in, String date_out, String[] prjct_selected, String[] employee_selected) {
 
         CellStyles cs = new CellStyles(wb);
         SXSSFSheet sheet = (SXSSFSheet) wb.createSheet(sheetName0);
@@ -245,6 +254,16 @@ public class Rpt1 extends HttpServlet {
 
             where += ") and";
         }
+        if (employee_selected != null) {
+            where += " employee.id  in (";
+            for (String empl : employee_selected) {
+                where += "'" + empl + "',";
+            }
+            where = where.substring(0, where.length() - 1);
+
+            where += ") and";
+        }
+
         where += " 1=1";
         if (true) {
             cs.newCellTxt(row, cel++, "Nº Processo", cs.headerBlueLeftWrap());
@@ -306,7 +325,7 @@ public class Rpt1 extends HttpServlet {
                     cs.newCellNum(row, cel++, rs.getFloat("expected_sale"), cs.eurosCent());
                     cs.newCellNum(row, cel++, rs.getFloat("effective_sale"), cs.eurosCent());
                     cs.newCellNum(row, cel++, rs.getFloat("effective_purchase"), cs.eurosCent());
-                    float lucro = rs.getFloat("effective_sale") - (rs.getFloat("effective_purchase") + rs.getFloat("spentWithFunc"));
+                    float lucro = (rs.getFloat("effective_sale") + rs.getFloat("honorary")) - ((rs.getFloat("effective_purchase") + rs.getFloat("spentWithFunc")));
                     cs.newCellNum(row, cel++, lucro, cs.eurosCent());
 
                 } while (rs.next());

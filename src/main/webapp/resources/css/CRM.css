@@ -7,6 +7,54 @@ and open the template in the editor.
     Created on : 20/fev/2021, 14:50:47
     Author     : marco
 */
+.main-content{
+    margin-left: 250px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+
+    width: 80vw;
+    margin-top: 50px;
+    position: absolute;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.btn-type-1{
+    background-color: #ECE1CF;
+    color: #18494D;
+    width: 144px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 12px 22px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+}
+.btn-type-1:active{
+    color: #18494D;
+    background: #F4EFEC;
+}
+.btn-type-1:hover{
+    color: #18494D;
+    background: #FFDFAB;
+}
+
+
+
+
+
+
+
 :root {
     --initial_menu_mobile_position: 38px;
 }
@@ -21,39 +69,30 @@ body{
     margin: 0px;
     font-family: 'Roboto', sans-serif;
 }
-body::after {
-    background-image: url("/CRM_SENSEI/resources/logo.png");
-    position: absolute;
-    right: 50px;
-    top: 50px;
-    background-size: 100px;
-    width: 100px;
-    height: 100px;
-    content: "";
-    background-repeat: no-repeat;
-}
+
 .plusButton{
     position: absolute;
     right: 11px;
-    top: 11px;
+    top: 4px;
     cursor: pointer;
 
 }
 .table_header{
     height: 40px;
     width: 99.9%;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
-    background-color: #566b6b;
+
+    background-color: #74A4A0;
+    margin-bottom: 20px;
+    border-radius: 10px;
 
 }
 .table_header::after{
 
     font-size: 30px;
-    color: white;
+    color: black;
     padding: 22.5vw;
 }
-#table{
+/*#table{
     background-color: white;
     width: 100%;
     height: 100%;
@@ -67,16 +106,45 @@ body::after {
     white-space: nowrap;
     overflow: hidden;
     width: 100px;
-}
-#table tr:nth-child(1){
+}*/
+.label-table-content{
+    padding-top: 6px;
     height: 40px;
-    background-color: #7e9494;
-    color: white;
+    background-color: #BCD9D7;
+    color: black;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 20px;
+}
+.label-table-content div:first-child{
+    margin-left: 4%;
+}
+.label-table-content div{
+    width: 16%;
+}
+.values-table-content{
+    display: flex;
+    padding-top: 6px;
+    border-radius: 20px;
+    background-color: #f2f2f2;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.values-table-content div:first-child{
+    margin-left: 4%;
+}
+/*#table tr:nth-child(1){
+    height: 40px;
+    background-color: #BCD9D7;
+    color: black;
+    margin-bottom: 20px;
 }
 #table tr:nth-child(1) td{
     width: 14%;
-}
-#table tr:nth-child(1) td:nth-child(2) {
+}*/
+/*#table tr:nth-child(1) td:nth-child(2) {
     border-left: 1px solid white;
     border-right:  1px solid white;
 }
@@ -95,7 +163,7 @@ body::after {
 #table tr:nth-child(1) td:nth-child(6) {
     border-left: 1px solid white;
     border-right:  1px solid white;
-}
+}*/
 
 #table tr{
     height: 40px;
@@ -118,8 +186,8 @@ body::after {
 }
 #table_container{
     position: absolute;
-    top: 200px;
-    left: 10%;
+    top: 155px;
+    left: 15%;
     width: 80%;
     z-index: 99;
 }
@@ -152,9 +220,10 @@ body::after {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 100px;
+    text-align: left;
 }
 .form__group div.form_item{
-    flex-grow: 5;
+    flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 100px;
 }
@@ -198,8 +267,11 @@ body::after {
     border-radius: 6px;
     overflow: hidden;
     opacity: 1;
-    background-color: #f2f2f2;
-    height: fit-content;
+    background: white;
+    min-width: 70%;
+    
+
+
 }
 
 
@@ -305,10 +377,7 @@ body::after {
     text-transform: capitalize;
     font-size: 20px;
 }
-.main-content{
-    width: 80%;
-    margin: 10%;
-}
+
 .main_label h1{
     color: white;
     font-size: 30px;
@@ -419,7 +488,6 @@ body::after {
 }
 .dots3{
     display: inline-block;
-    width: 180px !important;
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;

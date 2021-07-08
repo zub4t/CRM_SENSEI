@@ -9,6 +9,10 @@ and open the template in the editor.
 */
 
 /* The Modal (background) */
+#modal_crm{
+    z-index: 100;
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -30,7 +34,7 @@ and open the template in the editor.
     width: 50% ;
     border-radius: 10px;
     height: fit-content;
-    top: 30%;
+    top: 10%;
     position: absolute;
     left: 30%;
     text-align: left;
@@ -79,6 +83,6 @@ and open the template in the editor.
 }
 #modal_content{
     text-align: center;
-    font-size: 30px;
-    padding-bottom: 70px;
+    font-size: 14px;
+
 }

@@ -16,17 +16,16 @@ import java.util.Scanner;
  */
 public class FileReader {
 
-    public static String read(String filename, String fileDirectory) {
+    public static String read(String fileDirectory, String fileName) {
         String text = "";
-        String fileName = "/home/janbodnar/tmp/smallfile.txt";
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream(fileName);
+            fis = new FileInputStream(fileDirectory + "/" + fileName);
 
             int i;
 
             while ((i = fis.read()) != -1) {
-                System.out.print((char) i);
+                text += ((char) i);
             }
         } catch (Exception e) {
             e.printStackTrace();

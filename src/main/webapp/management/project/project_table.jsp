@@ -24,61 +24,64 @@
 
 %>
 <fmt:setLocale value="es_ES"/>
-<table id="table" cellspacing="0">
-    <tr>
-        <td class="">Projeto</td>
-        <td class="">Nome do Cliente</td>
-        <td class="">Venda Esperada</td>  
-        <td class="">Venda Efetiva</td>
-        <td class="">Compra Efetiva</td>
-        <td>Editar</td>
-        <td>Remover</td>
-    </tr>
-    <c:forEach items="${projectList}" var="item"   varStatus="loop">
-        <tr>
-            <td class="td_left">
-                ${item.getN_process()} |  ${item.getCustomer_nme()}
-            </td>
-            <td class="td_left">
-                ${item.getCustomer_nme()}
-            </td>
 
-            <td class="td_left">
+<div class="label-table-content">
+    <div class="" style="width: 30%">Projeto:</div>
+    <div class="" style="width: 30%">Nome do Cliente:</div>
+    <div class="" style="width: 10%">Venda Esperada:</div>  
+    <div class="" style="width: 10%">Venda Efetiva:</div>
+    <div class="" style="width: 10%">Compra Efetiva:</div>
+    <div style="width: 5%">Editar:</div>
+    <div style="width: 5%">Remover:</div>    
+</div>
+
+
+
+    <c:forEach items="${projectList}" var="item"   varStatus="loop">
+       <div class="values-table-content">
+           <div class="" style="width: 30%">
+                ${item.getN_process()} |  ${item.getCustomer_nme()}
+            </div>
+            <div class="" style="width: 30%">
+                ${item.getCustomer_nme()}
+            </div>
+
+            <div class="" style="width: 10%">
                 <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
                 <fmt:formatNumber value="${item.getExpected_sale()}" type="currency"/>
                 <%}%>
-            </td>
+            </div>
 
-            <td class="td_left">
+            <div class="" style="width: 10%">
                 <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
 
                 <fmt:formatNumber value="${item.getEffective_sale()}" type="currency"/>
                 <%}%>
-            </td>
-            <td class="td_left">
+            </div>
+            <div class="" style="width: 10%">
                 <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
 
                 <fmt:formatNumber value="${item.getEffective_purchase()}" type="currency"/>
 
                 <%}%>
-            </td>
+            </div>
             <% if (menu_1.isVisible(request, 1)) { %>
-            <td >
+            <div style="width: 5%">
                 <img onclick="goToProjectId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
-            </td>
+            </div>
             <%} else {%>
-            <td></td>
+            <div></div>
             <%}%>
             <% if (menu_1.isVisible(request, 1)) { %>
-            <td >
+            <div style="width: 5%" >
                 <img onclick="removeProject(${item.id})" style ="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
-            </td>
+            </div>
             <%} else {%>
-            <td></td>
+            <div></div>
             <%}%>
-        </tr>
+        </div>
     </c:forEach>
-
+<table width="100%">
     <tr>
         <td colspan="7">
             <div>

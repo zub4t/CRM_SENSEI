@@ -16,34 +16,35 @@
     menu.setMenu(request, response, n);
 
 %>
-
-<table id="table" cellspacing="0">
-    <tr>
-        <td class="td_left">Nome</td>
-        <td class="td_left">Nivel</td>  
-        <td >Editar</td>
-    </tr>
-    <c:forEach items="${menuList}" var="item"   varStatus="loop">
-        <tr>
-            <td>
-                ${item.nme}
-            </td>
+<div class="label-table-content">
+    <div style="width: 32%" class="td_left">Nome:</div>
+    <div style="width: 32%" class="td_left">Nivel:</div>  
+    <div style="width: 32%">Editar:</div>
+</div>
 
 
-            <td>
-                ${item.userLevel}
+<c:forEach items="${menuList}" var="item"   varStatus="loop">
+    <div class="values-table-content">
+        <div style="width: 32%">
+            ${item.nme}
+        </div>
 
-            </td>
-            <% if (menu.isVisible(request, 1)) { %>
-            <td >
 
-                <img onclick="goToMenuId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
-            </td>
-            <%} else {%>
-            <td></td>
-            <%}%>
-        </tr>
-    </c:forEach>
+        <div style="width: 32%">
+            ${item.userLevel}
+
+        </div>
+        <% if (menu.isVisible(request, 1)) { %>
+        <div style="width: 32%" >
+
+            <img onclick="goToMenuId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
+        </div >
+        <%} else {%>
+        <div></div>
+        <%}%>
+    </div>
+</c:forEach>
+<table  cellspacing="0" width="100%">
     <tr>
         <td colspan="5">
             <div>

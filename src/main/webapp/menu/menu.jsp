@@ -3,6 +3,7 @@
     Created on : 2/nov/2020, 0:19:04
     Author     : marco
 --%>
+<%@page import="util.Constant"%>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
@@ -20,25 +21,33 @@
 <%@include file="../modal/modal.jsp" %>
 
 
-<div class="header">
-    <div class="icon-home" onclick="window.location.href = '/CRM_SENSEI/main/main.jsp'">
-        <img src="/CRM_SENSEI/resources/home-refresh.png" width="40px"/> 
+
+<div class="white-board">
+    <div id="img_shi">
+        <img width="200px" onclick="window.location.href = '/CRM_SENSEI/main/main.jsp'" style="cursor: pointer" src="<%=Constant.HOST%>/resources/SHI_LOGO-HORIZONTAL transp_low-0.png">
     </div>
-    <div id="user_loggedIn"><%= session.getAttribute("username")%></div>
-    <div class="logout_icon" onclick="window.location.href = '/CRM_SENSEI/MenuController?pwhat=logout'"><img src="/CRM_SENSEI/resources/logout.png" width="20"></div>
-</div>
-<div class="menu-mobile" onclick="mobile_menu()"></div>
-<div class="menu-content">
-    <c:forEach items="${structure}" var="s"   varStatus="loop">
-        <div class="lvl-0">
-            <div class="main-nme closed" onclick="openMenuTab(this)" id="${s.parent.getId()}">${s.parent.getNme()}</div>
+    <div class="menu-content">
+        <c:forEach items="${structure}" var="s"   varStatus="loop">
+            <div class="lvl-0" onclick="openMenuTab('${s.parent.getId()}')">
+                <div class="main-nme"  id="${s.parent.getId()}">
+                    ${s.parent.getNme()}
+                </div>
+
+            </div>
             <c:forEach items="${s.getChildren()}" var="child">
-                <a href="http://localhost:8084/CRM_SENSEI/${child.getUrl()}"><div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >${child.getNme()}</div></a>
-                </c:forEach>
+                <div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >
+                    <a href="http://192.168.1.185:8084/CRM_SENSEI/${child.getUrl()}">
+<!--                    <a href="http://localhost:8084/CRM_SENSEI/${child.getUrl()}">-->
+                        ${child.getNme()}
+
+                    </a>
+                </div>
+            </c:forEach>
+
+        </c:forEach>
+        <div class="space-bottom">
+
         </div>
-    </c:forEach>
-    <div class="space-bottom">
 
     </div>
-
 </div>

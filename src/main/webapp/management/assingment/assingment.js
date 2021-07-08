@@ -5,62 +5,84 @@
  */
 
 
-window.addEventListener("load", function (event) {
-
+function save() {
     const button = document.querySelector('.btn-1');
     const form = document.querySelector('.formnar');
-    if (button != null)
-        button.addEventListener('click', function () {
-            let valid = true;
-            document.querySelectorAll(".item").forEach(function (m) {
+    let valid = true;
+    document.querySelectorAll(".item").forEach(function (m) {
 
-                if (m.value.length == 0) {
-                    valid = false;
-                }
+        if (m.value.length == 0) {
+            valid = false;
+        }
 
-            });
+    });
 
-            if (!valid) {
+    if (!valid) {
 
-                form.classList.add('form--no');
-                document.querySelector(".btn-1").style.backgroundColor = "red";
-                setTimeout(function () {
-                    document.querySelector(".btn-1").style.backgroundColor = "var(--color-primary"
-                    form.classList.remove('form--no');
-                }, 500);
-            } else {
+        form.classList.add('form--no');
+        document.querySelector(".btn-1").style.backgroundColor = "red";
+        setTimeout(function () {
+            document.querySelector(".btn-1").style.backgroundColor = "var(--color-primary"
+            form.classList.remove('form--no');
+        }, 500);
+    } else {
 
 
-                fetch("/CRM_SENSEI/AssingmentController", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-                    },
-                    body: $(".formnar").serialize()}).then(function (data) {
-                    return data.json();
+        fetch("/CRM_SENSEI/AssingmentController", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+            },
+            body: $(".formnar").serialize()}).then(function (data) {
+            return data.json();
 
-                }).then(function (data) {
-                    $("#modal_crm .modal-header").text(data.header);
-                    $("#modal_crm #modal_content").text(data.body);
-                    $("#modal_crm").show();
+        }).then(function (data) {
+            $("#modal_crm .modal-header").text(data.header);
+            $("#modal_crm #modal_content").text(data.body);
+            $("#modal_crm").show();
+            setTimeout(location.reload(), 1000);
 
-
-
-                });
-            }
 
         });
-});
+    }
+
+}
+function nnew() {
+    document.getElementById("modal_crm").style.display = "block";
+
+
+    fetch('/CRM_SENSEI/management/assingment/assingment_nar.jsp', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+        }
+    }).then(function (data) {
+        return data.text();
+
+    }).then(function (data) {
+        //document.querySelector(".modal-content").innerHTML = data;
+        $("#modal_crm #modal_content").html(data);
+
+    });
+
+}
 function removeAssingment(id) {
-    var form = document.getElementById("formId");
-    document.querySelector("[name=id]").value = id;
-    document.querySelector("[name=pwhat]").value = "delete";
-    form.action = "/CRM_SENSEI/AssingmentController";
-    form.submit();
+
+    fetch('/CRM_SENSEI/AssingmentController?pwhat=delete&id=' + id, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+        }
+    }).then(function (data) {
+        location.reload();
+
+    });
+
+
 }
 function saveOrder() {
     let aux = "{";
-    $("#sortable div.row").each(function (k, v) {
+    $("#sortable div.values-table-content").each(function (k, v) {
         aux += '"' + k + '":"' + $(v).attr("task") + '",'
     });
     aux = aux.substring(0, aux.length - 1);
@@ -73,6 +95,7 @@ function saveOrder() {
             "Content-Type": "application/json; charset=utf-8",
         }
     }).then(function (data) {
+        console.log(data);
         return data.text();
     }).then(function (data) {
         alert(data);

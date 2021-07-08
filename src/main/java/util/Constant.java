@@ -11,5 +11,10 @@ package util;
  */
 public class Constant {
 
-    static String utilFiles = "";
+    public static String utilFiles = new String("");
+    public static String forgotPass = new String("forgotPass.html");
+    public static String forgotPassKO = new String("forgotPassKO.html");
+    public static String forgotPassOK = new String("forgotPassOK.html");
+    public static String HOST = new String("/CRM_SENSEI");
+
 }

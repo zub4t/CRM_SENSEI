@@ -12,12 +12,22 @@ package management.project.model;
 public class ProjectModel {
 
     private int id;
+    private int client_id;
     private String customer_nme;
     private float expected_sale;
     private float effective_sale;
     private float effective_purchase;
     private String n_process;
     private float honorary;
+    private String ctr_date;
+
+    public String getCtr_date() {
+        return ctr_date;
+    }
+
+    public void setCtr_date(String ctr_date) {
+        this.ctr_date = ctr_date;
+    }
 
     public float getHonorary() {
         return honorary;
@@ -26,7 +36,6 @@ public class ProjectModel {
     public void setHonorary(float honorary) {
         this.honorary = honorary;
     }
-    
 
     public ProjectModel(int id, String customer_nme, float expected_sale, float effective_sale, float effective_purchase, String n_process, float honorary) {
         this.id = id;
@@ -87,6 +96,14 @@ public class ProjectModel {
 
     public void setEffective_purchase(float effective_purchase) {
         this.effective_purchase = effective_purchase;
+    }
+
+    public int getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(int client_id) {
+        this.client_id = client_id;
     }
 
 }

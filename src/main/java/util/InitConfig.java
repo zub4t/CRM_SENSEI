@@ -19,6 +19,7 @@ public class InitConfig extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
+        System.err.println("Init Config set to up");
         String dir = System.getProperty("user.dir");
         dir = dir.replaceAll("bin", "utilFiles");
         Util.createDirectory(dir);

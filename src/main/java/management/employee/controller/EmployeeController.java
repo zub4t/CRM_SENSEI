@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
 import management.employee.model.EmployeeModel;
 import management.employee.services.EmployeeServices;
 import org.json.JSONObject;
+import util.Constant;
+import util.FileReader;
 import util.SendEmail;
 import util.Util;
 
@@ -40,6 +42,8 @@ public class EmployeeController extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         JSONObject data = new JSONObject();
         try {
+            req.setCharacterEncoding("utf-8");
+
             String pwhat = req.getParameter("pwhat");
             EmployeeServices services = new EmployeeServices();
             RequestDispatcher dis = null;
@@ -50,12 +54,11 @@ public class EmployeeController extends HttpServlet {
                 case "insert":
               
                     try {
+                    resp.setContentType("application/json;charset=UTF-8");
                     services.insert(req);
-
                     data.put("header", "Alerta");
                     data.put("body", "Registo efetuado, um novo funcionario foi adicionado");
                     data.put("redirect", false);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                     data.put("header", "Alerta");
@@ -100,6 +103,7 @@ public class EmployeeController extends HttpServlet {
                     break;
                 case "update":
                 try {
+                    resp.setContentType("application/json;charset=UTF-8");
                     employee = services.update(req);
                     data.put("header", "Alerta");
                     data.put("body", "Registo efetuado, o  funcionario foi editado");
@@ -148,26 +152,54 @@ public class EmployeeController extends HttpServlet {
                     }
 
                     break;
-                case "forgotPass":
-                    resp.setContentType("text/html;charset=UTF-8");
+                case "updatePass":
+                    resp.setContentType("application/json;charset=UTF-8");
+                    JSONObject obj = null;
                     try {
-                        JSONObject obj = new JSONObject(Util.getBody(req));
+                        obj = new JSONObject(Util.getBody(req));
                         String username = obj.getString("nickname");
-                        EmployeeModel model = services.getByUsername(username);
-                        if (model.getId() != 0) {
-                            String email = model.getEmail();
-                            String newPass = "shistudiopass";
-                            SendEmail.send(email, newPass);
-                            services.setNewPass(model.getId(), newPass);
-                            resp.getWriter().println("Foi enviado uma menssagem para o email associado a esse username. Por favor siga os passos lá descritos.");
-
-                        } else {
-                            resp.getWriter().println("Esse username não corresponde a nenhum cadastrado na nossa base de dados.");
-
+                        String pass = obj.getString("pass");
+                        String key = obj.getString("key");
+                        if (key.equals(session.getAttribute("key"))) {
+                            EmployeeModel model = services.getByUsername(username);
+                            if (model.getId() != 0) {
+                                services.setNewPass(model.getId(), pass);
+                                obj = new JSONObject();
+                                obj.put("res", "OK");
+                                obj.put("data", FileReader.read(Constant.utilFiles, Constant.forgotPassOK));
+                            } else {
+                                obj.put("res", "--");
+                                obj.put("data", FileReader.read(Constant.utilFiles, Constant.forgotPassKO));
+                            }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        obj.put("res", "KO");
+                        obj.put("data", FileReader.read(Constant.utilFiles, Constant.forgotPassKO));
+
+                    } finally {
+
+                        resp.getWriter().print(obj);
+                        resp.getWriter().flush();
                     }
+
+                    break;
+                case "checkUserPass":
+                    resp.setContentType("application/json;charset=UTF-8");
+                    out = resp.getWriter();
+                    String key = Util.randomKey();
+                    int aux = services.login(req);
+                    aux = (aux == 9 || aux == 7) ? aux : 0;
+                    data.put("id", aux);
+
+                    if (aux != 0) {
+                        data.put("key", key);
+                        session.setAttribute("key", key);
+                    } else {
+                        data.put("key", "nãoéumachave:D");
+                    }
+                    out.print(data);
+                    out.flush();
 
                     break;
             }

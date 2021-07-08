@@ -9,8 +9,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
- // returns null if no session or session is invalid
-if(session.getAttribute("username")!=null) {
+    // returns null if no session or session is invalid
+    if (session.getAttribute("username") != null) {
 
 %>
 <html>
@@ -18,8 +18,7 @@ if(session.getAttribute("username")!=null) {
         <base href="/CRM_SENSEI">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestão Menus </title>
-        <%
-            //menu lateral
+        <%            //menu lateral
             MenuServices menu1 = new MenuServices();
             menu1.setMenu(request, response);
         %>
@@ -35,12 +34,14 @@ if(session.getAttribute("username")!=null) {
         <%@include file="../../menu/menu.jsp" %>
         <div id="table_container">
             <div class="table_header"></div>
-         
+            <div id="table">
                 <%@include file="gestMenu_table.jsp" %>
-        
+            </div>
             <div class="table_footer"></div>
 
         </div>
     </body>
 </html>
-<%}else{out.print("Usuario não está logado");}%>
+<%} else {
+        out.print("Usuario não está logado");
+    }%>

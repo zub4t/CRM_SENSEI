@@ -85,23 +85,14 @@ function setUpMobile() {
 
 
 }
-function openMenuTab(x) {
-    if (x.classList.contains("closed")) {
-        x.classList.remove("closed");
-        x.classList.add("opened");
-        let id = x.getAttribute("id");
-        document.querySelectorAll(".childOf-" + id).forEach(function (elem) {
-            elem.classList.remove("not-visible");
-        });
-    } else {
-        x.classList.add("closed");
-        x.classList.remove("opened");
-        let id = x.getAttribute("id");
-        document.querySelectorAll(".childOf-" + id).forEach(function (elem) {
-            elem.classList.add("not-visible");
-        });
+function openMenuTab(id) {
 
-    }
+   document.querySelectorAll(".childOf-" + id).forEach((element, index) => {
+        if (element.classList.contains("not-visible"))
+            element.classList.remove("not-visible");
+        else
+             element.classList.add("not-visible");
+    });
 
 }
 function mobile_menu() {

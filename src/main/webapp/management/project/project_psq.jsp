@@ -11,16 +11,15 @@
 <%@page import="menu.services.MenuServices"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
- // returns null if no session or session is invalid
-if(session.getAttribute("username")!=null) {
+    // returns null if no session or session is invalid
+    if (session.getAttribute("username") != null) {
 
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestão Funcionarios </title>
-        <%
-            MenuServices menu = new MenuServices();
+        <%            MenuServices menu = new MenuServices();
             menu.setMenu(request, response);
 
 
@@ -37,16 +36,18 @@ if(session.getAttribute("username")!=null) {
         <%@include file="../../menu/menu.jsp" %>
         <div id="table_container">
             <% if (menu.isVisible(request, 1)) { %>
-            <span class="plusButton" onclick="window.location.href = '/CRM_SENSEI/management/project/project_nar.jsp'"><img  src="/CRM_SENSEI/resources/plus-sign.png" width="20px"/></span>
+            <span class="plusButton" onclick="nnew()"><img  src="/CRM_SENSEI/resources/plus-sign.png" width="20px"/></span>
                 <%}%>
             <div class="table_header"></div>
-          
+            <div id="table">
                 <%@include file="project_table.jsp" %>
-        
+            </div>
             <div class="table_footer"></div>
 
 
         </div>
     </body>
 </html>
-<%}else{out.print("Usuario não está logado");}%>
+<%} else {
+        out.print("Usuario não está logado");
+    }%>

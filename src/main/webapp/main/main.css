@@ -10,84 +10,78 @@ and open the template in the editor.
 
 
 .main-content{
-    margin-left: 150px;
-}
-.chartjs-size-monitor{
-    position: relative !important;
-}
-#canvas-content{
-    height: 600px;
+    margin-left: 250px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+
+    width: 80vw;
+    margin-top: 50px;
     position: absolute;
-    bottom: 50px;
-    border-radius: 20px;
-    width: 80%;
-    left: 10%;
+    min-height: 90vh;
+}
+.user-header{
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    height: 100px;
+    margin-top: 50px;
+    width: 95%;
+    margin-left: 2.5%;
 
 }
-canvas{
-
-    width:100% !important;
-    height:100% !important;
-
-}
-#project-selector{
-    position: absolute;
-    right: center;
-    top: 50px;
-    width: 100%;
+.user-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
+.profile{
+    background-color:#ECE1CF;
+    border-radius: 50%;
+    width: 84px;
+    height: 84px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+#profile-img{
+    background-image:    url("../resources/user.png");
+    background-size: contain;
+    width: 64px;
+    height: 64px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+.welcome-msg{
+    margin-top: 20px;
+    margin-left: 20px;
 
-
-/* Reset Select */
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0 !important;
-    background: #7b9696;
-    background-image: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
 }
-/* Remove IE arrow */
-select::-ms-expand {
-    display: none;
+#ring-icon{
+    background-image:    url("../resources/notification.png");
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    margin-top: 4px;
+    margin-right: 10px;
 }
-/* Custom Select */
-.select {
-    position: relative;
+.news{
     display: flex;
-    width: 500px;
-    line-height: 3;
-    background: #2c3e50;
-    overflow: hidden;
-    border-radius: .5em;
-}
-select {
-    flex: 1;
-    padding: 0 .5em;
-    color: #fff;
-    cursor: pointer;
-}
-/* Arrow */
-.select::after {
-    content: '\25BC';
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0 1em;
-    background: #7b9696;
-    cursor: pointer;
-    pointer-events: none;
-    -webkit-transition: .25s all ease;
-    -o-transition: .25s all ease;
-    transition: .25s all ease;
-}
-/* Transition */
-.select:hover::after {
-    color: #86d4f9;
-}
+    margin-top: 30px;
+    margin-right: 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
 
+}
+.projects-in-working{
+    display: flex;
+    justify-content: space-around;
+
+}
+.projects-in-working{
+    display: flex;  
+
+    flex-wrap: wrap;
+
+}

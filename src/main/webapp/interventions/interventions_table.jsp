@@ -15,51 +15,53 @@
     MenuServices menu_1 = new MenuServices();
 
 %>
-<table id="table" cellspacing="0">
-    <tr>
-        <td class="">Projeto</td>
-        <td class="">Funcionario</td>
-        <td class="">Tarefa</td>
-        <td class="">Tempo Gasto</td>
-        <td class="" >Descrição</td>
-        <td >Editar</td>
-        <td>Remover</td>
+<div  class="label-table-content">
+    <div class="" style="width: 25%">Projeto:</div>
+    <div class="" style="width: 15%">Funcionario:</div>
+    <div class="" style="width: 15%">Tarefa:</div>
+    <div class="" style="width: 5%">Tempo:</div>
+    <div class="" style="width: 25%">Descrição:</div>
+    <div style="width: 5%">Editar:</div>
+    <div style="width: 5%">Remover:</div>
 
-    </tr>
-    <c:forEach items="${interventionList}" var="item"   varStatus="loop">
-        <tr>
-            <td class="td_left ">
-                ${item.prj_nme} | ${item.customer}
-            </td>
+</div>
 
-            <td class="td_left">
-                ${item.employee_nme}
-            </td>  
+<c:forEach items="${interventionList}" var="item"   varStatus="loop">
+    <div class="values-table-content">
+        <div class="td_left " style="width: 25%">
+         ${item.customer}
+        </div>
 
-            <td class="td_left">
-                ${item.assingment_nme}
-            </td> 
+        <div class="td_left" style="width: 15%">
+            ${item.employee_nme}
+        </div>  
 
-            <td class="td_left">
-                ${item.getSpeend_time()}
-            </td>
+        <div class="td_left" style="width: 15%">
+            ${item.assingment_nme}
+        </div> 
 
-            <td class="td_left dots3">
-                ${item.getDsc()}
-            </td>      
-            <% if (menu_1.isVisible(request, 11)) { %>
-            <td >
+        <div class="td_left" style="width: 5%">
+            ${item.getSpeend_time()}
+        </div>
 
-                <img onclick="goToInterventionId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
-            </td>
-            <%}%>
-            <% if (menu_1.isVisible(request, 11)) { %>
-            <td >
-                <img onclick="removeIntervention(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
-            </td>
-            <%}%>
-        </tr>
-    </c:forEach>
+        <div class="td_left dots3" style="width: 25%">
+            ${item.getDsc()}
+        </div>      
+        <% if (menu_1.isVisible(request, 11)) { %>
+        <div  style="width: 5%">
+
+            <img onclick="goToInterventionId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
+        </div>
+        <%}%>
+        <% if (menu_1.isVisible(request, 11)) { %>
+        <div style="width: 5%">
+            <img onclick="removeIntervention(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
+        </div>
+        <%}%>
+    </div>
+</c:forEach>
+<table id="table" width="100%" cellspacing="0">
+
     <tr>
         <td colspan="7">
             <div>
