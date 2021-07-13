@@ -21,19 +21,19 @@
     $(document).ready(function () {
 
         document.querySelector("[name=project_id]").value = "${model.project_id}";
-        
+
 
     <%
-       if (request.getParameter("project") != null) {
-           out.println(" document.querySelector('[name=project_id]').value = '" + request.getParameter("project") + "';");
-           out.println(" $('[name=project_id] :not(:selected)').attr('disabled','disabled');");
-       }
+        if (request.getParameter("project") != null) {
+            out.println(" document.querySelector('[name=project_id]').value = '" + request.getParameter("project") + "';");
+            out.println(" $('[name=project_id] :not(:selected)').attr('disabled','disabled');");
+        }
     %>
 
         document.querySelector("[name=assingment_id]").value = "${model.assingment_id}";
     <%if (request.getAttribute("edit") != null) {%>
         document.querySelector("[name=pwhat]").value = "update";
-        $('[name=project_id] :not(:selected)').attr('disabled','disabled');
+        $('[name=project_id] :not(:selected)').attr('disabled', 'disabled');
 
     <%}%>
 
@@ -79,13 +79,16 @@
             <div class="form__group">
                 <div class="form_label">Tempo Gasto:</div>
                 <div class="form_item">
-                    <input name="spend_time" type="time"  class="form__input  item" placeholder="Tempo dedicado">
+                    <input name="spend_time" type="time" value="${model.getSpeend_time()}" class="form__input  item" placeholder="Tempo dedicado">
                 </div>                  
             </div>  
             <div class="form__group">
                 <div class="form_label">Descrição:</div>
                 <div class="form_item">
-                    <input name="dsc" type="text"  value="${model.dsc}" class="form__input  item" placeholder="Descrição" />
+                    <textarea  name="dsc" style="height: 300px" row="4" cols="50"  class="form__input  item" placeholder="Descrição">
+                        ${model.dsc}
+                    </textarea>                 
+
                 </div>                 
             </div>
 

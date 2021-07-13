@@ -39,10 +39,10 @@
 
     <c:forEach items="${projectList}" var="item"   varStatus="loop">
        <div class="values-table-content">
-           <div class="" style="width: 30%">
+           <div class="dots3" style="width: 30%">
                 ${item.getN_process()} |  ${item.getCustomer_nme()}
             </div>
-            <div class="" style="width: 30%">
+            <div class="dots3" style="width: 30%">
                 ${item.getCustomer_nme()}
             </div>
 

@@ -17,9 +17,19 @@ public class ProjectModel {
     private float expected_sale;
     private float effective_sale;
     private float effective_purchase;
+    private float expected_purchase;
+
     private String n_process;
     private float honorary;
     private String ctr_date;
+
+    public float getExpected_purchase() {
+        return expected_purchase;
+    }
+
+    public void setExpected_purchase(float expected_purchase) {
+        this.expected_purchase = expected_purchase;
+    }
 
     public String getCtr_date() {
         return ctr_date;

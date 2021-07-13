@@ -17,10 +17,10 @@
 %>
 <div  class="label-table-content">
     <div class="" style="width: 25%">Projeto:</div>
-    <div class="" style="width: 15%">Funcionario:</div>
-    <div class="" style="width: 15%">Tarefa:</div>
+    <div class="" style="width: 5%">Func.:</div>
+    <div class="" style="width: 20%">Tarefa:</div>
     <div class="" style="width: 5%">Tempo:</div>
-    <div class="" style="width: 25%">Descrição:</div>
+    <div class="" style="width: 30%">Descrição:</div>
     <div style="width: 5%">Editar:</div>
     <div style="width: 5%">Remover:</div>
 
@@ -28,33 +28,33 @@
 
 <c:forEach items="${interventionList}" var="item"   varStatus="loop">
     <div class="values-table-content">
-        <div class="td_left " style="width: 25%">
+        <div class="td_left dots3 " style="width: 25%">
          ${item.customer}
         </div>
 
-        <div class="td_left" style="width: 15%">
+        <div class="td_left dots3" style="width: 5%">
             ${item.employee_nme}
         </div>  
 
-        <div class="td_left" style="width: 15%">
+        <div class="td_left dots3" style="width: 20%">
             ${item.assingment_nme}
         </div> 
 
-        <div class="td_left" style="width: 5%">
+        <div class="td_left dots3" style="width: 5%">
             ${item.getSpeend_time()}
         </div>
 
-        <div class="td_left dots3" style="width: 25%">
+        <div class="td_left dots3" style="width: 30%">
             ${item.getDsc()}
         </div>      
         <% if (menu_1.isVisible(request, 11)) { %>
-        <div  style="width: 5%">
+        <div  style="width: 5%;text-align: center">
 
             <img onclick="goToInterventionId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
         </div>
         <%}%>
         <% if (menu_1.isVisible(request, 11)) { %>
-        <div style="width: 5%">
+        <div style="width: 5%; text-align: center">
             <img onclick="removeIntervention(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
         </div>
         <%}%>

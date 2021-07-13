@@ -49,10 +49,17 @@
                     <input  type="number" step="0.01" name="expected_sale" placeholder="Venda Prevista" class="form__input item"  />
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form_label">Venda Efetiva</div>
                 <div class="form_item">
                     <input  type="number" step="0.01" name="effective_sale" placeholder="Venda Efetiva" class="form__input item"  />
+                </div>
+            </div>
+            <div class="form__group">
+                <div class="form_label">Compra Prevista:</div>
+                <div class="form_item">
+                    <input  type="number" step="0.01" name="expected_purchase" placeholder="Compra Prevista" class="form__input item"  />
                 </div>
             </div>
             <div class="form__group">

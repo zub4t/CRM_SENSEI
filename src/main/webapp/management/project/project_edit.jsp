@@ -67,6 +67,12 @@
             </div>
         </div>
         <div class="form__group">
+            <div class="form_label">Compra Prevista:</div>
+            <div class="form_item">
+                <input  type="number" step="0.01" name="expected_purchase" value="${model.expected_purchase}" placeholder="Compra Prevista" class="form__input item"  />
+            </div>
+        </div>
+        <div class="form__group">
             <div class="form_label">Compra Efetiva:</div>
             <div class="form_item">
                 <input  type="number" step="0.01" value="${model.effective_purchase}" name="effective_purchase" placeholder="Compra Efetiva" class="form__input item"  />

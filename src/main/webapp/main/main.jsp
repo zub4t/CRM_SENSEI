@@ -51,14 +51,14 @@
                     </div>
                 </div>
             </div>
-            <div class="projects-in-working">
+            <div class="projects-in-working" style="overflow-y: scroll; height: 700px">
                 <%@include file="../componentes/card_view/card_view.jsp" %>
 
             </div>
         </div>
 
 
- <%@include file="../componentes/modal_add_hour/modal_add_hour.jsp" %>
+        <%@include file="../componentes/modal_add_hour/modal_add_hour.jsp" %>
 
 
     </body>

@@ -169,16 +169,12 @@
                         </div>
 
                         <div>
-                            <div  class="label-question">Data inicio </div>
+                            <div  class="label-question">Data início </div>
                             <div><input  type="data" disabled value="${project_model.ctr_date}"></div>
 
                         </div>
 
-                        <div>
-                            <div  class="label-question">Data final </div>
-                            <div><input  type="data"class="label-answer"  disabled value="9999-99-99"></div>
 
-                        </div>
                     </div>
 
 
@@ -188,7 +184,7 @@
                             <div><input type="text" class="label-answer" value="<fmt:formatNumber value="${project_model.expected_sale}" type="currency"/>  " disabled></div>
                         </div>
                         <div>
-                            <div  class="label-question">Venda Efeiva</div>
+                            <div  class="label-question">Venda efetiva</div>
                             <div><input type="text" class="label-answer" value="<fmt:formatNumber value="${project_model.effective_sale}" type="currency"/>" disabled></div>
                         </div>
                     </div>
@@ -196,10 +192,10 @@
                     <div style="display: flex">
                         <div>
                             <div  class="label-question">Compra esperada</div>
-                            <div><input type="text" class="label-answer" value="0" disabled></div>
+                            <div><input type="text" class="label-answer"  value="<fmt:formatNumber value="${project_model.expected_purchase}" type="currency"/> "disabled></div>
                         </div>
                         <div>
-                            <div  class="label-question">Compra Efeiva</div>
+                            <div  class="label-question">Compra efetiva</div>
                             <div><input type="text" class="label-answer" value="<fmt:formatNumber value="${project_model.effective_purchase}" type="currency"/> " disabled></div>
                         </div>
                     </div>
@@ -223,7 +219,7 @@
                     </table>
                 </div>
 
-                <div class="lists">
+                <div class="lists" style="height: 500px; overflow-y:scroll ">
                     <h2 class="label-question">Tarefas realizadas recentemente</h2>
 
                     <table  width="100%">

@@ -33,16 +33,16 @@
 
 <c:forEach items="${employeeList}" var="item"   varStatus="loop">
     <div class="values-table-content">
-        <div class="" style="width: 20%">
+        <div class="dots3" style="width: 20%">
             ${item.getNme()}
         </div>
-        <div class="" style="width: 20%">
+        <div class="dots3" style="width: 20%">
             ${item.getUserLevel() == 0 ? "Administrador": item.getUserLevel() == 1 ? "Gestor" :"Funcionário"}
         </div>
-        <div class="" style="width: 20%">
+        <div class="dots3" style="width: 20%">
             ${item.getEmail()}
         </div>
-        <div class="" style="width: 20%">
+        <div class="dots3" style="width: 20%">
             ${item.getTel()}
 
         </div>
@@ -54,7 +54,7 @@
         <div></div>
         <%}%>
         <% if (menu_1.isVisible(request, 1)) { %>
-        <div style="width: 10%">
+        <div style="width: 10%;">
             <img onclick="removeEmployee(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
         </div>
         <%} else {%>

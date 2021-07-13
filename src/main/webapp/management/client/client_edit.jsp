@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<div class="main-content">
+<div class="">
     <div class="form">
 
         <form class="formnar" method="POST" action="/CRM_SENSEI/ClientController?pwhat=update">

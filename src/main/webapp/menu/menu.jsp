@@ -36,8 +36,8 @@
             </div>
             <c:forEach items="${s.getChildren()}" var="child">
                 <div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >
+<!--                    <a href="http://mouraazevedo.dyndns.org:8084/CRM_SENSEI/${child.getUrl()}">-->
                     <a href="http://192.168.1.185:8084/CRM_SENSEI/${child.getUrl()}">
-<!--                    <a href="http://localhost:8084/CRM_SENSEI/${child.getUrl()}">-->
                         ${child.getNme()}
 
                     </a>

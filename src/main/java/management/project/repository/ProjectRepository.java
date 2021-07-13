@@ -71,7 +71,7 @@ public class ProjectRepository {
                 model.setEffective_sale(rs.getFloat("effective_sale"));
                 model.setEffective_purchase(rs.getFloat("effective_purchase"));
                 model.setHonorary(rs.getFloat("honorary"));
-
+                model.setExpected_purchase(rs.getFloat("expected_purchase"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,12 +82,12 @@ public class ProjectRepository {
         return model;
     }
 
-    public void insertProject(int client_id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary) {
+    public void insertProject(int client_id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary, float expected_purchase) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "insert into project (clientt_id,n_process,customer_nme,expected_sale,effective_sale,effective_purchase,honorary) values(?,?,?,?,?,?,?)");
+            pstmt = DBManager.getPreparedStatement(con, "insert into project (clientt_id,n_process,customer_nme,expected_sale,effective_sale,effective_purchase,honorary,expected_purchase) values(?,?,?,?,?,?,?,?)");
             pstmt.setInt(1, client_id);
             pstmt.setString(2, n_process);
             pstmt.setString(3, nme);
@@ -95,7 +95,7 @@ public class ProjectRepository {
             pstmt.setFloat(5, effective_sale);
             pstmt.setFloat(6, effective_purchase);
             pstmt.setFloat(7, honorary);
-
+            pstmt.setFloat(8, expected_purchase);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,12 +129,12 @@ public class ProjectRepository {
         return list;
     }
 
-    public ProjectModel updateProject(int client_id, int id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary) {
+    public ProjectModel updateProject(int client_id, int id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary, float expected_purchase) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         ProjectModel projectModel = getById(id);
         try {
-            pstmt = DBManager.getPreparedStatement(con, "update project SET clientt_id = ?, n_process = ?, customer_nme = ?, expected_sale = ?, effective_sale = ?, effective_purchase = ? , honorary = ? where id = ?");
+            pstmt = DBManager.getPreparedStatement(con, "update project SET clientt_id = ?, n_process = ?, customer_nme = ?, expected_sale = ?, effective_sale = ?, effective_purchase = ? , honorary = ? , expected_purchase = ? where id = ?");
             pstmt.setInt(1, client_id);
             pstmt.setString(2, n_process);
             pstmt.setString(3, nme);
@@ -142,13 +142,15 @@ public class ProjectRepository {
             pstmt.setFloat(5, effective_sale);
             pstmt.setFloat(6, effective_purchase);
             pstmt.setFloat(7, honorary);
-            pstmt.setInt(8, id);
+            pstmt.setFloat(8, expected_purchase);
+            pstmt.setInt(9, id);
             pstmt.executeUpdate();
             projectModel.setCustomer_nme(nme);
             projectModel.setN_process(n_process);
             projectModel.setExpected_sale(expected_sale);
             projectModel.setEffective_sale(effective_sale);
             projectModel.setEffective_purchase(effective_purchase);
+            projectModel.setExpected_purchase(expected_purchase);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

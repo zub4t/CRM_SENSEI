@@ -38,26 +38,26 @@
 
 <c:forEach items="${clientList}" var="item"   varStatus="loop">
     <div class="values-table-content">
-        <div class=""style="width: 15%">
+        <div class="dots3"style="width: 15%">
             ${item.getName()}
         </div>
 
-        <div class="" style="width: 15%">
+        <div class="dots3" style="width: 15%">
             ${item.getEmail()}
         </div>
-        <div class="" style="width: 10%">
+        <div class="dots3" style="width: 10%">
             ${item.getTel()}
 
         </div>
-        <div class="" style="width: 10%">
+        <div class="dots3" style="width: 10%">
             ${item.getNum_contribuinte()}
 
         </div>
-        <div class=""style="width: 10%">
+        <div class="dots3"style="width: 10%">
             ${item.getLocation()}
 
         </div>
-        <div class="" style="width: 30%">
+        <div class="dots3" style="width: 30%">
             ${item.getAddress()}
 
         </div>
