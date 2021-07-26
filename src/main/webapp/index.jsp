@@ -11,7 +11,7 @@
 
     <head>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-        <title>Page Title</title>
+        <title>CRM SENSEI</title>
         <link href="<%=Constant.HOST%>/login/login.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;1,900&display=swap" rel="stylesheet">

@@ -22,6 +22,7 @@ public class InterventionsModel {
     private String prj_nme;
     private String employee_nme;
     private String assingment_nme;
+    private String date;
 
     public InterventionsModel(int project_id, int employee_id, int assingment_id, String speend_time, String dsc, String customer) {
         this.project_id = project_id;
@@ -30,6 +31,14 @@ public class InterventionsModel {
         this.speend_time = speend_time;
         this.dsc = dsc;
         this.customer = customer;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public InterventionsModel() {

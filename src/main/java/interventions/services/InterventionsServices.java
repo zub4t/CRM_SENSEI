@@ -30,16 +30,41 @@ public class InterventionsServices {
 
     }
 
-    public void setInterventions(HttpServletRequest req, HttpServletResponse resp, int n) {
-        int max = getMaxPage();
+    public void setInterventions(HttpServletRequest req, HttpServletResponse resp, int n, HttpSession session) {
+
+        String[] employee_selected = (String[]) session.getAttribute("employee_selected");
+        String assingment_id = null;
+        if (session.getAttribute("assingment_id") != null) {
+            assingment_id = ((String[]) session.getAttribute("assingment_id"))[0];
+
+        }
+        String date_filter_in = null;
+        if (session.getAttribute("date_filter_in") != null) {
+            date_filter_in = ((String[]) session.getAttribute("date_filter_in"))[0];
+            if (date_filter_in.length() < 2) {
+                date_filter_in = null;
+
+            }
+        }
+        String date_filter_out = null;
+        if (session.getAttribute("date_filter_out") != null) {
+            date_filter_out = ((String[]) session.getAttribute("date_filter_out"))[0];
+            if (date_filter_out.length() < 2) {
+                date_filter_out = null;
+
+            }
+        }
+
+        int max = getMaxPage(employee_selected, assingment_id, date_filter_in, date_filter_out);
         InterventionsRepository repository = new InterventionsRepository();
         PaginationModel pagination = new PaginationModel();
         pagination.setPage(n + 1);
         pagination.setMax_page(max + 1);
         req.setAttribute("pagination", pagination);
+
         pagination.setUrl("/CRM_SENSEI/InterventionsController?pwhat=pagination");
 
-        req.setAttribute("interventionList", repository.getN(n));
+        req.setAttribute("interventionList", repository.getN(n, employee_selected, assingment_id, date_filter_in, date_filter_out));
     }
 
     public void insert(HttpServletRequest req) {
@@ -52,7 +77,7 @@ public class InterventionsServices {
         String dsc = req.getParameter("dsc");
         String dte = req.getParameter("date_in");
 
-        repository.insertInterventions(project_id, employee_id, assingment_id, spend_time, dsc,dte);
+        repository.insertInterventions(project_id, employee_id, assingment_id, spend_time, dsc, dte);
     }
 
     public InterventionsModel getById(int id) {
@@ -83,5 +108,10 @@ public class InterventionsServices {
         InterventionsRepository repository = new InterventionsRepository();
         return repository.getMaxPage();
 
+    }
+
+    private int getMaxPage(String[] employee_selected, String assingment_id, String date_filter_in, String date_filter_out) {
+        InterventionsRepository repository = new InterventionsRepository();
+        return repository.getMaxPage(employee_selected, assingment_id, date_filter_in, date_filter_out);
     }
 }

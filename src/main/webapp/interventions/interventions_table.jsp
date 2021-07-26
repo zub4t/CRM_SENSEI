@@ -11,7 +11,7 @@
     if (request.getAttribute("ppage") != null) {
         n = (Integer) request.getAttribute("ppage");
     }
-    inter.setInterventions(request, response, n);
+    inter.setInterventions(request, response, n, session);
     MenuServices menu_1 = new MenuServices();
 
 %>
@@ -29,7 +29,7 @@
 <c:forEach items="${interventionList}" var="item"   varStatus="loop">
     <div class="values-table-content">
         <div class="td_left dots3 " style="width: 25%">
-         ${item.customer}
+            ${item.customer}
         </div>
 
         <div class="td_left dots3" style="width: 5%">

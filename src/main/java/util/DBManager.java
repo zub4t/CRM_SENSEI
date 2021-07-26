@@ -38,7 +38,6 @@ public class DBManager {
 //            String BD_URL = "jdbc:mysql://mouraazevedo.dyndns.org:3306/crm?useTimezone=true&serverTimezone=UTC&user=monty&password=marco";
 
             String BD_URL = "jdbc:mysql://192.168.1.185:3306/crm?useTimezone=true&serverTimezone=UTC&user=monty&password=marco";
-
             Connection con = DriverManager.getConnection(BD_URL);
             connection_list.add(con);
             return connection_list.size() - 1;

@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import management.assingment.services.AssingmentServices;
 import org.json.JSONObject;
 
@@ -38,6 +39,7 @@ public class InterventionsController extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         String pwhat = req.getParameter("pwhat");
         InterventionsServices services = new InterventionsServices();
+        HttpSession session = req.getSession();
         JSONObject data = new JSONObject();
         PrintWriter out;
         try {
@@ -62,6 +64,15 @@ public class InterventionsController extends HttpServlet {
                 out.print(data);
                 out.flush();
                 break;
+                case "search":
+                
+                    session.setAttribute("employee_selected", req.getParameterValues("employee_selected"));
+                    session.setAttribute("assingment_id", req.getParameterValues("assingment_id"));
+                    session.setAttribute("date_filter_in", req.getParameterValues("date_filter_in"));
+                    session.setAttribute("date_filter_out", req.getParameterValues("date_filter_out"));
+                    dis = req.getRequestDispatcher("/interventions/interventions_psq.jsp");
+                    dis.forward(req, resp);
+                    break;
                 case "edit":
                     InterventionsModel model = services.getById(Integer.parseInt(req.getParameter("id")));
                     req.setAttribute("model", model);

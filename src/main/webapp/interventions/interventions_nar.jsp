@@ -95,7 +95,7 @@
             <div class="form__group">
                 <div class="form_label">Data:</div>
                 <div class="form_item">
-                    <input id="date_in"  name="date_in"  class="form__input  item"  type="date" value="">
+                    <input id="date_in"  name="date_in"  class="form__input  item"  type="date" value="${model.date}">
                 </div>                 
             </div>
 

@@ -5,7 +5,24 @@
  */
 
 
-
+function search() {
+    $("#searchform").submit();
+    /*
+     fetch("/CRM_SENSEI/InterventionsController", {
+     method: "POST",
+     headers: {
+     "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+     },
+     body: $("#searchform").serialize()}).then(function (data) {
+     return data.text();
+     
+     }).then(function (data) {
+     document.write(data);
+     
+     });
+     
+     */
+}
 function save() {
     const button = document.querySelector('.btn-1');
     const form = document.querySelector('.formnar');
@@ -98,7 +115,7 @@ function removeIntervention(id) {
             "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
         }
     }).then(function (data) {
-           location.reload();
+        location.reload();
 
     });
 
