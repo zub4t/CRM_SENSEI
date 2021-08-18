@@ -49,6 +49,18 @@ public class AssingmentController extends HttpServlet {
             PrintWriter out = resp.getWriter();
 
             switch (pwhat) {
+                case "getColor":
+                    try {
+                    data.put("color", services.getColor(req));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("color", "#000000");
+                }
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                out.print(data);
+                out.flush();
+                break;
                 case "insert":
                     try {
                     services.insert(req);
@@ -68,6 +80,32 @@ public class AssingmentController extends HttpServlet {
                     services.remove(req);
                     resp.setContentType("text/html;charset=UTF-8");
                     dis = req.getRequestDispatcher("/management/assingment/assingment_psq.jsp");
+                    try {
+                        dis.forward(req, resp);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "update":
+                    try {
+                    services.update(req);
+                    data.put("header", "Alerta");
+                    data.put("body", "Registo efetuado uma nova tarefa foi atualizada");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("header", "Alerta");
+                    data.put("body", "Ocorreu um erro durante a inserção de um nova tarefa");
+                }
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                out.print(data);
+                out.flush();
+                break;
+                case "edit":
+                    services.edit(req);
+                    resp.setContentType("text/html;charset=UTF-8");
+
+                    dis = req.getRequestDispatcher("/management/assingment/assingment_nar.jsp");
                     try {
                         dis.forward(req, resp);
                     } catch (Exception e) {
@@ -107,6 +145,7 @@ public class AssingmentController extends HttpServlet {
 
                     }
                     break;
+
             }
 
         } catch (Exception e) {

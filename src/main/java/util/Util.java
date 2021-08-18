@@ -132,4 +132,11 @@ public class Util {
         sb.append("]");
         return sb.toString();
     }
+
+    public static String getColorByAssignment(int id) {
+        switch (id) {
+
+        }
+        return "#FF0000";
+    }
 }

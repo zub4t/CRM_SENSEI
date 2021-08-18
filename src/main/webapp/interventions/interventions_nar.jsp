@@ -49,9 +49,11 @@
 
             <%if (request.getAttribute("edit") != null) {%>
             <input type="hidden" name="id" value="${model.id}">
+             <input type="hidden" name="pwhat" value="update">
 
+            <%}else{%>
+             <input type="hidden" name="pwhat" value="insert">
             <%}%>
-            <input type="hidden" name="pwhat" value="insert">
             <div class="form__group">
 
                 <div class="form_label">Projeto:</div>

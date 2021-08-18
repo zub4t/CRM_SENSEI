@@ -28,6 +28,7 @@
 <div id="table" cellspacing="0">
     <div class="label-table-content">
         <div class="col">Descrição Do Tarefa:</div>
+        <div class="col">Editar:</div>
         <div class="col">Remover:</div>
     </div>
     <div id="sortable">
@@ -36,13 +37,23 @@
                 <div class="col">
                     ${item.getDsc()}
                 </div>
+
+                <% if (menu_1.isVisible(request, 1)) {%>
+                <div onclick="goToAssingment(${item.id})" class="col">
+
+                    <img style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
+
+                </div>
+                <%}%>    
                 <% if (menu_1.isVisible(request, 1)) {%>
                 <div onclick="removeAssingment(${item.id})" class="col">
 
-                <img style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
+                    <img style="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
 
                 </div>
                 <%}%>
+
+
             </div>
         </c:forEach>
     </div>

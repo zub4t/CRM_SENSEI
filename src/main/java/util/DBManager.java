@@ -35,9 +35,9 @@ public class DBManager {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 //               String BD_URL = "jdbc:mysql://localhost:3306/crm?useTimezone=true&serverTimezone=UTC&user=root&password=root";
-//            String BD_URL = "jdbc:mysql://mouraazevedo.dyndns.org:3306/crm?useTimezone=true&serverTimezone=UTC&user=monty&password=marco";
+            String BD_URL = "jdbc:mysql://mouraazevedo.dyndns.org:3306/crm?useTimezone=true&serverTimezone=UTC&user=monty&password=marco";
 
-            String BD_URL = "jdbc:mysql://192.168.1.185:3306/crm?useTimezone=true&serverTimezone=UTC&user=monty&password=marco";
+//            String BD_URL = "jdbc:mysql://192.168.1.185:3306/crm?useTimezone=true&serverTimezone=UTC&user=monty&password=marco";
             Connection con = DriverManager.getConnection(BD_URL);
             connection_list.add(con);
             return connection_list.size() - 1;
@@ -62,6 +62,10 @@ public class DBManager {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static PreparedStatement getPreparedStatement(int con, String insert_into_calendar_project_idemployee_i, int RETURN_GENERATED_KEYS) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

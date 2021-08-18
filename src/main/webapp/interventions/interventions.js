@@ -27,7 +27,7 @@ function save() {
     const button = document.querySelector('.btn-1');
     const form = document.querySelector('.formnar');
     let valid = true;
-    document.querySelectorAll(".item").forEach(function (m) {
+    document.querySelectorAll(".formnar .item").forEach(function (m) {
         if (m.value.length == 0) {
             valid = false;
         }

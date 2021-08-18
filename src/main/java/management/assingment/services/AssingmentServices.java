@@ -7,6 +7,7 @@ package management.assingment.services;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import management.assingment.model.AssingmentModel;
 import management.assingment.repository.AssingmentRepository;
 import org.json.JSONObject;
 import util.PaginationModel;
@@ -34,8 +35,8 @@ public class AssingmentServices {
     public void insert(HttpServletRequest req) {
         AssingmentRepository repository = new AssingmentRepository();
         String dsc = req.getParameter("dsc");
-
-        repository.insertAssingment(dsc);
+        String color = req.getParameter("color");
+        repository.insertAssingment(dsc, color);
     }
 
     public void remove(HttpServletRequest req) {
@@ -54,5 +55,31 @@ public class AssingmentServices {
     public boolean serOrder(int size, JSONObject json) {
         AssingmentRepository repository = new AssingmentRepository();
         return repository.setOrder(size, json);
+    }
+
+    public void edit(HttpServletRequest req) {
+        AssingmentRepository repository = new AssingmentRepository();
+        int id = Integer.parseInt(req.getParameter("id"));
+        req.setAttribute("assignment", repository.getById(id));
+    }
+
+    public void update(HttpServletRequest req) {
+        AssingmentRepository repository = new AssingmentRepository();
+        int id = Integer.parseInt(req.getParameter("id"));
+        String dsc = req.getParameter("dsc");
+        String color = req.getParameter("color");
+        repository.update(dsc, color, id);
+
+    }
+
+    public AssingmentModel getById(int id) {
+        AssingmentRepository repository = new AssingmentRepository();
+        return repository.getById(id);
+    }
+
+    public String getColor(HttpServletRequest req) {
+        AssingmentRepository repository = new AssingmentRepository();
+        int id = Integer.parseInt(req.getParameter("id"));
+        return repository.getById(id).getColor();
     }
 }

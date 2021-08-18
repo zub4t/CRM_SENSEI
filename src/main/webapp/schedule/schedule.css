@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17/ago/2021, 21:51:36
+    Author     : Marco
+*/
+
+body {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.calendar .calendar-header {
+    background-color: #74A4A0;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    border: 0;
+}
+
+.calendar .calendar-header .year-title {
+    font-size: 18px;
+}
+
+.calendar .calendar-header .year-title:not(.year-neighbor):not(.year-neighbor2) {
+    border-bottom: 2px solid black;
+    font-weight: 900;
+}
+
+.calendar .months-container .month-container {
+    height: 260px;
+    margin-bottom: 25px;
+}
+
+.calendar table.month {
+    background-color: white;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+
+.calendar table.month th.month-title {
+    background-color: #7fa2a0;
+    color: black;
+    padding: 12px;
+    font-weight: 400;
+}
+
+.calendar table.month th.day-header {
+    padding-top: 10px;
+    color: #CDCDCD;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.calendar table.month td.day .day-content {
+    padding: 8px;
+    border-radius: 100%;
+}

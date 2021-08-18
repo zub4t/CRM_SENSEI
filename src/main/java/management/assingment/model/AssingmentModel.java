@@ -21,6 +21,7 @@ public class AssingmentModel {
     }
     private int id;
     private String dsc;
+    private String color;
 
     public int getId() {
         return id;
@@ -36,6 +37,14 @@ public class AssingmentModel {
 
     public void setDsc(String dsc) {
         this.dsc = dsc;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
 }

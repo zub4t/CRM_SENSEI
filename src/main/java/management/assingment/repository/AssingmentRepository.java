@@ -54,6 +54,7 @@ public class AssingmentRepository {
             while (rs.next()) {
                 model.setId(rs.getInt("id"));
                 model.setDsc(rs.getString("dsc"));
+                model.setColor(rs.getString("color"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,13 +65,15 @@ public class AssingmentRepository {
         return model;
     }
 
-    public void insertAssingment(String dsc) {
+    public void insertAssingment(String dsc, String color) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "insert into assingment (dsc) values(?)");
+            pstmt = DBManager.getPreparedStatement(con, "insert into assingment (dsc,color) values(?,?)");
             pstmt.setString(1, dsc);
+            pstmt.setString(2, color);
+
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -174,5 +177,24 @@ public class AssingmentRepository {
 
         }
         return flag;
+    }
+
+    public void update(String dsc, String color, int id) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "update  assingment set dsc=?, color=? where id = ?");
+            pstmt.setString(1, dsc);
+            pstmt.setString(2, color);
+            pstmt.setInt(3, id);
+
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
     }
 }

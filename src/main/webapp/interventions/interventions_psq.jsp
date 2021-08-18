@@ -134,7 +134,6 @@ if(session.getAttribute("username")!= null) {
         <script>
 
             window.onload = function () {
-                $('#employee_slct').multipleSelect();
 
                 let employee_selected = <%= Util.toJavascriptArray(employee_selected) %>;
                 let assingment_id = '<%=assingment_id%>';
