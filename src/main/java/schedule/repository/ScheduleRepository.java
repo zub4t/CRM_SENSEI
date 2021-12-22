@@ -75,13 +75,14 @@ public class ScheduleRepository {
             DBManager.closeConnection(con);
         }
     }
-  public List<ScheduleModel> getAll(int id) {
+
+    public List<ScheduleModel> getAll(int id) {
         List<ScheduleModel> list = new ArrayList<>();
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
             pstmt = DBManager.getPreparedStatement(con, "select * from calendar inner join assingment on assingment.id = assingment_id inner join employee on employee_id = employee.id inner join project on project.id = project_id where employee_id =  ?");
-            pstmt.setInt(1,id);
+            pstmt.setInt(1, id);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -92,6 +93,11 @@ public class ScheduleRepository {
                 model.setDsc(rs.getString("dsc"));
                 model.setStr_dte(rs.getString("str_date"));
                 model.setEnd_dte(rs.getString("end_date"));
+                if (rs.getString("str_date").equals(rs.getString("end_date"))) {
+                    model.setStr_dte(rs.getString("str_date").substring(0, 10));
+                    model.setEnd_dte(rs.getString("end_date").substring(0, 10));
+                }
+
                 model.setAssignment_name(rs.getString("assingment.dsc"));
                 model.setEmployee_name(rs.getString("employee.nme"));
                 model.setProject_id(rs.getInt("project.id"));
@@ -108,6 +114,7 @@ public class ScheduleRepository {
         }
         return list;
     }
+
     public List<ScheduleModel> getByAll(int employeeId) {
         List<ScheduleModel> list = new ArrayList<>();
         int con = DBManager.getConnetion();

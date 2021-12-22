@@ -66,8 +66,8 @@ public class ScheduleService {
         
         
         //
-        str_date = str_date.split("T")[0];
-        end_date = end_date.split("T")[0];
+        //str_date = str_date.split("T")[0];
+       // end_date = end_date.split("T")[0];
         //
         
         model.setAssignment_id(assingment_id);
@@ -81,7 +81,7 @@ public class ScheduleService {
     
      
      
-        public void update2(HttpServletRequest req) {
+        public int update2(HttpServletRequest req) {
         ScheduleModel model = new ScheduleModel();
         
         int event_id = Integer.parseInt(req.getParameter("event_id"));
@@ -94,8 +94,8 @@ public class ScheduleService {
         
         
         //
-        str_date = str_date.split("T")[0];
-        end_date = end_date.split("T")[0];
+        //str_date = str_date.split("T")[0];
+        //end_date = end_date.split("T")[0];
         //
         
         model.setAssignment_id(assingment_id);
@@ -106,6 +106,7 @@ public class ScheduleService {
         model.setProject_id(prjct_id);
         model.setId(event_id);
         repo.update(model);
+        return event_id;
     }  
      
      

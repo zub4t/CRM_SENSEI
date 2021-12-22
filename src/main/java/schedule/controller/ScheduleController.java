@@ -82,8 +82,7 @@ public class ScheduleController extends HttpServlet {
                 case "insert2":
                     try {
                     if (req.getParameter("event_id") != null) {
-
-                        services.update2(req);
+                        data.put("id", services.update2(req));
                     } else {
                         data.put("id", services.insert2(req));
 

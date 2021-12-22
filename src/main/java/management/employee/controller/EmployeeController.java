@@ -70,7 +70,7 @@ public class EmployeeController extends HttpServlet {
                 out.print(data);
                 out.flush();
                 break;
-                
+        
                 case "list":
               
                     try {

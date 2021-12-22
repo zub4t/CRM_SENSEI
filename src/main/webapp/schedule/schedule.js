@@ -61,7 +61,7 @@ async function getColorByAssignment(assignment) {
         body: "pwhat=getColor&id=" + assignment
     });
     const jr = await response.json();
-    const text = await jr.color;
+    const text = await jr.colors;
 
     return text;
 }
@@ -213,7 +213,7 @@ function init(current_year) {
             }
         ],
         selectRange: function (e) {
-            editEvent({startDate: e.startDate, endDate: e.endDate});
+            editEvent({name: e.events[0].name, assignment: e.events[0].assignment, startDate: e.startDate, endDate: e.endDate});
         },
         mouseOnDay: function (e) {
             if (e.events.length > 0) {
