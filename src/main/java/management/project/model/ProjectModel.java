@@ -18,10 +18,22 @@ public class ProjectModel {
     private float effective_sale;
     private float effective_purchase;
     private float expected_purchase;
-
+    private int owner_id;
+    private String end_date;
+    private String owner_name;
     private String n_process;
     private float honorary;
     private String ctr_date;
+    private String start_date;
+    private int stts;
+
+    public String getStart_date() {
+        return ctr_date.split(" ")[0];
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
 
     public float getExpected_purchase() {
         return expected_purchase;
@@ -114,6 +126,38 @@ public class ProjectModel {
 
     public void setClient_id(int client_id) {
         this.client_id = client_id;
+    }
+
+    public int getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(int owner_id) {
+        this.owner_id = owner_id;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    public String getOwner_name() {
+        return owner_name;
+    }
+
+    public void setOwner_name(String owner_name) {
+        this.owner_name = owner_name;
+    }
+
+    public int getStts() {
+        return stts;
+    }
+
+    public void setStts(int stts) {
+        this.stts = stts;
     }
 
 }

@@ -3,9 +3,12 @@
     Created on : 17/ago/2021, 21:19:53
     Author     : Marco
 --%>
+
+<%@page import="java.nio.charset.StandardCharsets"%>
 <%@page import="management.assingment.model.AssingmentModel"%>
 <%@page import="management.assingment.services.AssingmentServices"%>
 <%@page import="management.project.services.ProjectServices"%>
+
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,6 +16,7 @@
 <%@page import="schedule.model.ScheduleModel"%>
 <%@page import="util.Util"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <html>
     <head>
 
@@ -50,7 +54,6 @@
 
     <link rel="stylesheet" type="text/css" href="schedule.css" />
 
-    <script src="schedule.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>ShiSchedule</title>
 </head>
@@ -69,26 +72,31 @@
             ScheduleService service = new ScheduleService();
             int year = Calendar.getInstance().get(Calendar.YEAR);
 
-            List<ScheduleModel> list = service.getByYear(year, request);
+            List<ScheduleModel> list = service.getByYearInterventions(year, request);
             String jsonData = "[";
             for (ScheduleModel model : list) {
 
-                String strDateDay = (model.getStr_dte().split("-")[2]).split(" ")[0];
+                String strDateDay = model.getStr_dte().split("-")[2];
                 String strDateMonth = model.getStr_dte().split("-")[1];
 
-                String endDateDay = (model.getEnd_dte().split("-")[2]).split(" ")[0];
+                String endDateDay = model.getEnd_dte().split("-")[2];
                 String endDateMonth = model.getEnd_dte().split("-")[1];
                 int endDateMonthInt = Integer.parseInt(endDateMonth) - 1;
                 int strDateMonthInt = Integer.parseInt(strDateMonth) - 1;
                 AssingmentModel assinmentModel = assingment.getById(model.getAssignment_id());
+                String rawString = ((model.getDsc()).replaceAll("[^\\x20-\\x7e]", "")).replaceAll("\n", " ");
+                byte[] bytes = rawString.getBytes(StandardCharsets.UTF_8);
+
+                String utf8EncodedString = new String(bytes, StandardCharsets.UTF_8);
+
                 String event = "{id:" + model.getId()
                         + ",name:'" + model.getProject_name() + "'"
                         + ",color:'" + assinmentModel.getColor() + "'"
-                        + ",location:'" + model.getDsc() + "'"
+                        + ",location:'" + utf8EncodedString + "'"
                         + ",assignment:' " + model.getAssignment_name() + "'"
                         + ",startDate: new Date(currentYear, " + strDateMonthInt + ", " + strDateDay + ")"
                         + ",endDate: new Date(currentYear, " + endDateMonthInt + ", " + endDateDay + ")"
-                        + "},";
+                        + "},\n";
                 jsonData += event;
 
             }
@@ -111,11 +119,10 @@
          ];
          */
     </script>
-
     <div style="position: absolute;z-index: 100;" id="img_shi">
         <img width="100px" onclick="window.location.href = '/CRM_SENSEI/main/main.jsp'" style="cursor: pointer" src="/CRM_SENSEI/resources/SHI_LOGO-HORIZONTAL transp_low-0.png">
     </div>
-    <h1 style=" text-align: center; margin-top: 25px;">Calendário planejamento ** <%=session.getAttribute("username")%> **</h1>
+    <h1 style="text-align: center; margin-top: 25px;">Calendário corrente ** <%=session.getAttribute("username")%> **</h1>
     <div id="calendar"></div>
 
     <div class="modal fade" id="event-modal">
@@ -151,18 +158,14 @@
                                     </c:forEach>
 
                                 </select>
-
-
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="dsc" class="col-sm-6 control-label">Informação adicional:</label>
                             <div class="col-sm-10">
                                 <input name="dsc" type="text" class="form-control">
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="min-date" class="col-sm-4 control-label">Datas</label>
                             <div class="col-sm-8">
@@ -202,18 +205,12 @@
 
 
     </div>
-    <div style="min-height: 350px;max-height: 350px; width: 300px; overflow: auto"id="mydiv">
-        <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-        <div style="position: fixed;width: 300px;" id="mydivheader">Projetos por responsabilidade</div>
-        <div style="margin-top: 50px"></div>
-        <c:forEach items="${projects_in_working}" var="item">
-            <div> ${item.title}</div>
-        </c:forEach> 
-
-    </div>
 
     <%} else {
             out.print("Usuario não está logado");
         }%>
+    <script src="schedule.js"></script>
+
 </body>
+
 </html>

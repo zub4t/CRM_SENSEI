@@ -57,7 +57,7 @@ public class ProjectRepository {
         PreparedStatement pstmt = null;
         ProjectModel model = new ProjectModel();
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from project where id=?");
+            pstmt = DBManager.getPreparedStatement(con, "select project.* , employee.nme from project inner join employee on project.ownr = employee.id where project.id=?");
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
 
@@ -72,6 +72,10 @@ public class ProjectRepository {
                 model.setEffective_purchase(rs.getFloat("effective_purchase"));
                 model.setHonorary(rs.getFloat("honorary"));
                 model.setExpected_purchase(rs.getFloat("expected_purchase"));
+                model.setOwner_id(rs.getInt("ownr"));
+                model.setEnd_date(rs.getString("end_date"));
+                model.setOwner_name(rs.getString("nme"));
+                model.setStts(rs.getInt("stts"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,12 +86,12 @@ public class ProjectRepository {
         return model;
     }
 
-    public void insertProject(int client_id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary, float expected_purchase) {
+    public void insertProject(int client_id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary, float expected_purchase, int owner_id, String end_date) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "insert into project (clientt_id,n_process,customer_nme,expected_sale,effective_sale,effective_purchase,honorary,expected_purchase) values(?,?,?,?,?,?,?,?)");
+            pstmt = DBManager.getPreparedStatement(con, "insert into project (clientt_id,n_process,customer_nme,expected_sale,effective_sale,effective_purchase,honorary,expected_purchase,ownr,end_date,stts) values(?,?,?,?,?,?,?,?,?,?,0)");
             pstmt.setInt(1, client_id);
             pstmt.setString(2, n_process);
             pstmt.setString(3, nme);
@@ -96,6 +100,9 @@ public class ProjectRepository {
             pstmt.setFloat(6, effective_purchase);
             pstmt.setFloat(7, honorary);
             pstmt.setFloat(8, expected_purchase);
+            pstmt.setInt(9, owner_id);
+            pstmt.setString(10, end_date);
+
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,12 +136,12 @@ public class ProjectRepository {
         return list;
     }
 
-    public ProjectModel updateProject(int client_id, int id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary, float expected_purchase) {
+    public ProjectModel updateProject(int client_id, int id, String n_process, String nme, float expected_sale, float effective_sale, float effective_purchase, float honorary, float expected_purchase, int owner_id, String end_date) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         ProjectModel projectModel = getById(id);
         try {
-            pstmt = DBManager.getPreparedStatement(con, "update project SET clientt_id = ?, n_process = ?, customer_nme = ?, expected_sale = ?, effective_sale = ?, effective_purchase = ? , honorary = ? , expected_purchase = ? where id = ?");
+            pstmt = DBManager.getPreparedStatement(con, "update project SET clientt_id = ?, n_process = ?, customer_nme = ?, expected_sale = ?, effective_sale = ?, effective_purchase = ? , honorary = ? , expected_purchase = ?  , ownr = ? , end_date = ? where id = ?");
             pstmt.setInt(1, client_id);
             pstmt.setString(2, n_process);
             pstmt.setString(3, nme);
@@ -143,7 +150,10 @@ public class ProjectRepository {
             pstmt.setFloat(6, effective_purchase);
             pstmt.setFloat(7, honorary);
             pstmt.setFloat(8, expected_purchase);
-            pstmt.setInt(9, id);
+            pstmt.setInt(9, owner_id);
+            pstmt.setString(10, end_date);
+            pstmt.setInt(11, id);
+
             pstmt.executeUpdate();
             projectModel.setCustomer_nme(nme);
             projectModel.setN_process(n_process);
@@ -151,6 +161,9 @@ public class ProjectRepository {
             projectModel.setEffective_sale(effective_sale);
             projectModel.setEffective_purchase(effective_purchase);
             projectModel.setExpected_purchase(expected_purchase);
+            projectModel.setOwner_id(owner_id);
+            projectModel.setEnd_date(end_date);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -183,7 +196,7 @@ public class ProjectRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from project order by id DESC limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from project order by customer_nme ASC limit " + (n * 20) + " , 20");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 ProjectModel model = new ProjectModel();
@@ -276,12 +289,9 @@ public class ProjectRepository {
         PreparedStatement pstmt = null;
         String adminView = "";
         MenuRepository repository = new MenuRepository();
-        if (repository.getUserLevelById(id) == 0) {
-            adminView = "or 1=1";
-        }
 
         try {
-            pstmt = DBManager.getPreparedStatement(con, "SELECT \n"
+            String sql = "SELECT ownr, IFNULL(end_date,\"9999-99-99\") as endDate, stts,\n"
                     + "    n_process,\n"
                     + "    customer_nme,\n"
                     + "    project_id AS proj_id,\n"
@@ -291,7 +301,7 @@ public class ProjectRepository {
                     + " \n"
                     + "FROM\n"
                     + "    (SELECT \n"
-                    + "        n_process,\n"
+                    + "           ownr,stts,end_date,n_process,\n"
                     + "        customer_nme,\n"
                     + "        project_id,\n"
                     + "            nme,\n"
@@ -305,10 +315,13 @@ public class ProjectRepository {
                     + "        project_employee\n"
                     + "    INNER JOIN project ON project_employee.project_id = project.id \n"
                     + "    INNER JOIN employee ON project_employee.employee_id = employee.id \n"
-                    + "	where employee.id  in (?)" + adminView + " and 1=1     GROUP BY project_id , employee_id) AS t\n"
-                    + "GROUP BY project_id;\n"
-                    + "");
+                    + "	where employee.id  in (?)" + adminView + " and (stts=1 or stts=2)    GROUP BY project_id , employee_id) AS t      where ownr = ?  \n"
+                    + "GROUP BY project_id order by customer_nme ASC\n";
+
+            pstmt = DBManager.getPreparedStatement(con, sql);
             pstmt.setInt(1, id);
+            pstmt.setInt(2, id);
+
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 ProjectModelCardView model = new ProjectModelCardView();
@@ -316,7 +329,7 @@ public class ProjectRepository {
                 model.setCod(rs.getString("n_process"));
                 model.setStart_date(rs.getString("ctr_date"));
                 model.setTitle(rs.getString("customer_nme"));
-                model.setEnd_date("9999-99-99");
+                model.setEnd_date(rs.getString("endDate"));
                 model.setTotal_hours(rs.getString("total_hours"));
                 pstmt = DBManager.getPreparedStatement(con, "SELECT  IFNULL(SEC_TO_TIME(SUM(TIME_TO_SEC(spend_time))),'00:00:00') week_hours FROM project_employee WHERE project_id = ? AND employee_id = ? AND YEARWEEK(dte, 1) = YEARWEEK(CURDATE(), 1)");
                 pstmt.setString(1, rs.getString("proj_id"));
@@ -333,5 +346,22 @@ public class ProjectRepository {
             DBManager.closeConnection(con);
         }
         return list;
+    }
+
+    public void changeStts(int id, int stts) {
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "update project SET stts = ? where id = ?");
+            pstmt.setInt(1, stts);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
     }
 }

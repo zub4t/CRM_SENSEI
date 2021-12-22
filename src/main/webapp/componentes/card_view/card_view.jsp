@@ -11,8 +11,85 @@
 
     MenuServices menu_1 = new MenuServices();
 %>
+<style>
+    .chart-container {
+        width: 1000px;
+        height:600px
+    }
+</style>
 
 <c:forEach items="${projects_in_working}" var="item">
+
+
+    <script>
+        let hours_total_${item.id} = Math.abs((new Date(("${item.start_date}").replace("-", ","))) - (new Date(("${item.end_date}").replace("-", ",")))) / 36e5;
+        let days_total_${item.id} = hours_total_${item.id} / 24;
+
+        let hours_left_${item.id} = Math.abs((new Date()) - (new Date(("${item.end_date}").replace("-", ",")))) / 36e5;
+        let days_left_${item.id} = hours_left_${item.id} / 24;
+
+        let  result_${item.id} = parseInt(100 * (Math.abs((days_left_${item.id} - days_total_${item.id})) / days_total_${item.id}))
+        const data_${item.id} = {
+            labels: [
+                '',
+            ],
+            datasets: [{
+                    label: 'Projeto conclusão %',
+                    data: [result_${item.id}],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                    ],
+                    hoverOffset: 4
+                }]
+        };
+        const config_${item.id} = {
+            type: 'bar',
+            data: data_${item.id},
+            options: {
+                indexAxis: 'y',
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each horizontal bar to be 2px wide
+                elements: {
+                    bar: {
+                        borderWidth: 2,
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Horizontal Bar Chart'
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 100
+                            }
+
+                        }]
+                },
+
+            },
+
+        };
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx_${item.id} = document.getElementById('chart_${item.id}').getContext('2d');
+            new Chart(ctx_${item.id}, config_${item.id});
+        }, false);
+
+
+
+    </script>
     <div class="card_content">
         <div>
             <div>
@@ -35,7 +112,7 @@
                 <span class="label-answer"> ${item.end_date}</span>
             </div>
         </div> 
-        <div>
+        <!--<div>
             <div style="margin-bottom: 25px"> <span class="label-question">Mapa de Horas:</span></div>
             <div>
                 <div class="outside-circle">
@@ -50,14 +127,17 @@
                 <div style="display: flex"> <div style="background-color: #31AABD; width: 10px;height: 10px"></div> <span class="label-answer">Horas feitas nesta semana.</span> </div>
                 <div style="display: flex"> <div style="background-color: #3D8DAE; width: 10px;height: 10px"></div> <span class="label-answer">Somatoria das horas feitas no total.</span> </div>
             </div>
-        </div>
+        </div> -->
+        <canvas id="chart_${item.id}" width="50" height="50"></canvas>
+
         <div style="display:flex ; justify-content: space-around; margin-top: 30px;">
             <button class="btn-type-1"    <% if (menu_1.isVisible(request, 1)) { %> onclick=" window.location.href = '/CRM_SENSEI/project_view/project_view.jsp?project=${item.id}'" <%}%> > Abrir Projeto </button>
-                <button class="btn-type-1" onclick="open_interventions_modal(${item.id})">Adicionar Horas</button>
+            <button class="btn-type-1" onclick="open_interventions_modal(${item.id})">Adicionar Horas</button>
         </div>
 
     </div>    
 </c:forEach>
+
 <script>
 
     function open_interventions_modal(id) {
@@ -126,7 +206,7 @@
         position: relative;
         background-color: white;
         width: 350px;
-        height: 473px;
+        height: 530px;
         padding-left: 15px;
         padding-right:15px;
         padding-top: 30px;

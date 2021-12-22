@@ -101,7 +101,7 @@ public class MenuRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from main_menu where lvl =0 limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from main_menu where lvl =0 order by nme limit " + (n * 20) + " , 20 ");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 MenuModel model = new MenuModel();

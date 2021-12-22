@@ -235,7 +235,7 @@ public class Rpt1 extends HttpServlet {
         for (int i = 0; i < 20; i++) {
             sheet.setColumnWidth(i, 8000);
         }
-        createReportHeader(wb, sheet, cs, sheetName0, user, 7, 9);
+        createReportHeader(wb, sheet, cs, sheetName0, user, 8, 9);
         String where = " where ";
         //Cabeçalho
         int lin = 7;

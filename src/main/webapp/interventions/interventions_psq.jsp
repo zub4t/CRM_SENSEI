@@ -77,9 +77,10 @@ if(session.getAttribute("username")!= null) {
             <input type="hidden" name="pwhat" value="edit">
             <input type="hidden" name="id" value="">
         </form>
-        <form id="searchform" method="GET" action="/CRM_SENSEI/InterventionsController">
+        <form id="searchform" method="GET" action="/CRM_SENSEI/InterventionsController"
+               style="display: flex; justify-content: center;align-items: flex-start; flex-direction: column; margin-top: 25px;margin-left: 50%;width: 620px;border: 1px solid black;padding: 10px;position: absolute">
             <input type="hidden" name="pwhat" value="search">
-            <div style="display: flex; justify-content: center;align-items: flex-start; flex-direction: column; margin-top: 25px;margin-left: 50%;width: 620px;border: 1px solid black;padding: 10px;"> 
+            <div> 
                 <div style="display: flex;">
                     <div style="margin-right: 50px; width: 150px">Funcionário</div>
                     <div>

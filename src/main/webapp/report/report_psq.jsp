@@ -38,7 +38,7 @@ if(session.getAttribute("username")!=null) {
     </head>
     <body>
 
-        <%@include file="../../menu/menu.jsp" %>
+        <%@include file="../menu/menu.jsp" %>
         <div class="main-content">  
             <div class="form" style="height: 500px">
                 <% if(menu.isVisible(request, 15)){ %>

@@ -70,6 +70,25 @@ public class EmployeeController extends HttpServlet {
                 out.print(data);
                 out.flush();
                 break;
+                
+                case "list":
+              
+                    try {
+                    resp.setContentType("application/json;charset=UTF-8");
+                    resp.setHeader("Access-Control-Allow-Origin", "*");
+                    resp.setCharacterEncoding("UTF-8");
+                    data.put("list",  services.list());
+                   
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("list", "[]");
+                   
+
+                }
+                out = resp.getWriter();
+                out.print(data);
+                out.flush();
+                break;
                 case "login":
                     int id = 0;
                     if ((id = services.login(req)) != 0) {

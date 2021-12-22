@@ -11,7 +11,7 @@
 
 
 
-<div class="main-content">
+<div class="">
     <div class="form">
 
 

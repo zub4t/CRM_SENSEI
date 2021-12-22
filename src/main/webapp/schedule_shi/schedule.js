@@ -5,7 +5,7 @@
  */
 
 
-var calendar = new Object();
+var calendar = null;
 function editEvent(event) {
     if (event.name) {
         $("#prj_slct option").each((index, op) => {
@@ -24,7 +24,6 @@ function editEvent(event) {
             }
         })
     }
-
     $('#event-modal input[name="event-index"]').val(event ? event.id : '');
     $('#event-modal input[name="event-name"]').val(event ? event.name : '');
     $('#event-modal input[name="event-location"]').val(event ? event.location : '');
@@ -141,7 +140,6 @@ async function saveEvent() {
     $('#event-modal').modal('hide');
 
 }
-
 function getData(year) {
 
 
@@ -153,13 +151,19 @@ function getData(year) {
             data_aux.startDate = new Date(year, data_aux.startMonth, data_aux.startDay)
             data_aux.endDate = new Date(year, data_aux.endMonth, data_aux.endDay)
         }
-
         data = data_incoming
         setSundayAndSaturdays(year)
         calendar.setDataSource(data);
     })
-
 }
+$(function () {
+    let current_year = new Date().getFullYear();
+    init(current_year)
+    document.querySelector('#calendar').addEventListener('yearChanged', function (e) {
+        getData(e.currentYear)
+    });
+});
+
 function setSundayAndSaturdays(current_year) {
     for (let month in [...Array(12).keys()]) {
         sundaysInMonth((parseInt(month)), current_year).map((day) => {
@@ -187,16 +191,10 @@ function setSundayAndSaturdays(current_year) {
         })
     }
 }
-$(document).ready(function () {
-    let current_year = new Date().getFullYear();
-    init(current_year)
-    document.querySelector('#calendar').addEventListener('yearChanged', function (e) {
-        getData(e.currentYear)
-    });
-})
 
 function init(current_year) {
-    setSundayAndSaturdays(current_year);
+    setSundayAndSaturdays(current_year)
+
     calendar = new Calendar('#calendar', {
         enableContextMenu: true,
         enableRangeSelection: true,
@@ -247,6 +245,17 @@ function init(current_year) {
         },
         dataSource: data
     });
+    calendar.setYear(current_year)
+    setTimeout(() => {
+
+        $(".year-title").each((index, data) => {
+            $(data).click(() => {
+                console.log(index)
+                getData($(data).text())
+            })
+        })
+    }, 1000)
+
 
     $('#save-event').click(function () {
         saveEvent();
@@ -276,6 +285,7 @@ function sundaysInMonth(m, y) {
 
     return sun;
 }
+
 window.onload = function () {
     $('[name=event-start-date]').datepicker();
     $('[name=event-end-date]').datepicker();

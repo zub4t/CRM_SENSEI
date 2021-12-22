@@ -171,6 +171,34 @@ public class EmployeeRepository {
         }
     }
 
+    public List<EmployeeModel> list() {
+
+        List<EmployeeModel> list = new ArrayList<EmployeeModel>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id) ");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                EmployeeModel model = new EmployeeModel();
+                model.setId(rs.getInt("id"));
+                model.setNme(rs.getString("nme"));
+                model.setTel(rs.getString("tel"));
+                model.setEmail(rs.getString("email"));
+                model.setSalary(rs.getFloat("salary"));
+                model.setUserLevel(rs.getInt("level"));
+                list.add(model);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
+    }
+
     public void insertEmployee(String nme, String tel, String email, String salary, String nickname, String pass, String level) {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
@@ -258,7 +286,7 @@ public class EmployeeRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)   limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from employee inner join  usr using(id)  order by nme limit " + (n * 20) + " , 20");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 EmployeeModel model = new EmployeeModel();

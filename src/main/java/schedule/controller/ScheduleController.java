@@ -13,7 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import management.assingment.model.AssingmentModel;
+import management.assingment.services.AssingmentServices;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import schedule.model.ScheduleModel;
 import schedule.services.ScheduleService;
 
 /**
@@ -46,6 +51,16 @@ public class ScheduleController extends HttpServlet {
             PrintWriter out = resp.getWriter();
 
             switch (pwhat) {
+                case "api":
+                    int id_employee = Integer.parseInt(req.getParameter("id"));
+                    data.put("events", services.getAll(id_employee));
+                    resp.setContentType("application/json");
+                    resp.setHeader("Access-Control-Allow-Origin", "*");
+                    resp.setCharacterEncoding("UTF-8");
+                    out = resp.getWriter();
+                    out.print(data);
+                    out.flush();
+                    break;
                 case "insert":
                     try {
                     int id = services.insert(req);
@@ -64,6 +79,27 @@ public class ScheduleController extends HttpServlet {
                 out.print(data);
                 out.flush();
                 break;
+                case "insert2":
+                    try {
+                    if (req.getParameter("event_id") != null) {
+
+                        services.update2(req);
+                    } else {
+                        data.put("id", services.insert2(req));
+
+                    }
+
+                    data.put("status", 200);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("status", 500);
+                }
+                resp.setContentType("application/json");
+                resp.setHeader("Access-Control-Allow-Origin", "*");
+                resp.setCharacterEncoding("UTF-8");
+                out.print(data);
+                out.flush();
+                break;
                 case "delete":
                     services.remove(req);
                     resp.setContentType("text/html;charset=UTF-8");
@@ -78,6 +114,48 @@ public class ScheduleController extends HttpServlet {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    break;
+                case "calendar":
+
+                    resp.setContentType("application/json;charset=UTF-8");
+
+                    int year = Integer.parseInt(req.getParameter("year"));
+
+                    AssingmentServices assingment = new AssingmentServices();
+                    JSONArray jArray = new JSONArray();
+
+                    try {
+                        for (ScheduleModel model : services.getByYear(year, req)) {
+                            JSONObject modelJSON = new JSONObject();
+
+                            String strDateDay = model.getStr_dte().split("-")[2];
+                            String strDateMonth = model.getStr_dte().split("-")[1];
+                            String endDateDay = model.getEnd_dte().split("-")[2];
+                            String endDateMonth = model.getEnd_dte().split("-")[1];
+                            int endDateMonthInt = Integer.parseInt(endDateMonth) - 1;
+                            int strDateMonthInt = Integer.parseInt(strDateMonth) - 1;
+                            AssingmentModel assinmentModel = assingment.getById(model.getAssignment_id());
+
+                            modelJSON.put("id", model.getId());
+                            modelJSON.put("name", model.getProject_name());
+                            modelJSON.put("color", assinmentModel.getColor());
+                            modelJSON.put("location", model.getDsc());
+                            modelJSON.put("assignment", model.getAssignment_name());
+                            modelJSON.put("startYear", year);
+                            modelJSON.put("startMonth", strDateMonthInt);
+                            modelJSON.put("startDay", strDateDay);
+                            modelJSON.put("endYear", year);
+                            modelJSON.put("endMonth", endDateMonthInt);
+                            modelJSON.put("endDay", endDateDay);
+
+                            jArray.put(modelJSON);
+                        }
+                    } catch (JSONException jse) {
+                        jse.printStackTrace();
+                    }
+                    out = resp.getWriter();
+                    out.print(jArray);
+                    out.flush();
                     break;
 
             }

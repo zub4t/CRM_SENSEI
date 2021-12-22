@@ -75,13 +75,82 @@ public class ScheduleRepository {
             DBManager.closeConnection(con);
         }
     }
-
-    public List<ScheduleModel> getByYear(int year) {
+  public List<ScheduleModel> getAll(int id) {
         List<ScheduleModel> list = new ArrayList<>();
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from calendar inner join assingment on assingment.id = assingment_id inner join employee on employee_id = employee.id inner join project on project.id = project_id  where YEAR(str_date) = '" + year + "';");
+            pstmt = DBManager.getPreparedStatement(con, "select * from calendar inner join assingment on assingment.id = assingment_id inner join employee on employee_id = employee.id inner join project on project.id = project_id where employee_id =  ?");
+            pstmt.setInt(1,id);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ScheduleModel model = new ScheduleModel();
+                model.setId(rs.getInt("id"));
+                model.setAssignment_id(rs.getInt("assingment_id"));
+                model.setEmployee_id(rs.getInt("employee_id"));
+                model.setDsc(rs.getString("dsc"));
+                model.setStr_dte(rs.getString("str_date"));
+                model.setEnd_dte(rs.getString("end_date"));
+                model.setAssignment_name(rs.getString("assingment.dsc"));
+                model.setEmployee_name(rs.getString("employee.nme"));
+                model.setProject_id(rs.getInt("project.id"));
+                model.setProject_name(rs.getString("project.customer_nme"));
+
+                list.add(model);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
+    }
+    public List<ScheduleModel> getByAll(int employeeId) {
+        List<ScheduleModel> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from calendar inner join assingment on assingment.id = assingment_id inner join employee on employee_id = employee.id inner join project on project.id = project_id  where employee_id = ?;");
+            pstmt.setInt(1, employeeId);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ScheduleModel model = new ScheduleModel();
+                model.setId(rs.getInt("id"));
+                model.setAssignment_id(rs.getInt("assingment_id"));
+                model.setEmployee_id(rs.getInt("employee_id"));
+                model.setDsc(rs.getString("dsc"));
+                model.setStr_dte(rs.getString("str_date"));
+                model.setEnd_dte(rs.getString("end_date"));
+                model.setAssignment_name(rs.getString("assingment.dsc"));
+                model.setEmployee_name(rs.getString("employee.nme"));
+                model.setProject_id(rs.getInt("project.id"));
+                model.setProject_name(rs.getString("project.customer_nme"));
+
+                list.add(model);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
+    }
+
+    public List<ScheduleModel> getByYear(int year, int employeeId) {
+        List<ScheduleModel> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from calendar inner join assingment on assingment.id = assingment_id inner join employee on employee_id = employee.id inner join project on project.id = project_id  where YEAR(str_date) = ? and employee_id = ?;");
+            pstmt.setInt(1, year);
+            pstmt.setInt(2, employeeId);
+
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 ScheduleModel model = new ScheduleModel();
@@ -121,6 +190,41 @@ public class ScheduleRepository {
             DBManager.closePstmt(pstmt);
             DBManager.closeConnection(con);
         }
+    }
+
+    public List<ScheduleModel> getByYearInterventions(int year, int employee_id) {
+        List<ScheduleModel> list = new ArrayList<>();
+        int con = DBManager.getConnetion();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = DBManager.getPreparedStatement(con, "select * from calendar_interventions inner join assingment on assingment.id = assingment_id inner join employee on employee_id = employee.id inner join project on project.id = project_id  where YEAR(str_date) = ? and employee_id = ?;");
+            pstmt.setInt(1, year);
+            pstmt.setInt(2, employee_id);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ScheduleModel model = new ScheduleModel();
+                model.setId(rs.getInt("id"));
+                model.setAssignment_id(rs.getInt("assingment_id"));
+                model.setEmployee_id(rs.getInt("employee_id"));
+                model.setDsc(rs.getString("dsc"));
+                model.setStr_dte(rs.getString("str_date"));
+                model.setEnd_dte(rs.getString("end_date"));
+                model.setAssignment_name(rs.getString("assingment.dsc"));
+                model.setEmployee_name(rs.getString("employee.nme"));
+                model.setProject_id(rs.getInt("project.id"));
+                model.setProject_name(rs.getString("project.customer_nme"));
+
+                list.add(model);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closePstmt(pstmt);
+            DBManager.closeConnection(con);
+        }
+        return list;
     }
 
 }

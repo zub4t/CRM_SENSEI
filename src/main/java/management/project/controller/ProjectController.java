@@ -47,6 +47,39 @@ public class ProjectController extends HttpServlet {
             ProjectModel projectModel = null;
             PrintWriter out;
             switch (pwhat) {
+                case "changeStts":
+               try {
+                    services.changeStts(req);
+                    data.put("header", "Alerta");
+                    data.put("body", "Registo efetuado, o status do projeto foi alterado");
+                    data.put("redirect", false);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("header", "Alerta");
+                    data.put("body", "Ocorreu um erro ao inserir um novo projeto");
+                    data.put("redirect", false);
+
+                }
+                out = resp.getWriter();
+                out.print(data);
+                out.flush();
+                break;
+                case "getAll":
+               try {
+                   
+                    data.put("projects", services.getAll());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("projects", "[]");
+
+                }
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.setHeader("Access-Control-Allow-Origin", "*");
+                out = resp.getWriter();
+                out.print(data);
+                out.flush();
+                break;
                 case "insert":
                     resp.setContentType("application/json");
                     resp.setCharacterEncoding("UTF-8");

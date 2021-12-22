@@ -39,7 +39,7 @@
                         <div id="profile-img"></div>
                     </div>
                     <div class="welcome-msg">
-                        <span id="salutation"> Bom dia</span><br><span id="user_nickname" style="color:#679596">Sr. <%=session.getAttribute("username")%></span>
+                        <span id="salutation"> Bom dia</span><br><span id="user_nickname" style="color:#679596"><%=session.getAttribute("username")%></span>
                     </div>
                 </div>
                 <div style="float: right">

@@ -31,14 +31,12 @@ function save() {
             return data.json();
 
         }).then(function (data) {
-            if (data.redirect) {
-                window.location.href = "/CRM_SENSEI/management/project/project_psq.jsp";
-            } else {
-                $("#modal_crm .modal-header").text(data.header);
-                $("#modal_crm #modal_content").text(data.body);
-                $("#modal_crm").show();
-                setTimeout(location.reload(), 1000);
-            }
+
+            $("#modal_crm .modal-header").text(data.header);
+            $("#modal_crm #modal_content").text(data.body);
+            $("#modal_crm").show();
+            setTimeout(location.reload(), 1000);
+
 
 
 
@@ -79,7 +77,7 @@ function goToProjectId(projectId) {
 
     }).then(function (data) {
         $("#modal_crm #modal_content").html(data);
-
+        setUpEdit();
         // document.querySelector(".modal-content").innerHTML = data;
     });
 

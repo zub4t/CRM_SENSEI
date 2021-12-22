@@ -5,6 +5,8 @@
  */
 package management.assingment.services;
 
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import management.assingment.model.AssingmentModel;
@@ -81,5 +83,14 @@ public class AssingmentServices {
         AssingmentRepository repository = new AssingmentRepository();
         int id = Integer.parseInt(req.getParameter("id"));
         return repository.getById(id).getColor();
+    }
+    
+    public Map<Integer,String> getColorAll(HttpServletRequest req) {
+        AssingmentRepository repository = new AssingmentRepository();
+        return repository.getColorAll();
+    }
+        public List<AssingmentModel> getAll(HttpServletRequest req) {
+        AssingmentRepository repository = new AssingmentRepository();
+        return repository.getAll();
     }
 }

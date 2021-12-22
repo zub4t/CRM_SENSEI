@@ -116,7 +116,7 @@ public class ClientRepository {
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
         try {
-            pstmt = DBManager.getPreparedStatement(con, "select * from clientt   limit " + (n * 20) + " , 20");
+            pstmt = DBManager.getPreparedStatement(con, "select * from clientt order by nme ASC  limit " + (n * 20) + " , 20");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 ClientModel model = new ClientModel();

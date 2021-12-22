@@ -33,11 +33,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CRM</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh2gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="./../management/project/project.js" ></script>
+        <script src="./project_view.js" ></script>
 
         <link href="/CRM_SENSEI/main/main.css" rel="stylesheet"/>
         <style>
-
+            .img-edit{
+                background-image: url('../resources/editar-arquivo.png');
+                background-size: contain;
+                width: 16px;
+                height: 16px;
+                float: right;
+                cursor: pointer;
+            }
             .label-question{
                 margin-left: 10px;
                 color: #18494D;
@@ -109,7 +118,24 @@
     <body>
 
         <%@include file="../menu/menu.jsp" %>
+        <script>
 
+            document.addEventListener("DOMContentLoaded", function () {
+
+                if (${project_model.stts} == 1) {
+
+                    changeToOpenCss();
+                } else if (${project_model.stts} == 2) {
+
+                    changeToOrderCss();
+                } else if (${project_model.stts} == 0) {
+
+                    changeToClosedCss();
+                }
+
+
+            }, false);
+        </script>
         <div class="main-content" style="display: flex">
             <div >
                 <div class="client-info" >
@@ -158,6 +184,7 @@
 
 
                 <div class="project-info">
+                    <span class="img-edit" onclick="goToProjectId(${project_model.id})"></span>
                     <h2 class="label-question">Informações Projeto</h2>
                     <div  class="label-question">Nome do projeto</div>
                     <div><input  type="text" disabled style="width: 500px" class="label-answer" value="${project_model.customer_nme}"></div>
@@ -170,10 +197,14 @@
 
                         <div>
                             <div  class="label-question">Data início </div>
-                            <div><input  type="data" disabled value="${project_model.ctr_date}"></div>
+                            <div><input  type="data" disabled value="${project_model.start_date}"></div>
 
                         </div>
+                        <div>
+                            <div  class="label-question">Data fim </div>
+                            <div><input  type="data" disabled value="${project_model.end_date}"></div>
 
+                        </div>
 
                     </div>
 
@@ -199,23 +230,26 @@
                             <div><input type="text" class="label-answer" value="<fmt:formatNumber value="${project_model.effective_purchase}" type="currency"/> " disabled></div>
                         </div>
                     </div>
-                    <!--                    <div>
-                                            <div  class="label-question">Status</div>
-                                            <div style="display: flex"> <div onclick="change()" class="active">Aberto</div> <div onclick="change()" class="inactive">Fechado</div></div>
-                                        </div>-->
+                    <div>
+                        <div  class="label-question">Status</div>
+                        <div style="display: flex"> 
+                            <div id="open" onclick="changeToOpen(${project_model.id})" class="">Curso</div> 
+                            <div id="order" onclick="changeToOrder(${project_model.id})" class="">Encomenda</div>
+                            <div id="closed" onclick="changeToClosed(${project_model.id})" class="">Finalizado</div>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
             <div>
                 <div class="lists">
-                    <h2 class="label-question" style="text-align: center">Associados ao projeto</h2>
+                    <h2 class="label-question" style="text-align: center">Lider do projeto</h2>
 
                     <table width="100%">
-                        <c:forEach items="${set}" var="item"   varStatus="loop">
-                            <tr>
-                                <td>${item} </td>    
-                            </tr>
-                        </c:forEach>
+                        <tr>
+                            <td>${project_model.owner_name} </td>    
+                        </tr>
                     </table>
                 </div>
 

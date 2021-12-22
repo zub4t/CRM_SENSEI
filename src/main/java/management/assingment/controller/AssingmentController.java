@@ -51,13 +51,38 @@ public class AssingmentController extends HttpServlet {
             switch (pwhat) {
                 case "getColor":
                     try {
-                    data.put("color", services.getColor(req));
+                    data.put("colors", services.getColor(req));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("color", "[]");
+                }
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.setHeader("Access-Control-Allow-Origin", "*");
+                out.print(data);
+                out.flush();
+                break;
+                case "getAll":
+                    try {
+                    data.put("assignments", services.getAll(req));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data.put("assignments", "[]");
+                }
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.setHeader("Access-Control-Allow-Origin", "*");
+                out.print(data);
+                out.flush();
+                break;
+                case "getColorAll":
+                    try {
+                    data.put("color", services.getColorAll(req));
                 } catch (Exception e) {
                     e.printStackTrace();
                     data.put("color", "#000000");
                 }
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.setHeader("Access-Control-Allow-Origin", "*");
                 out.print(data);
                 out.flush();
                 break;

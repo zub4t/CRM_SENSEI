@@ -24,6 +24,7 @@
 
 
 <div class="white-board">
+    
     <div id="img_shi">
         <img width="200px" onclick="window.location.href = '/CRM_SENSEI/main/main.jsp'" style="cursor: pointer" src="<%=Constant.HOST%>/resources/SHI_LOGO-HORIZONTAL transp_low-0.png">
     </div>
@@ -39,7 +40,7 @@
                 <div class="lvl-1 not-visible childOf-${child.getParent_id()}" id="${child.getId()}" >
 <!--                    <a href="http://mouraazevedo.dyndns.org:8084/CRM_SENSEI/${child.getUrl()}">-->
 <!--                    <a href="http://192.168.1.185:8084/CRM_SENSEI/${child.getUrl()}">-->
-                        <a href="http://localhost:8084/CRM_SENSEI/${child.getUrl()}">
+                    <a href="http://localhost:8084/CRM_SENSEI/${child.getUrl()}">
 
                             ${child.getNme()}
 

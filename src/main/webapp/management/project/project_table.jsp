@@ -37,50 +37,50 @@
 
 
 
-    <c:forEach items="${projectList}" var="item"   varStatus="loop">
-       <div class="values-table-content">
-           <div class="dots3" style="width: 30%">
-                ${item.getN_process()} |  ${item.getCustomer_nme()}
-            </div>
-            <div class="dots3" style="width: 30%">
-                ${item.getCustomer_nme()}
-            </div>
+<c:forEach items="${projectList}" var="item"   varStatus="loop">
+    <div class="values-table-content">
+        <div class="dots3" style="width: 30%; cursor: pointer;" onclick="window.location.href = '/CRM_SENSEI/project_view/project_view.jsp?project=${item.id}'">
+            ${item.getN_process()} |  ${item.getCustomer_nme()}
+        </div>
+        <div class="dots3" style="width: 30%">
+            ${item.getCustomer_nme()}
+        </div>
 
-            <div class="" style="width: 10%">
-                <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
-                <fmt:formatNumber value="${item.getExpected_sale()}" type="currency"/>
-                <%}%>
-            </div>
-
-            <div class="" style="width: 10%">
-                <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
-
-                <fmt:formatNumber value="${item.getEffective_sale()}" type="currency"/>
-                <%}%>
-            </div>
-            <div class="" style="width: 10%">
-                <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
-
-                <fmt:formatNumber value="${item.getEffective_purchase()}" type="currency"/>
-
-                <%}%>
-            </div>
-            <% if (menu_1.isVisible(request, 1)) { %>
-            <div style="width: 5%">
-                <img onclick="goToProjectId(${item.id})" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
-            </div>
-            <%} else {%>
-            <div></div>
-            <%}%>
-            <% if (menu_1.isVisible(request, 1)) { %>
-            <div style="width: 5%" >
-                <img onclick="removeProject(${item.id})" style ="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
-            </div>
-            <%} else {%>
-            <div></div>
+        <div class="" style="width: 10%">
+            <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
+            <fmt:formatNumber value="${item.getExpected_sale()}" type="currency"/>
             <%}%>
         </div>
-    </c:forEach>
+
+        <div class="" style="width: 10%">
+            <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
+
+            <fmt:formatNumber value="${item.getEffective_sale()}" type="currency"/>
+            <%}%>
+        </div>
+        <div class="" style="width: 10%">
+            <%if (employeeRepository.getUserLevelById(Integer.parseInt(session.getAttribute("userId").toString())) < 2) {%>
+
+            <fmt:formatNumber value="${item.getEffective_purchase()}" type="currency"/>
+
+            <%}%>
+        </div>
+        <% if (menu_1.isVisible(request, 1)) { %>
+        <div style="width: 5%">
+            <img onclick="goToProjectId(${item.id});" style="cursor:pointer" src="/CRM_SENSEI/resources/editar-arquivo.png" width="16px"/>
+        </div>
+        <%} else {%>
+        <div></div>
+        <%}%>
+        <% if (menu_1.isVisible(request, 1)) { %>
+        <div style="width: 5%" >
+            <img onclick="removeProject(${item.id})" style ="cursor:pointer" src="/CRM_SENSEI/resources/cancel.png" width="12px"/>
+        </div>
+        <%} else {%>
+        <div></div>
+        <%}%>
+    </div>
+</c:forEach>
 <table width="100%">
     <tr>
         <td colspan="7">

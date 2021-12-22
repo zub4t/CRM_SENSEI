@@ -5,26 +5,9 @@
  */
 
 
-var calendar = new Object();
+var calendar = null;
+
 function editEvent(event) {
-    if (event.name) {
-        $("#prj_slct option").each((index, op) => {
-            if ($(op).text().replaceAll(' ', '') == (event.name.replaceAll(' ', ''))) {
-                $("#prj_slct").val($(op).val())
-
-            }
-        })
-    }
-    if (event.assignment) {
-        $("[name='assingment_id'] option").each((index, op) => {
-            if ($(op).text().replaceAll(' ', '') == (event.assignment.replaceAll(' ', ''))) {
-                $("[name='assingment_id']").val($(op).val())
-                console.log($(op).text())
-
-            }
-        })
-    }
-
     $('#event-modal input[name="event-index"]').val(event ? event.id : '');
     $('#event-modal input[name="event-name"]').val(event ? event.name : '');
     $('#event-modal input[name="event-location"]').val(event ? event.location : '');
@@ -142,25 +125,8 @@ async function saveEvent() {
 
 }
 
-function getData(year) {
-
-
-    fetch(`/CRM_SENSEI/ScheduleController?pwhat=calendar&year=${year}`)
-            .then(function (response) {
-                return response.json();
-            }).then(function (data_incoming) {
-        for (let data_aux of data_incoming) {
-            data_aux.startDate = new Date(year, data_aux.startMonth, data_aux.startDay)
-            data_aux.endDate = new Date(year, data_aux.endMonth, data_aux.endDay)
-        }
-
-        data = data_incoming
-        setSundayAndSaturdays(year)
-        calendar.setDataSource(data);
-    })
-
-}
-function setSundayAndSaturdays(current_year) {
+$(function () {
+    let current_year = new Date().getFullYear();
     for (let month in [...Array(12).keys()]) {
         sundaysInMonth((parseInt(month)), current_year).map((day) => {
 
@@ -186,32 +152,12 @@ function setSundayAndSaturdays(current_year) {
 
         })
     }
-}
-$(document).ready(function () {
-    let current_year = new Date().getFullYear();
-    init(current_year)
-    document.querySelector('#calendar').addEventListener('yearChanged', function (e) {
-        getData(e.currentYear)
-    });
-})
-
-function init(current_year) {
-    setSundayAndSaturdays(current_year);
     calendar = new Calendar('#calendar', {
         enableContextMenu: true,
         enableRangeSelection: true,
         style: 'background',
         language: 'pt',
-        contextMenuItems: [
-            {
-                text: 'Atualizar',
-                click: editEvent
-            },
-            {
-                text: 'Remover',
-                click: deleteEvent
-            }
-        ],
+
         selectRange: function (e) {
             editEvent({startDate: e.startDate, endDate: e.endDate});
         },
@@ -252,7 +198,11 @@ function init(current_year) {
         saveEvent();
     });
 
-}
+
+
+
+});
+
 
 function daysInMonth(month, year) {
     return new Date(year, month, 0).getDate();
@@ -276,6 +226,7 @@ function sundaysInMonth(m, y) {
 
     return sun;
 }
+
 window.onload = function () {
     $('[name=event-start-date]').datepicker();
     $('[name=event-end-date]').datepicker();

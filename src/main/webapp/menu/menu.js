@@ -13,6 +13,10 @@ window.onload = function () {
     }
     setUpMobile();
     window.addEventListener('resize', setUpMobile);
+
+    $("#23").click(function(){
+       console.log("teste");
+    })
 }
 
 
@@ -87,11 +91,11 @@ function setUpMobile() {
 }
 function openMenuTab(id) {
 
-   document.querySelectorAll(".childOf-" + id).forEach((element, index) => {
+    document.querySelectorAll(".childOf-" + id).forEach((element, index) => {
         if (element.classList.contains("not-visible"))
             element.classList.remove("not-visible");
         else
-             element.classList.add("not-visible");
+            element.classList.add("not-visible");
     });
 
 }

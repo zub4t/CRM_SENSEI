@@ -3,6 +3,7 @@
     Created on : 19/nov/2020, 10:48:28
     Author     : marco
 --%>
+<%@page import="management.employee.services.EmployeeServices"%>
 <%@page import="management.client.service.ClientService"%>
 <!DOCTYPE html>
 
@@ -13,6 +14,9 @@
 <%
     ClientService client = new ClientService();
     client.setAll(request, response);
+
+    EmployeeServices employeeServices = new EmployeeServices();
+    employeeServices.setListOfAllEmployes(request, response);
 
 %>
 
@@ -30,6 +34,22 @@
                     </select>
                 </div>                   
             </div>
+
+
+            <div class="form__group">
+                <div class="form_label">Responsável pelo projeto</div>
+                <div class="form_item">
+                    <select  name="employee_selected"  class="form__input  item" id="employee_slct" >
+
+                        <c:forEach items="${list}" var="item"   varStatus="loop">
+                            <option id="employee_${item.id}" value="${item.id}">${item.nme}</option>
+                        </c:forEach>
+                    </select>
+                </div>                   
+            </div>
+
+
+
             <div class="form__group">
                 <div class="form_label">Nº do processo:</div>
                 <div class="form_item">
@@ -43,6 +63,13 @@
                 </div>                   
             </div>
 
+            <div class="form__group">
+                <div class="form_label">Data de previsão para a finalização</div>
+                <div class="form_item">
+                    <input id="date"  name="date"  class="form__input  item"  type="date" value="">
+                </div>                 
+            </div>
+                
             <div class="form__group">
                 <div class="form_label">Venda Prevista:</div>
                 <div class="form_item">

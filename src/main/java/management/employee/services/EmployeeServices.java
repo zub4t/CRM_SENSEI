@@ -5,6 +5,7 @@
  */
 package management.employee.services;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import management.employee.model.EmployeeModel;
@@ -32,7 +33,12 @@ public class EmployeeServices {
         
         req.setAttribute("employeeList", repository.getN(n));
     }
-    
+      
+    public List<EmployeeModel> list() {
+        EmployeeRepository repository = new EmployeeRepository();
+   
+        return repository.list();
+    }
     public void insert(HttpServletRequest req) {
         EmployeeRepository repository = new EmployeeRepository();
         String nme = req.getParameter("nme");

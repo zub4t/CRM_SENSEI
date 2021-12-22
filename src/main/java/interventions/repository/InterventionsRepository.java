@@ -18,6 +18,7 @@ import management.employee.model.EmployeeModel;
 import management.employee.repository.EmployeeRepository;
 import management.project.model.ProjectModel;
 import management.project.repository.ProjectRepository;
+import schedule.model.ScheduleModel;
 import util.DBManager;
 
 /**
@@ -75,8 +76,18 @@ public class InterventionsRepository {
             pstmt.setString(4, spend_time);
             pstmt.setString(5, dsc);
             pstmt.setString(6, dte);
+            pstmt.executeUpdate();
+
+            pstmt = DBManager.getPreparedStatement(con, "insert into calendar_interventions (employee_id,assingment_id,project_id,dsc,str_date,end_date) values(?,?,?,?,?,?)");
+            pstmt.setInt(1, employee_id);
+            pstmt.setInt(2, assingment_id);
+            pstmt.setInt(3, project_id);
+            pstmt.setString(4, dsc);
+            pstmt.setString(5, dte);
+            pstmt.setString(6, dte);
 
             pstmt.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -25,9 +25,9 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 
 public class CellStyles {
-
+    
     SXSSFWorkbook wb;
-
+    
     public CellStyles(SXSSFWorkbook wb) {
         this.wb = wb;
     }
@@ -79,28 +79,29 @@ public class CellStyles {
     /////////////////////////////////////////////////
     //FONTES
     String fontName = "Lato Light";
-
+    
     public String getFontName() {
         return fontName;
     }
-
+    
     public void setFontName(String fontName) {
         this.fontName = fontName;
     }
-
+    
     XSSFFont fnormal = null;
-
+    
     public Font fnormal(SXSSFWorkbook wb) {
         if (fnormal == null) {
             fnormal = (XSSFFont) wb.createFont();
             fnormal.setFontHeightInPoints((short) 8);
             fnormal.setFontName(fontName);
+            fnormal.setColor(black);
         }
         return fnormal;
     }
-
+    
     XSSFFont fnormal11 = null;
-
+    
     public Font fnormal11(SXSSFWorkbook wb) {
         if (fnormal11 == null) {
             fnormal11 = (XSSFFont) wb.createFont();
@@ -109,9 +110,9 @@ public class CellStyles {
         }
         return fnormal11;
     }
-
+    
     XSSFFont fnormalbold11 = null;
-
+    
     public Font fnormalbold11(SXSSFWorkbook wb) {
         if (fnormalbold11 == null) {
             fnormalbold11 = (XSSFFont) wb.createFont();
@@ -121,9 +122,9 @@ public class CellStyles {
         }
         return fnormalbold11;
     }
-
+    
     XSSFFont fnormalwhite = null;
-
+    
     public Font fnormalwhite(SXSSFWorkbook wb) {
         if (fnormalwhite == null) {
             XSSFColor white1 = new XSSFColor();
@@ -131,18 +132,18 @@ public class CellStyles {
             b[0] = (byte) 255;
             b[0] = (byte) 255;
             b[0] = (byte) 255;
-            white.setRgb(b);
+            white.setRGB(b);
             fnormalwhite = (XSSFFont) wb.createFont();
             fnormalwhite.setFontHeightInPoints((short) 8);
             fnormalwhite.setFontName(fontName);
             fnormalwhite.setColor(white);
-
+            
         }
         return fnormalwhite;
     }
-
+    
     XSSFFont fnormalred = null;
-
+    
     public Font fnormalred(SXSSFWorkbook wb) {
         if (fnormalred == null) {
             fnormalred = (XSSFFont) wb.createFont();
@@ -152,9 +153,9 @@ public class CellStyles {
         }
         return fnormalred;
     }
-
+    
     XSSFFont fnormalgreen = null;
-
+    
     public Font fnormalgreen(SXSSFWorkbook wb) {
         if (fnormalgreen == null) {
             fnormalgreen = (XSSFFont) wb.createFont();
@@ -164,22 +165,22 @@ public class CellStyles {
         }
         return fnormalgreen;
     }
-
+    
     XSSFFont fheaderwhite = null;
-
+    
     public Font fheaderwhite(SXSSFWorkbook wb) {
         if (fheaderwhite == null) {
             fheaderwhite = (XSSFFont) wb.createFont();
             fheaderwhite.setColor(white);
             fheaderwhite.setFontHeightInPoints((short) 11);
             fheaderwhite.setFontName(fontName);
-
+            
         }
         return fheaderwhite;
     }
-
+    
     XSSFFont fheaderboldwhiteXLargeF = null;
-
+    
     public Font fheaderboldwhiteXLargeF(SXSSFWorkbook wb) {
         if (fheaderboldwhiteXLargeF == null) {
             fheaderboldwhiteXLargeF = (XSSFFont) wb.createFont();
@@ -190,9 +191,9 @@ public class CellStyles {
         }
         return fheaderboldwhiteXLargeF;
     }
-
+    
     XSSFFont fheaderboldwhite = null;
-
+    
     public Font fheaderboldwhite(SXSSFWorkbook wb) {
         if (fheaderboldwhite == null) {
             fheaderboldwhite = (XSSFFont) wb.createFont();
@@ -203,9 +204,9 @@ public class CellStyles {
         }
         return fheaderboldwhite;
     }
-
+    
     XSSFFont fheaderboldwhiteepharma = null;
-
+    
     public Font fheaderboldwhiteepharma(SXSSFWorkbook wb) {
         if (fheaderboldwhiteepharma == null) {
             fheaderboldwhiteepharma = (XSSFFont) wb.createFont();
@@ -216,9 +217,9 @@ public class CellStyles {
         }
         return fheaderboldwhiteepharma;
     }
-
+    
     XSSFFont fheaderblackbold = null;
-
+    
     public Font fheaderblackbold(SXSSFWorkbook wb) {
         if (fheaderblackbold == null) {
             fheaderblackbold = (XSSFFont) wb.createFont();
@@ -229,9 +230,9 @@ public class CellStyles {
         }
         return fheaderblackbold;
     }
-
+    
     XSSFFont fheaderboldblackepharma = null;
-
+    
     public Font fheaderboldblackepharma(SXSSFWorkbook wb) {
         if (fheaderboldblackepharma == null) {
             fheaderboldblackepharma = (XSSFFont) wb.createFont();
@@ -242,9 +243,9 @@ public class CellStyles {
         }
         return fheaderboldblackepharma;
     }
-
+    
     XSSFFont fheaderblackbold14 = null;
-
+    
     public Font fheaderblackbold14(SXSSFWorkbook wb) {
         if (fheaderblackbold14 == null) {
             fheaderblackbold14 = (XSSFFont) wb.createFont();
@@ -255,9 +256,9 @@ public class CellStyles {
         }
         return fheaderblackbold14;
     }
-
+    
     XSSFFont fRptTitle = null;
-
+    
     public Font fRptTitle(SXSSFWorkbook wb) {
         if (fRptTitle == null) {
             fRptTitle = (XSSFFont) wb.createFont();
@@ -267,9 +268,9 @@ public class CellStyles {
         }
         return fRptTitle;
     }
-
+    
     XSSFFont fbold = null;
-
+    
     public Font fbold(SXSSFWorkbook wb) {
         if (fbold == null) {
             fbold = (XSSFFont) wb.createFont();
@@ -279,9 +280,9 @@ public class CellStyles {
         }
         return fbold;
     }
-
+    
     XSSFFont fboldSheetTitle = null;
-
+    
     public Font fboldSheetTitle(SXSSFWorkbook wb) {
         if (fboldSheetTitle == null) {
             fboldSheetTitle = (XSSFFont) wb.createFont();
@@ -296,7 +297,7 @@ public class CellStyles {
     /////////////////////////////////////////////////    
     //ESTILOS
     XSSFCellStyle headerBlueCenterWrapXLargeF = null;
-
+    
     public CellStyle headerBlueCenterWrapXLargeF() {
         if (headerBlueCenterWrapXLargeF == null) {
             headerBlueCenterWrapXLargeF = (XSSFCellStyle) wb.createCellStyle();
@@ -310,9 +311,9 @@ public class CellStyles {
         }
         return headerBlueCenterWrapXLargeF;
     }
-
+    
     XSSFCellStyle headerRpt = null;
-
+    
     public CellStyle headerRpt() {
         if (headerRpt == null) {
             headerRpt = (XSSFCellStyle) wb.createCellStyle();
@@ -326,9 +327,9 @@ public class CellStyles {
         }
         return headerRpt;
     }
-
+    
     XSSFCellStyle headerRptTitle = null;
-
+    
     public CellStyle headerRptTitle() {
         if (headerRptTitle == null) {
             headerRptTitle = (XSSFCellStyle) wb.createCellStyle();
@@ -342,9 +343,9 @@ public class CellStyles {
         }
         return headerRptTitle;
     }
-
+    
     XSSFCellStyle headerWhiteCenterWrap = null;
-
+    
     public CellStyle headerWhiteCenterWrap() {
         if (headerWhiteCenterWrap == null) {
             headerWhiteCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -359,9 +360,9 @@ public class CellStyles {
         }
         return headerWhiteCenterWrap;
     }
-
+    
     XSSFCellStyle headerBlueLeft = null;
-
+    
     public CellStyle headerBlueLeft() {
         if (headerBlueLeft == null) {
             headerBlueLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -376,9 +377,9 @@ public class CellStyles {
         }
         return headerBlueLeft;
     }
-
+    
     XSSFCellStyle headerBlueLeftWrap = null;
-
+    
     public CellStyle headerBlueLeftWrap() {
         if (headerBlueLeftWrap == null) {
             headerBlueLeftWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -392,9 +393,9 @@ public class CellStyles {
         }
         return headerBlueLeftWrap;
     }
-
+    
     XSSFCellStyle headerBlueCenterWrap = null;
-
+    
     public CellStyle headerBlueCenterWrap() {
         if (headerBlueCenterWrap == null) {
             headerBlueCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -408,9 +409,9 @@ public class CellStyles {
         }
         return headerBlueCenterWrap;
     }
-
+    
     XSSFCellStyle headerYellowLeft = null;
-
+    
     public CellStyle headerYellowLeft() {
         if (headerYellowLeft == null) {
             headerYellowLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -424,9 +425,9 @@ public class CellStyles {
         }
         return headerYellowLeft;
     }
-
+    
     XSSFCellStyle headerPureYellowLeft = null;
-
+    
     public CellStyle headerPureYellowLeft() {
         if (headerPureYellowLeft == null) {
             headerPureYellowLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -442,18 +443,18 @@ public class CellStyles {
         }
         return headerPureYellowLeft;
     }
-
+    
     public CellStyle date() {
-
+        
         CreationHelper createHelper = wb.getCreationHelper();
         CellStyle date = wb.createCellStyle();
         date.setDataFormat(createHelper.createDataFormat().getFormat("dd-mm-yyyy"));
         date.setFont(fnormal);
         return date;
     }
-
+    
     XSSFCellStyle porcentoYellow = null;
-
+    
     public CellStyle porcentoYellow() {
         if (porcentoYellow == null) {
             porcentoYellow = (XSSFCellStyle) wb.createCellStyle();
@@ -469,9 +470,9 @@ public class CellStyles {
         }
         return porcentoYellow;
     }
-
+    
     XSSFCellStyle headerYellowLeftWrap = null;
-
+    
     public CellStyle headerYellowLeftWrap() {
         if (headerYellowLeftWrap == null) {
             headerYellowLeftWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -485,9 +486,9 @@ public class CellStyles {
         }
         return headerYellowLeftWrap;
     }
-
+    
     XSSFCellStyle headerYellowCenter = null;
-
+    
     public CellStyle headerYellowCenter() {
         if (headerYellowCenter == null) {
             headerYellowCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -501,9 +502,9 @@ public class CellStyles {
         }
         return headerYellowCenter;
     }
-
+    
     XSSFCellStyle headerYellowCenterWrap = null;
-
+    
     public CellStyle headerYellowCenterWrap() {
         if (headerYellowCenterWrap == null) {
             headerYellowCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -517,9 +518,9 @@ public class CellStyles {
         }
         return headerYellowCenterWrap;
     }
-
+    
     XSSFCellStyle headerBlueDarkLeft = null;
-
+    
     public CellStyle headerBlueDarkLeft() {
         if (headerBlueDarkLeft == null) {
             headerBlueDarkLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -533,9 +534,9 @@ public class CellStyles {
         }
         return headerBlueDarkLeft;
     }
-
+    
     XSSFCellStyle headerOrangeLeft = null;
-
+    
     public CellStyle headerOrangeLeft() {
         if (headerOrangeLeft == null) {
             headerOrangeLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -549,9 +550,9 @@ public class CellStyles {
         }
         return headerOrangeLeft;
     }
-
+    
     XSSFCellStyle headerOrangeCenter = null;
-
+    
     public CellStyle headerOrangeCenter() {
         if (headerOrangeCenter == null) {
             headerOrangeCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -565,9 +566,9 @@ public class CellStyles {
         }
         return headerOrangeCenter;
     }
-
+    
     XSSFCellStyle headerGreyLeft = null;
-
+    
     public CellStyle headerGreyLeft() {
         if (headerGreyLeft == null) {
             headerGreyLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -581,9 +582,9 @@ public class CellStyles {
         }
         return headerGreyLeft;
     }
-
+    
     XSSFCellStyle headerGreyRight = null;
-
+    
     public CellStyle headerGreyRight() {
         if (headerGreyRight == null) {
             headerGreyRight = (XSSFCellStyle) wb.createCellStyle();
@@ -597,9 +598,9 @@ public class CellStyles {
         }
         return headerGreyRight;
     }
-
+    
     XSSFCellStyle headerGreyLightLeft = null;
-
+    
     public CellStyle headerGreyLightLeft() {
         if (headerGreyLightLeft == null) {
             headerGreyLightLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -614,7 +615,7 @@ public class CellStyles {
         return headerGreyLightLeft;
     }
     XSSFCellStyle headerGreyLightLeftNormal = null;
-
+    
     public CellStyle headerGreyLightLeftNormal() {
         if (headerGreyLightLeftNormal == null) {
             headerGreyLightLeftNormal = (XSSFCellStyle) wb.createCellStyle();
@@ -628,9 +629,9 @@ public class CellStyles {
         }
         return headerGreyLightLeftNormal;
     }
-
+    
     XSSFCellStyle headerRedLightLeft = null;
-
+    
     public CellStyle headerRedLightLeft() {
         if (headerRedLightLeft == null) {
             headerRedLightLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -646,9 +647,9 @@ public class CellStyles {
         }
         return headerRedLightLeft;
     }
-
+    
     XSSFCellStyle inteiroGreyLight = null;
-
+    
     public CellStyle inteiroGreyLight() {
         if (inteiroGreyLight == null) {
             inteiroGreyLight = (XSSFCellStyle) wb.createCellStyle();
@@ -664,9 +665,9 @@ public class CellStyles {
         }
         return inteiroGreyLight;
     }
-
+    
     XSSFCellStyle inteiroRedLight = null;
-
+    
     public CellStyle inteiroRedLight() {
         if (inteiroRedLight == null) {
             inteiroRedLight = (XSSFCellStyle) wb.createCellStyle();
@@ -684,9 +685,9 @@ public class CellStyles {
         }
         return inteiroRedLight;
     }
-
+    
     XSSFCellStyle porcentoRedLight = null;
-
+    
     public CellStyle porcentoRedLight() {
         if (porcentoRedLight == null) {
             porcentoRedLight = (XSSFCellStyle) wb.createCellStyle();
@@ -704,9 +705,9 @@ public class CellStyles {
         }
         return porcentoRedLight;
     }
-
+    
     XSSFCellStyle porcentoGreyLight = null;
-
+    
     public CellStyle porcentoGreyLight() {
         if (porcentoGreyLight == null) {
             porcentoGreyLight = (XSSFCellStyle) wb.createCellStyle();
@@ -722,9 +723,9 @@ public class CellStyles {
         }
         return porcentoGreyLight;
     }
-
+    
     XSSFCellStyle headerGreyLightCenter = null;
-
+    
     public CellStyle headerGreyLightCenter() {
         if (headerGreyLightCenter == null) {
             headerGreyLightCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -738,9 +739,9 @@ public class CellStyles {
         }
         return headerGreyLightCenter;
     }
-
+    
     XSSFCellStyle headerGreyLightCenterWrap = null;
-
+    
     public CellStyle headerGreyLightCenterWrap() {
         if (headerGreyLightCenterWrap == null) {
             headerGreyLightCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -754,9 +755,9 @@ public class CellStyles {
         }
         return headerGreyLightCenterWrap;
     }
-
+    
     XSSFCellStyle headerBlueDarkerCenterWrap = null;
-
+    
     public CellStyle headerBlueDarkerCenterWrap() {
         if (headerBlueDarkerCenterWrap == null) {
             headerBlueDarkerCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -770,9 +771,9 @@ public class CellStyles {
         }
         return headerBlueDarkerCenterWrap;
     }
-
+    
     XSSFCellStyle headerBlueLighterCenterWrap = null;
-
+    
     public CellStyle headerBlueLighterCenterWrap() {
         if (headerBlueLighterCenterWrap == null) {
             headerBlueLighterCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -786,9 +787,9 @@ public class CellStyles {
         }
         return headerBlueLighterCenterWrap;
     }
-
+    
     XSSFCellStyle headerBlueLightCenter = null;
-
+    
     public CellStyle headerBlueLightCenter() {
         if (headerBlueLightCenter == null) {
             headerBlueLightCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -806,9 +807,9 @@ public class CellStyles {
         }
         return headerBlueLightCenter;
     }
-
+    
     XSSFCellStyle headerBlueLightCenter14 = null;
-
+    
     public CellStyle headerBlueLightCenter14() {
         if (headerBlueLightCenter14 == null) {
             headerBlueLightCenter14 = (XSSFCellStyle) wb.createCellStyle();
@@ -822,9 +823,9 @@ public class CellStyles {
         }
         return headerBlueLightCenter14;
     }
-
+    
     XSSFCellStyle headerBlueLightLeftNormal = null;
-
+    
     public CellStyle headerBlueLightLeftNormal() {
         if (headerBlueLightLeftNormal == null) {
             headerBlueLightLeftNormal = (XSSFCellStyle) wb.createCellStyle();
@@ -840,9 +841,9 @@ public class CellStyles {
         }
         return headerBlueLightLeftNormal;
     }
-
+    
     XSSFCellStyle headerBlueLightLeft = null;
-
+    
     public CellStyle headerBlueLightLeft() {
         if (headerBlueLightLeft == null) {
             headerBlueLightLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -858,9 +859,9 @@ public class CellStyles {
         }
         return headerBlueLightLeft;
     }
-
+    
     XSSFCellStyle headerBlueLightRight = null;
-
+    
     public CellStyle headerBlueLightRight() {
         if (headerBlueLightRight == null) {
             headerBlueLightRight = (XSSFCellStyle) wb.createCellStyle();
@@ -874,9 +875,9 @@ public class CellStyles {
         }
         return headerBlueLightRight;
     }
-
+    
     XSSFCellStyle headerBlueLightRight14 = null;
-
+    
     public CellStyle headerBlueLightRight14() {
         if (headerBlueLightRight14 == null) {
             headerBlueLightRight14 = (XSSFCellStyle) wb.createCellStyle();
@@ -892,9 +893,9 @@ public class CellStyles {
         }
         return headerBlueLightRight14;
     }
-
+    
     XSSFCellStyle inteiroBlueLightNormal = null;
-
+    
     public CellStyle inteiroBlueLightNormal() {
         if (inteiroBlueLightNormal == null) {
             inteiroBlueLightNormal = (XSSFCellStyle) wb.createCellStyle();
@@ -912,9 +913,9 @@ public class CellStyles {
         }
         return inteiroBlueLightNormal;
     }
-
+    
     XSSFCellStyle inteiroBlueLight = null;
-
+    
     public CellStyle inteiroBlueLight() {
         if (inteiroBlueLight == null) {
             inteiroBlueLight = (XSSFCellStyle) wb.createCellStyle();
@@ -932,9 +933,9 @@ public class CellStyles {
         }
         return inteiroBlueLight;
     }
-
+    
     XSSFCellStyle inteiroBlueLight14 = null;
-
+    
     public CellStyle inteiroBlueLight14() {
         if (inteiroBlueLight14 == null) {
             inteiroBlueLight14 = (XSSFCellStyle) wb.createCellStyle();
@@ -952,9 +953,9 @@ public class CellStyles {
         }
         return inteiroBlueLight14;
     }
-
+    
     XSSFCellStyle porcentoBlueLight = null;
-
+    
     public CellStyle porcentoBlueLight() {
         if (porcentoBlueLight == null) {
             porcentoBlueLight = (XSSFCellStyle) wb.createCellStyle();
@@ -972,9 +973,9 @@ public class CellStyles {
         }
         return porcentoBlueLight;
     }
-
+    
     XSSFCellStyle porcentoBlueLight14 = null;
-
+    
     public CellStyle porcentoBlueLight14() {
         if (porcentoBlueLight14 == null) {
             porcentoBlueLight14 = (XSSFCellStyle) wb.createCellStyle();
@@ -992,9 +993,9 @@ public class CellStyles {
         }
         return porcentoBlueLight14;
     }
-
+    
     XSSFCellStyle headerYellowMedCenterWrap = null;
-
+    
     public CellStyle headerYellowMedCenterWrap() {
         if (headerYellowMedCenterWrap == null) {
             headerYellowMedCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -1009,9 +1010,9 @@ public class CellStyles {
         }
         return headerYellowMedCenterWrap;
     }
-
+    
     XSSFCellStyle headerLightYellowCenterWrap = null;
-
+    
     public CellStyle headerLightYellowCenterWrap() {
         if (headerLightYellowCenterWrap == null) {
             headerLightYellowCenterWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -1029,9 +1030,9 @@ public class CellStyles {
         }
         return headerLightYellowCenterWrap;
     }
-
+    
     XSSFCellStyle headerLightYellowLeft = null;
-
+    
     public CellStyle headerLightYellowLeft() {
         if (headerLightYellowLeft == null) {
             headerLightYellowLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -1049,9 +1050,9 @@ public class CellStyles {
         }
         return headerLightYellowLeft;
     }
-
+    
     XSSFCellStyle headerDarkGreenLeft = null;
-
+    
     public CellStyle headerDarkGreenLeft() {
         if (headerDarkGreenLeft == null) {
             headerDarkGreenLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -1065,9 +1066,9 @@ public class CellStyles {
         }
         return headerDarkGreenLeft;
     }
-
+    
     XSSFCellStyle headerDarkGreenCenter = null;
-
+    
     public CellStyle headerDarkGreenCenter() {
         if (headerDarkGreenCenter == null) {
             headerDarkGreenCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1081,9 +1082,9 @@ public class CellStyles {
         }
         return headerDarkGreenCenter;
     }
-
+    
     XSSFCellStyle headerGreyLightLeftWrap = null;
-
+    
     public CellStyle headerGreyLightLeftWrap() {
         if (headerGreyLightLeftWrap == null) {
             headerGreyLightLeftWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -1097,9 +1098,9 @@ public class CellStyles {
         }
         return headerGreyLightLeftWrap;
     }
-
+    
     XSSFCellStyle headerGreenLightLeft = null;
-
+    
     public CellStyle headerGreenLightLeft() {
         if (headerGreenLightLeft == null) {
             headerGreenLightLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -1115,9 +1116,9 @@ public class CellStyles {
         }
         return headerGreenLightLeft;
     }
-
+    
     XSSFCellStyle headerGreenLightCenter = null;
-
+    
     public CellStyle headerGreenLightCenter() {
         if (headerGreenLightCenter == null) {
             headerGreenLightCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1131,9 +1132,9 @@ public class CellStyles {
         }
         return headerGreenLightCenter;
     }
-
+    
     XSSFCellStyle headerYellowLightCenter = null;
-
+    
     public CellStyle headerYellowLightCenter() {
         if (headerYellowLightCenter == null) {
             headerYellowLightCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1151,9 +1152,9 @@ public class CellStyles {
         }
         return headerYellowLightCenter;
     }
-
+    
     XSSFCellStyle headerLightGreenCenterBorderBottom = null;
-
+    
     public CellStyle headerLightGreenCenterBorderBottom() {
         if (headerLightGreenCenterBorderBottom == null) {
             headerLightGreenCenterBorderBottom = (XSSFCellStyle) wb.createCellStyle();
@@ -1168,9 +1169,9 @@ public class CellStyles {
         }
         return headerLightGreenCenterBorderBottom;
     }
-
+    
     XSSFCellStyle headerLightGreenCenter = null;
-
+    
     public CellStyle headerLightGreenCenter() {
         if (headerLightGreenCenter == null) {
             headerLightGreenCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1188,9 +1189,9 @@ public class CellStyles {
         }
         return headerLightGreenCenter;
     }
-
+    
     XSSFCellStyle headerBrownBrownCenter = null;
-
+    
     public CellStyle headerBrownBrownCenter() {
         if (headerBrownBrownCenter == null) {
             headerBrownBrownCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1204,9 +1205,9 @@ public class CellStyles {
         }
         return headerBrownBrownCenter;
     }
-
+    
     XSSFCellStyle headerBrownCenter = null;
-
+    
     public CellStyle headerBrownCenter() {
         if (headerBrownCenter == null) {
             headerBrownCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1224,9 +1225,9 @@ public class CellStyles {
         }
         return headerBrownCenter;
     }
-
+    
     XSSFCellStyle headerGreenLeft = null;
-
+    
     public CellStyle headerGreenLeft() {
         if (headerGreenLeft == null) {
             headerGreenLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -1240,9 +1241,9 @@ public class CellStyles {
         }
         return headerGreenLeft;
     }
-
+    
     XSSFCellStyle inteiroGreenLight = null;
-
+    
     public CellStyle inteiroGreenLight() {
         if (inteiroGreenLight == null) {
             inteiroGreenLight = (XSSFCellStyle) wb.createCellStyle();
@@ -1260,9 +1261,9 @@ public class CellStyles {
         }
         return inteiroGreenLight;
     }
-
+    
     XSSFCellStyle porcentoGreenLight = null;
-
+    
     public CellStyle porcentoGreenLight() {
         if (porcentoGreenLight == null) {
             porcentoGreenLight = (XSSFCellStyle) wb.createCellStyle();
@@ -1278,9 +1279,9 @@ public class CellStyles {
         }
         return porcentoGreenLight;
     }
-
+    
     XSSFCellStyle headerPinkCenter = null;
-
+    
     public CellStyle headerPinkCenter() {
         if (headerPinkCenter == null) {
             headerPinkCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1295,7 +1296,7 @@ public class CellStyles {
         return headerPinkCenter;
     }
     XSSFCellStyle headerPinkLeft = null;
-
+    
     public CellStyle headerPinkLeft() {
         if (headerPinkLeft == null) {
             headerPinkLeft = (XSSFCellStyle) wb.createCellStyle();
@@ -1309,9 +1310,9 @@ public class CellStyles {
         }
         return headerPinkLeft;
     }
-
+    
     XSSFCellStyle headerPinkLeftWrap = null;
-
+    
     public CellStyle headerPinkLeftWrap() {
         if (headerPinkLeftWrap == null) {
             headerPinkLeftWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -1325,9 +1326,9 @@ public class CellStyles {
         }
         return headerPinkLeftWrap;
     }
-
+    
     XSSFCellStyle GreenCell = null;
-
+    
     public CellStyle GreenCell() {
         if (GreenCell == null) {
             GreenCell = (XSSFCellStyle) wb.createCellStyle();
@@ -1341,9 +1342,9 @@ public class CellStyles {
         }
         return GreenCell;
     }
-
+    
     XSSFCellStyle LightOrangeCell = null;
-
+    
     public CellStyle LightOrangeCell() {
         if (LightOrangeCell == null) {
             LightOrangeCell = (XSSFCellStyle) wb.createCellStyle();
@@ -1357,9 +1358,9 @@ public class CellStyles {
         }
         return LightOrangeCell;
     }
-
+    
     XSSFCellStyle normal = null;
-
+    
     public CellStyle normal() {
         if (normal == null) {
             normal = (XSSFCellStyle) wb.createCellStyle();
@@ -1371,9 +1372,9 @@ public class CellStyles {
         }
         return normal;
     }
-
+    
     XSSFCellStyle normalOrange = null;
-
+    
     public CellStyle normalOrange() {
         if (normalOrange == null) {
             normalOrange = (XSSFCellStyle) wb.createCellStyle();
@@ -1387,9 +1388,9 @@ public class CellStyles {
         }
         return normalOrange;
     }
-
+    
     XSSFCellStyle normal11 = null;
-
+    
     public CellStyle normal11() {
         if (normal11 == null) {
             normal11 = (XSSFCellStyle) wb.createCellStyle();
@@ -1405,9 +1406,9 @@ public class CellStyles {
         }
         return normal11;
     }
-
+    
     XSSFCellStyle normalWithBorders = null;
-
+    
     public CellStyle normalWithBorders() {
         if (normalWithBorders == null) {
             normalWithBorders = (XSSFCellStyle) wb.createCellStyle();
@@ -1425,9 +1426,9 @@ public class CellStyles {
         }
         return normalWithBorders;
     }
-
+    
     XSSFCellStyle normalWrap = null;
-
+    
     public CellStyle normalWrap() {
         if (normalWrap == null) {
             normalWrap = (XSSFCellStyle) wb.createCellStyle();
@@ -1441,9 +1442,9 @@ public class CellStyles {
         }
         return normalWrap;
     }
-
+    
     XSSFCellStyle normalCenter = null;
-
+    
     public CellStyle normalCenter() {
         if (normalCenter == null) {
             normalCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1457,9 +1458,9 @@ public class CellStyles {
         }
         return normalCenter;
     }
-
+    
     XSSFCellStyle normalGreen = null;
-
+    
     public CellStyle normalGreen() {
         if (normalGreen == null) {
             normalGreen = (XSSFCellStyle) wb.createCellStyle();
@@ -1473,9 +1474,9 @@ public class CellStyles {
         }
         return normalGreen;
     }
-
+    
     XSSFCellStyle normalRed = null;
-
+    
     public CellStyle normalRed() {
         if (normalRed == null) {
             normalRed = (XSSFCellStyle) wb.createCellStyle();
@@ -1489,9 +1490,9 @@ public class CellStyles {
         }
         return normalRed;
     }
-
+    
     XSSFCellStyle normalCenterGrey = null;
-
+    
     public CellStyle normalCenterGrey() {
         if (normalCenterGrey == null) {
             normalCenterGrey = (XSSFCellStyle) wb.createCellStyle();
@@ -1505,9 +1506,9 @@ public class CellStyles {
         }
         return normalCenterGrey;
     }
-
+    
     XSSFCellStyle decimal = null;
-
+    
     public CellStyle decimal() {
         if (decimal == null) {
             decimal = (XSSFCellStyle) wb.createCellStyle();
@@ -1521,9 +1522,9 @@ public class CellStyles {
         }
         return decimal;
     }
-
+    
     XSSFCellStyle decimalGreyBold = null;
-
+    
     public CellStyle decimalGreyBold() {
         if (decimalGreyBold == null) {
             decimalGreyBold = (XSSFCellStyle) wb.createCellStyle();
@@ -1539,9 +1540,9 @@ public class CellStyles {
         }
         return decimalGreyBold;
     }
-
+    
     XSSFCellStyle eurosCent = null;
-
+    
     public CellStyle eurosCent() {
         if (eurosCent == null) {
             eurosCent = (XSSFCellStyle) wb.createCellStyle();
@@ -1555,9 +1556,9 @@ public class CellStyles {
         }
         return eurosCent;
     }
-
+    
     XSSFCellStyle eurosCentOrange = null;
-
+    
     public CellStyle eurosCentOrange() {
         if (eurosCentOrange == null) {
             eurosCentOrange = (XSSFCellStyle) wb.createCellStyle();
@@ -1573,9 +1574,9 @@ public class CellStyles {
         }
         return eurosCentOrange;
     }
-
+    
     XSSFCellStyle eurosCentGreenDark = null;
-
+    
     public CellStyle eurosCentGreenDark() {
         if (eurosCentGreenDark == null) {
             eurosCentGreenDark = (XSSFCellStyle) wb.createCellStyle();
@@ -1592,7 +1593,7 @@ public class CellStyles {
         return eurosCentGreenDark;
     }
     XSSFCellStyle eurosCentGreenBold = null;
-
+    
     public CellStyle eurosCentGreenBold() {
         if (eurosCentGreenBold == null) {
             eurosCentGreenBold = (XSSFCellStyle) wb.createCellStyle();
@@ -1612,9 +1613,9 @@ public class CellStyles {
         }
         return eurosCentGreenBold;
     }
-
+    
     XSSFCellStyle eurosCentGreen = null;
-
+    
     public CellStyle eurosCentGreen() {
         if (eurosCentGreen == null) {
             eurosCentGreen = (XSSFCellStyle) wb.createCellStyle();
@@ -1630,9 +1631,9 @@ public class CellStyles {
         }
         return eurosCentGreen;
     }
-
+    
     XSSFCellStyle eurosCentNormal = null;
-
+    
     public CellStyle eurosCentNormal() {
         if (eurosCentNormal == null) {
             eurosCentNormal = (XSSFCellStyle) wb.createCellStyle();
@@ -1650,9 +1651,9 @@ public class CellStyles {
         }
         return eurosCentNormal;
     }
-
+    
     XSSFCellStyle eurosCentNormalBold = null;
-
+    
     public CellStyle eurosCentNormalBold() {
         if (eurosCentNormalBold == null) {
             eurosCentNormalBold = (XSSFCellStyle) wb.createCellStyle();
@@ -1671,7 +1672,7 @@ public class CellStyles {
         return eurosCentNormalBold;
     }
     XSSFCellStyle eurosCentGreyLighter = null;
-
+    
     public CellStyle eurosCentGreyLighter() {
         if (eurosCentGreyLighter == null) {
             eurosCentGreyLighter = (XSSFCellStyle) wb.createCellStyle();
@@ -1691,9 +1692,9 @@ public class CellStyles {
         }
         return eurosCentGreyLighter;
     }
-
+    
     XSSFCellStyle eurosCentGreyLight = null;
-
+    
     public CellStyle eurosCentGreyLight() {
         if (eurosCentGreyLight == null) {
             eurosCentGreyLight = (XSSFCellStyle) wb.createCellStyle();
@@ -1709,9 +1710,9 @@ public class CellStyles {
         }
         return eurosCentGreyLight;
     }
-
+    
     XSSFCellStyle eurosCentGreyLighterBlack = null;
-
+    
     public CellStyle eurosCentGreyLighterBlack() {
         if (eurosCentGreyLighterBlack == null) {
             eurosCentGreyLighterBlack = (XSSFCellStyle) wb.createCellStyle();
@@ -1727,9 +1728,9 @@ public class CellStyles {
         }
         return eurosCentGreyLighterBlack;
     }
-
+    
     XSSFCellStyle eurosCentGrey = null;
-
+    
     public CellStyle eurosCentGrey() {
         if (eurosCentGrey == null) {
             eurosCentGrey = (XSSFCellStyle) wb.createCellStyle();
@@ -1745,9 +1746,9 @@ public class CellStyles {
         }
         return eurosCentGrey;
     }
-
+    
     XSSFCellStyle eurosCentYellowLight = null;
-
+    
     public CellStyle eurosCentYellowLight() {
         if (eurosCentYellowLight == null) {
             eurosCentYellowLight = (XSSFCellStyle) wb.createCellStyle();
@@ -1767,9 +1768,9 @@ public class CellStyles {
         }
         return eurosCentYellowLight;
     }
-
+    
     XSSFCellStyle eurosCentYellow = null;
-
+    
     public CellStyle eurosCentYellow() {
         if (eurosCentYellow == null) {
             eurosCentYellow = (XSSFCellStyle) wb.createCellStyle();
@@ -1785,9 +1786,9 @@ public class CellStyles {
         }
         return eurosCentYellow;
     }
-
+    
     XSSFCellStyle eurosCentLightGreenCenter = null;
-
+    
     public CellStyle eurosCentLightGreenCenter() {
         if (eurosCentLightGreenCenter == null) {
             eurosCentLightGreenCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -1805,9 +1806,9 @@ public class CellStyles {
         }
         return eurosCentLightGreenCenter;
     }
-
+    
     XSSFCellStyle eurosCentPureYellowRight = null;
-
+    
     public CellStyle eurosCentPureYellowRight() {
         if (eurosCentPureYellowRight == null) {
             eurosCentPureYellowRight = (XSSFCellStyle) wb.createCellStyle();
@@ -1825,9 +1826,9 @@ public class CellStyles {
         }
         return eurosCentPureYellowRight;
     }
-
+    
     XSSFCellStyle porcentoPureYellowRight = null;
-
+    
     public CellStyle porcentoPureYellowRight() {
         if (porcentoPureYellowRight == null) {
             porcentoPureYellowRight = (XSSFCellStyle) wb.createCellStyle();
@@ -1845,9 +1846,9 @@ public class CellStyles {
         }
         return porcentoPureYellowRight;
     }
-
+    
     XSSFCellStyle eurosCentBlueDarker = null;
-
+    
     public CellStyle eurosCentBlueDarker() {
         if (eurosCentBlueDarker == null) {
             eurosCentBlueDarker = (XSSFCellStyle) wb.createCellStyle();
@@ -1863,9 +1864,9 @@ public class CellStyles {
         }
         return eurosCentBlueDarker;
     }
-
+    
     XSSFCellStyle normalBlueLighter = null;
-
+    
     public CellStyle normalBlueLighter() {
         if (normalBlueLighter == null) {
             normalBlueLighter = (XSSFCellStyle) wb.createCellStyle();
@@ -1881,9 +1882,9 @@ public class CellStyles {
         }
         return normalBlueLighter;
     }
-
+    
     XSSFCellStyle eurosCentBlueLighter = null;
-
+    
     public CellStyle eurosCentBlueLighter() {
         if (eurosCentBlueLighter == null) {
             eurosCentBlueLighter = (XSSFCellStyle) wb.createCellStyle();
@@ -1901,9 +1902,9 @@ public class CellStyles {
         }
         return eurosCentBlueLighter;
     }
-
+    
     XSSFCellStyle eurosCentSkyBlue = null;
-
+    
     public CellStyle eurosCentSkyBlue() {
         if (eurosCentSkyBlue == null) {
             eurosCentSkyBlue = (XSSFCellStyle) wb.createCellStyle();
@@ -1921,9 +1922,9 @@ public class CellStyles {
         }
         return eurosCentSkyBlue;
     }
-
+    
     XSSFCellStyle eurosCentBlueLight = null;
-
+    
     public CellStyle eurosCentBlueLight() {
         if (eurosCentBlueLight == null) {
             eurosCentBlueLight = (XSSFCellStyle) wb.createCellStyle();
@@ -1941,9 +1942,9 @@ public class CellStyles {
         }
         return eurosCentBlueLight;
     }
-
+    
     XSSFCellStyle eurosCentGreenLight = null;
-
+    
     public CellStyle eurosCentGreenLight() {
         if (eurosCentGreenLight == null) {
             eurosCentGreenLight = (XSSFCellStyle) wb.createCellStyle();
@@ -1961,9 +1962,9 @@ public class CellStyles {
         }
         return eurosCentGreenLight;
     }
-
+    
     XSSFCellStyle eurosCentRed = null;
-
+    
     public CellStyle eurosCentRed() {
         if (eurosCentRed == null) {
             eurosCentRed = (XSSFCellStyle) wb.createCellStyle();
@@ -1979,9 +1980,9 @@ public class CellStyles {
         }
         return eurosCentRed;
     }
-
+    
     XSSFCellStyle inteiro = null;
-
+    
     public CellStyle inteiro() {
         if (inteiro == null) {
             inteiro = (XSSFCellStyle) wb.createCellStyle();
@@ -1996,7 +1997,7 @@ public class CellStyles {
         return inteiro;
     }
     XSSFCellStyle inteiroWithBorders = null;
-
+    
     public CellStyle inteiroWithBorders() {
         if (inteiroWithBorders == null) {
             inteiroWithBorders = (XSSFCellStyle) wb.createCellStyle();
@@ -2014,9 +2015,9 @@ public class CellStyles {
         }
         return inteiroWithBorders;
     }
-
+    
     XSSFCellStyle inteiroOrange = null;
-
+    
     public CellStyle inteiroOrange() {
         if (inteiroOrange == null) {
             inteiroOrange = (XSSFCellStyle) wb.createCellStyle();
@@ -2032,9 +2033,9 @@ public class CellStyles {
         }
         return inteiroOrange;
     }
-
+    
     XSSFCellStyle inteiroNormal = null;
-
+    
     public CellStyle inteiroNormal() {
         if (inteiroNormal == null) {
             inteiroNormal = (XSSFCellStyle) wb.createCellStyle();
@@ -2052,9 +2053,9 @@ public class CellStyles {
         }
         return inteiroNormal;
     }
-
+    
     XSSFCellStyle inteiroNormalBold = null;
-
+    
     public CellStyle inteiroNormalBold() {
         if (inteiroNormalBold == null) {
             inteiroNormalBold = (XSSFCellStyle) wb.createCellStyle();
@@ -2072,9 +2073,9 @@ public class CellStyles {
         }
         return inteiroNormalBold;
     }
-
+    
     XSSFCellStyle inteiroGreen = null;
-
+    
     public CellStyle inteiroGreen() {
         if (inteiroGreen == null) {
             inteiroGreen = (XSSFCellStyle) wb.createCellStyle();
@@ -2090,9 +2091,9 @@ public class CellStyles {
         }
         return inteiroGreen;
     }
-
+    
     XSSFCellStyle inteiroRed = null;
-
+    
     public CellStyle inteiroRed() {
         if (inteiroRed == null) {
             inteiroRed = (XSSFCellStyle) wb.createCellStyle();
@@ -2108,9 +2109,9 @@ public class CellStyles {
         }
         return inteiroRed;
     }
-
+    
     XSSFCellStyle inteiroRedtxt = null;
-
+    
     public CellStyle inteiroRedtxt() {
         if (inteiroRedtxt == null) {
             inteiroRedtxt = (XSSFCellStyle) wb.createCellStyle();
@@ -2124,9 +2125,9 @@ public class CellStyles {
         }
         return inteiroRedtxt;
     }
-
+    
     XSSFCellStyle inteiroGrey = null;
-
+    
     public CellStyle inteiroGrey() {
         if (inteiroGrey == null) {
             inteiroGrey = (XSSFCellStyle) wb.createCellStyle();
@@ -2142,9 +2143,9 @@ public class CellStyles {
         }
         return inteiroGrey;
     }
-
+    
     XSSFCellStyle inteiroGreyMed = null;
-
+    
     public CellStyle inteiroGreyMed() {
         if (inteiroGreyMed == null) {
             inteiroGreyMed = (XSSFCellStyle) wb.createCellStyle();
@@ -2160,9 +2161,9 @@ public class CellStyles {
         }
         return inteiroGreyMed;
     }
-
+    
     XSSFCellStyle inteiroGreyBold = null;
-
+    
     public CellStyle inteiroGreyBold() {
         if (inteiroGreyBold == null) {
             inteiroGreyBold = (XSSFCellStyle) wb.createCellStyle();
@@ -2179,7 +2180,7 @@ public class CellStyles {
         return inteiroGreyBold;
     }
     XSSFCellStyle inteiroYellow = null;
-
+    
     public CellStyle inteiroYellow() {
         if (inteiroYellow == null) {
             inteiroYellow = (XSSFCellStyle) wb.createCellStyle();
@@ -2195,9 +2196,9 @@ public class CellStyles {
         }
         return inteiroYellow;
     }
-
+    
     XSSFCellStyle inteiroYellowBold = null;
-
+    
     public CellStyle inteiroYellowBold() {
         if (inteiroYellowBold == null) {
             inteiroYellowBold = (XSSFCellStyle) wb.createCellStyle();
@@ -2213,9 +2214,9 @@ public class CellStyles {
         }
         return inteiroYellowBold;
     }
-
+    
     XSSFCellStyle inteiroLightGreenCenter = null;
-
+    
     public CellStyle inteiroLightGreenCenter() {
         if (inteiroLightGreenCenter == null) {
             inteiroLightGreenCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -2233,9 +2234,9 @@ public class CellStyles {
         }
         return inteiroLightGreenCenter;
     }
-
+    
     XSSFCellStyle inteiroPureYellowRight = null;
-
+    
     public CellStyle inteiroPureYellowRight() {
         if (inteiroPureYellowRight == null) {
             inteiroPureYellowRight = (XSSFCellStyle) wb.createCellStyle();
@@ -2253,9 +2254,9 @@ public class CellStyles {
         }
         return inteiroPureYellowRight;
     }
-
+    
     XSSFCellStyle porcento = null;
-
+    
     public CellStyle porcento() {
         if (porcento == null) {
             porcento = (XSSFCellStyle) wb.createCellStyle();
@@ -2269,9 +2270,9 @@ public class CellStyles {
         }
         return porcento;
     }
-
+    
     XSSFCellStyle porcentoOrange = null;
-
+    
     public CellStyle porcentoOrange() {
         if (porcentoOrange == null) {
             porcentoOrange = (XSSFCellStyle) wb.createCellStyle();
@@ -2287,9 +2288,9 @@ public class CellStyles {
         }
         return porcentoOrange;
     }
-
+    
     XSSFCellStyle porcentoNormal = null;
-
+    
     public CellStyle porcentoNormal() {
         if (porcentoNormal == null) {
             porcentoNormal = (XSSFCellStyle) wb.createCellStyle();
@@ -2307,9 +2308,9 @@ public class CellStyles {
         }
         return porcentoNormal;
     }
-
+    
     XSSFCellStyle porcentoNormalLightGreenCenter = null;
-
+    
     public CellStyle porcentoNormalLightGreenCenter() {
         if (porcentoNormalLightGreenCenter == null) {
             porcentoNormalLightGreenCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -2327,9 +2328,9 @@ public class CellStyles {
         }
         return porcentoNormalLightGreenCenter;
     }
-
+    
     XSSFCellStyle porcentoNormalBold = null;
-
+    
     public CellStyle porcentoNormalBold() {
         if (porcentoNormalBold == null) {
             porcentoNormalBold = (XSSFCellStyle) wb.createCellStyle();
@@ -2347,9 +2348,9 @@ public class CellStyles {
         }
         return porcentoNormalBold;
     }
-
+    
     XSSFCellStyle porcentoGreen = null;
-
+    
     public CellStyle porcentoGreen() {
         if (porcentoGreen == null) {
             porcentoGreen = (XSSFCellStyle) wb.createCellStyle();
@@ -2365,9 +2366,9 @@ public class CellStyles {
         }
         return porcentoGreen;
     }
-
+    
     XSSFCellStyle porcentoGreyBold = null;
-
+    
     public CellStyle porcentoGreyBold() {
         if (porcentoGreyBold == null) {
             porcentoGreyBold = (XSSFCellStyle) wb.createCellStyle();
@@ -2383,9 +2384,9 @@ public class CellStyles {
         }
         return porcentoGreyBold;
     }
-
+    
     XSSFCellStyle porcentoGreyMed = null;
-
+    
     public CellStyle porcentoGreyMed() {
         if (porcentoGreyMed == null) {
             porcentoGreyMed = (XSSFCellStyle) wb.createCellStyle();
@@ -2401,9 +2402,9 @@ public class CellStyles {
         }
         return porcentoGreyMed;
     }
-
+    
     XSSFCellStyle headerEpharmaBlue = null;
-
+    
     public CellStyle headerEpharmaBlue() {
         if (headerEpharmaBlue == null) {
             headerEpharmaBlue = (XSSFCellStyle) wb.createCellStyle();
@@ -2417,9 +2418,9 @@ public class CellStyles {
         }
         return headerEpharmaBlue;
     }
-
+    
     XSSFCellStyle headerEpharmaBlueCenter = null;
-
+    
     public CellStyle headerEpharmaBlueCenter() {
         if (headerEpharmaBlueCenter == null) {
             headerEpharmaBlueCenter = (XSSFCellStyle) wb.createCellStyle();
@@ -2433,9 +2434,9 @@ public class CellStyles {
         }
         return headerEpharmaBlueCenter;
     }
-
+    
     XSSFCellStyle headerEpharmaTrpBlue = null;
-
+    
     public CellStyle headerEpharmaTrpBlue() {
         if (headerEpharmaTrpBlue == null) {
             headerEpharmaTrpBlue = (XSSFCellStyle) wb.createCellStyle();
@@ -2449,9 +2450,9 @@ public class CellStyles {
         }
         return headerEpharmaTrpBlue;
     }
-
+    
     XSSFCellStyle headerEpharmaTfoGrey = null;
-
+    
     public CellStyle headerEpharmaTfoGrey() {
         if (headerEpharmaTfoGrey == null) {
             headerEpharmaTfoGrey = (XSSFCellStyle) wb.createCellStyle();
@@ -2465,9 +2466,9 @@ public class CellStyles {
         }
         return headerEpharmaTfoGrey;
     }
-
+    
     XSSFCellStyle csSheetHeader = null;
-
+    
     public CellStyle csSheetHeader() {
         if (csSheetHeader == null) {
             csSheetHeader = (XSSFCellStyle) wb.createCellStyle();
@@ -2486,7 +2487,7 @@ public class CellStyles {
         XSSFColor color = new XSSFColor(new Color(red, green, blue));
         return color;
     }
-
+    
     public void newCellTxt(Row row, int cel, String value, CellStyle cs) {
         try {
             Cell cell = row.createCell(cel);
@@ -2498,9 +2499,9 @@ public class CellStyles {
             }
             System.out.print("CellStyles.newCellTxt(Linha:" + row.getRowNum() + ", Coluna:" + cel + ", Valor: " + value + "): " + e);
         }
-
+        
     }
-
+    
     public void newCellNum(Row row, int cel, double value, CellStyle cs) {
         try {
             Cell cell = row.createCell(cel);
@@ -2510,46 +2511,46 @@ public class CellStyles {
             System.out.print("CellStyles.newCellNum(Linha:" + row.getRowNum() + ", Coluna:" + cel + ", Valor: " + value + "): " + e);
         }
     }
-
+    
     public void newCellGenericValue(Row row, int cel, Object value, CellStyle cs) {
         Cell cell = row.getCell(cel) == null ? row.createCell(cel) : row.getCell(cel);
         try {
-
+            
             cell.setCellValue(value.toString());
             cell.setCellStyle(cs);
         } catch (Exception e) {
             cell.setCellValue("");
             cell.setCellStyle(cs);
-
+            
         }
     }
-
+    
     public void newCellDateValue(Row row, int cel, Date value) {
         Cell cell = row.getCell(cel) == null ? row.createCell(cel) : row.getCell(cel);
         try {
-
+            
             cell.setCellValue(value);
             cell.setCellStyle(date());
         } catch (Exception e) {
             cell.setCellValue("");
             cell.setCellStyle(date());
-
+            
         }
     }
-
+    
     public void newCellIntValue(Row row, int cel, int value, CellStyle cs) {
         Cell cell = row.createCell(cel);
         try {
-
+            
             cell.setCellValue(value);
             cell.setCellStyle(cs);
         } catch (Exception e) {
             cell.setCellValue("");
             cell.setCellStyle(cs);
-
+            
         }
     }
-
+    
     public void newCellFormula(Row row, int cel, String Formula, CellStyle cs) {
         try {
             String letra = CellReference.convertNumToColString(cel);
@@ -2559,7 +2560,7 @@ public class CellStyles {
         } catch (Exception e) {
             System.out.print("CellStyles.newCellFormula(Linha:" + row.getRowNum() + ", Coluna:" + cel + ", Formula: " + Formula + "): " + e);
         }
-
+        
     }
-
+    
 }

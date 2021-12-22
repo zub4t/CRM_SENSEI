@@ -44,7 +44,10 @@ public class ProjectServices {
         float effective_purchase = Float.parseFloat(req.getParameter("effective_purchase"));
         float honorary = Float.parseFloat(req.getParameter("honorary"));
 
-        repository.insertProject(client_id, n_process, nme, expected_sale, effective_sale, effective_purchase, honorary, expected_purchase);
+        int employee_selected = Integer.parseInt(req.getParameter("employee_selected"));
+        String end_date = req.getParameter("date");
+
+        repository.insertProject(client_id, n_process, nme, expected_sale, effective_sale, effective_purchase, honorary, expected_purchase, employee_selected, end_date);
     }
 
     public ProjectModel update(HttpServletRequest req) {
@@ -60,8 +63,10 @@ public class ProjectServices {
         float effective_purchase = Float.parseFloat(req.getParameter("effective_purchase"));
 
         float honorary = Float.parseFloat(req.getParameter("honorary"));
+        int employee_selected = Integer.parseInt(req.getParameter("employee_selected"));
+        String end_date = req.getParameter("date");
 
-        return repository.updateProject(client_id, id, n_process, nme, expected_sale, effective_sale, effective_purchase, honorary, expected_purchase);
+        return repository.updateProject(client_id, id, n_process, nme, expected_sale, effective_sale, effective_purchase, honorary, expected_purchase, employee_selected, end_date);
     }
 
     public void setProjects(HttpServletRequest req, HttpServletResponse resp, int n) {
@@ -82,6 +87,11 @@ public class ProjectServices {
     public ProjectModel getById(int id) {
         ProjectRepository repository = new ProjectRepository();
         return repository.getById(id);
+    }
+
+    public List<ProjectModel> getAll() {
+        ProjectRepository repository = new ProjectRepository();
+        return repository.getAll();
     }
 
     public List<String[]> getAllEmployeeByProject(int id) {
@@ -105,6 +115,14 @@ public class ProjectServices {
     public int getMaxPage() {
         ProjectRepository repository = new ProjectRepository();
         return repository.getMaxPage();
+
+    }
+
+    public void changeStts(HttpServletRequest req) {
+        ProjectRepository repository = new ProjectRepository();
+        int id = Integer.parseInt(req.getParameter("projectId"));
+        int stts = Integer.parseInt(req.getParameter("stts"));
+        repository.changeStts(id, stts);
 
     }
 }
