@@ -560,7 +560,6 @@ body{
     }
     .main-content {
         width: 100% !important;
-        margin: 0% !important; 
         margin-top: 45px !important;
         height: 100vh;
         display: flex;
