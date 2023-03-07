@@ -277,37 +277,37 @@ public class Rpt1 extends HttpServlet {
             cs.newCellTxt(row, cel++, "Lucro Projeto", cs.headerBlueLeftWrap());
 
         }
-        String sql = """
-                SELECT 
-                n_process,
-                customer_nme,
-                GROUP_CONCAT(DISTINCT project_id SEPARATOR ', ') AS project_ids,
-                (SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(spend_time))) FROM project_employee WHERE project_employee.project_id = t.project_id GROUP BY project_employee.project_id ) 
-                total_hours,
-                SUM(costByProjectFunc) AS spentWithFunc,
-                expected_sale,
-                effective_sale,
-                effective_purchase,
-                honorary
-            FROM
-                (SELECT 
-                    n_process,
-                    customer_nme,
-                    project_id,
-                        nme,
-                        SUM(TIME_TO_SEC(spend_time)) * (salary / 3600) AS costByProjectFunc,
-                        honorary,
-                        expected_sale,
-                        effective_sale,
-                        effective_purchase,
-                        ctr_date
-                FROM
-                    project_employee
-                INNER JOIN project ON project_employee.project_id = project.id 
-                INNER JOIN employee ON project_employee.employee_id = employee.id 
-                 {} GROUP BY n_process, customer_nme, project_employee.project_id, employee_id) AS t
-            GROUP BY n_process, customer_nme, project_id;
-        """.formatted(where)
+String sql = "SELECT \n"
+        + "n_process,\n"
+        + "customer_nme,\n"
+        + "GROUP_CONCAT(DISTINCT project_id SEPARATOR ', ') AS project_ids,\n"
+        + "(SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(spend_time))) FROM project_employee WHERE project_employee.project_id = t.project_id GROUP BY project_employee.project_id ) AS total_hours,\n"
+        + "SUM(costByProjectFunc) AS spentWithFunc,\n"
+        + "expected_sale,\n"
+        + "effective_sale,\n"
+        + "effective_purchase,\n"
+        + "honorary\n"
+        + "FROM\n"
+        + "(SELECT \n"
+        + "n_process,\n"
+        + "customer_nme,\n"
+        + "project_id,\n"
+        + "nme,\n"
+        + "SUM(TIME_TO_SEC(spend_time)) * (salary / 3600) AS costByProjectFunc,\n"
+        + "honorary,\n"
+        + "expected_sale,\n"
+        + "effective_sale,\n"
+        + "effective_purchase,\n"
+        + "ctr_date\n"
+        + "FROM\n"
+        + "project_employee\n"
+        + "INNER JOIN project ON project_employee.project_id = project.id \n"
+        + "INNER JOIN employee ON project_employee.employee_id = employee.id \n"
+        + where
+        + "GROUP BY n_process, customer_nme, project_employee.project_id, employee_id) AS t\n"
+        + "GROUP BY n_process, customer_nme, project_id;";
+
+
         int con = DBManager.getConnetion();
         PreparedStatement pstmt = null;
 
