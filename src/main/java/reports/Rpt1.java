@@ -304,7 +304,7 @@ String sql = "SELECT \n"
         + "INNER JOIN project ON project_employee.project_id = project.id \n"
         + "INNER JOIN employee ON project_employee.employee_id = employee.id \n"
         + where
-        + "GROUP BY n_process, customer_nme, project_employee.project_id, employee_id) AS t\n"
+        + " GROUP BY n_process, customer_nme, project_employee.project_id, employee_id) AS t\n"
         + "GROUP BY n_process, customer_nme, project_id;";
 
 
